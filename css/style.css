@@ -585,8 +585,10 @@ h1, h2, h3, h4, h5, h6 {
 .about__image {
   border-radius: var(--radius-lg);
   width: 100%;
-  height: 560px;
+  height: auto;
+  max-height: 620px;
   object-fit: cover;
+  object-position: top center;
   border: 1px solid rgba(201,169,110,0.15);
   box-shadow: 0 20px 60px rgba(0,0,0,0.4);
 }
@@ -1668,7 +1670,7 @@ h1, h2, h3, h4, h5, h6 {
 
   .about__grid { grid-template-columns: 1fr; gap: 48px; }
   .about__values { flex-direction: column; }
-  .about__image { height: 360px; }
+  .about__image { max-height: 400px; }
 
   .section { padding: 90px 0; }
   .services__grid { grid-template-columns: 1fr; }
