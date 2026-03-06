@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | Keneshia Haye Real Estate — Jacksonville, FL</title>
+  <meta name="description" content="Get in touch with Keneshia Haye, your veteran-led real estate expert in Jacksonville, FL. Schedule a consultation, ask a question, or start your home journey.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== NAVIGATION ========== -->
+  <nav class="nav scrolled">
+    <div class="container nav__inner">
+      <a href="index.html" class="nav__logo">Keneshia <span>Haye</span></a>
+      <div class="nav__links">
+        <a href="index.html" class="nav__link">Home</a>
+        <a href="buy.html" class="nav__link">Buy With Me</a>
+        <a href="sell.html" class="nav__link">Sell With Me</a>
+        <a href="veterans.html" class="nav__link">Veterans</a>
+        <a href="contact.html" class="nav__link">Contact</a>
+        <a href="contact.html" class="btn btn--gold btn--sm nav__cta">Let's Connect</a>
+      </div>
+      <button class="nav__toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ========== PAGE HERO ========== -->
+  <section class="page-hero">
+    <h1>Let's Connect</h1>
+    <p>
+      Ready to start your real estate journey? Reach out and let's make
+      it happen together.
+    </p>
+  </section>
+
+  <!-- ========== CONTACT SECTION ========== -->
+  <section class="section">
+    <div class="container">
+      <div class="contact__grid">
+        <!-- FORM -->
+        <div class="reveal">
+          <span class="section-label">Get In Touch</span>
+          <h2 class="section-title" style="font-size: 2rem;">Send Me a Message</h2>
+          <p style="color: var(--gray-700); margin-bottom: 2rem; line-height: 1.7;">
+            Fill out the form below and I'll get back to you within 24 hours.
+            Whether you're buying, selling, or just exploring — I'm here to help.
+          </p>
+          <form id="contact-form" action="#" method="POST">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="firstName">First Name *</label>
+                <input type="text" id="firstName" name="firstName" required placeholder="Your first name">
+              </div>
+              <div class="form-group">
+                <label for="lastName">Last Name *</label>
+                <input type="text" id="lastName" name="lastName" required placeholder="Your last name">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required placeholder="you@example.com">
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone *</label>
+                <input type="tel" id="phone" name="phone" required placeholder="(555) 123-4567">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="interest">I'm Interested In</label>
+              <select id="interest" name="interest">
+                <option value="">Select one...</option>
+                <option value="buying">Buying a Home</option>
+                <option value="selling">Selling a Home</option>
+                <option value="va-loan">VA Loan / Veterans</option>
+                <option value="investing">Investment Properties</option>
+                <option value="relocation">Relocation / PCS</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="area">Desired Area</label>
+                <input type="text" id="area" name="area" placeholder="e.g., Jacksonville, Orange Park">
+              </div>
+              <div class="form-group">
+                <label for="timeline">Timeline</label>
+                <select id="timeline" name="timeline">
+                  <option value="">Select timeline...</option>
+                  <option value="asap">ASAP</option>
+                  <option value="1-3">1-3 Months</option>
+                  <option value="3-6">3-6 Months</option>
+                  <option value="6-12">6-12 Months</option>
+                  <option value="exploring">Just Exploring</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Tell me a little about what you're looking for..."></textarea>
+            </div>
+            <button type="submit" class="btn btn--gold btn--lg" style="width: 100%; justify-content: center;">
+              Send Message
+            </button>
+          </form>
+        </div>
+
+        <!-- CONTACT INFO -->
+        <div class="reveal">
+          <span class="section-label">Contact Details</span>
+          <h2 class="section-title" style="font-size: 2rem;">Other Ways to Reach Me</h2>
+          <p style="color: var(--gray-700); margin-bottom: 2rem; line-height: 1.7;">
+            Prefer to call or stop by? Here's how you can reach me directly.
+          </p>
+
+          <div class="contact-info-card">
+            <div class="contact-info-card__icon">&#9742;</div>
+            <div>
+              <h4>Phone</h4>
+              <a href="tel:2544495299">(254) 449-5299</a>
+            </div>
+          </div>
+
+          <div class="contact-info-card">
+            <div class="contact-info-card__icon">&#9993;</div>
+            <div>
+              <h4>Email</h4>
+              <a href="mailto:keneshia@fgragent.com">keneshia@fgragent.com</a>
+            </div>
+          </div>
+
+          <div class="contact-info-card">
+            <div class="contact-info-card__icon">&#9872;</div>
+            <div>
+              <h4>Office</h4>
+              <p>1700 Wells Road, Suite 4<br>Orange Park, FL 32073</p>
+            </div>
+          </div>
+
+          <div class="contact-info-card">
+            <div class="contact-info-card__icon">&#128336;</div>
+            <div>
+              <h4>Hours</h4>
+              <p>Monday - Friday: 9am - 6pm<br>Saturday: 10am - 4pm<br>Sunday: By Appointment</p>
+            </div>
+          </div>
+
+          <!-- Schedule CTA -->
+          <div style="margin-top: 2rem; padding: 32px; background: var(--navy); border-radius: var(--radius-md); text-align: center;">
+            <h3 style="color: var(--white); font-size: 1.3rem; margin-bottom: 0.75rem;">Prefer to Schedule Directly?</h3>
+            <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem; margin-bottom: 1.5rem;">
+              Book a time that works for you on my calendar.
+            </p>
+            <a href="#" class="btn btn--gold">Schedule a Consultation</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== MAP PLACEHOLDER ========== -->
+  <section style="background: var(--off-white); padding: 0; height: 400px; display: flex; align-items: center; justify-content: center;">
+    <div class="text-center">
+      <p style="color: var(--gray-500); font-size: 1.1rem;">
+        &#128205; 1700 Wells Road, Suite 4, Orange Park, FL 32073
+      </p>
+      <p style="color: var(--gray-300); font-size: 0.85rem; margin-top: 0.5rem;">
+        Embed your Google Map here in Go High Level
+      </p>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <div class="footer__brand">Keneshia <span>Haye</span></div>
+          <p class="footer__about">
+            Veteran-led real estate expert serving the greater Jacksonville, FL area.
+            Dedicated, Determined, Dependable — your trusted partner in real estate.
+          </p>
+          <div class="footer__social">
+            <a href="https://www.facebook.com" aria-label="Facebook" target="_blank" rel="noopener">FB</a>
+            <a href="https://www.instagram.com" aria-label="Instagram" target="_blank" rel="noopener">IG</a>
+            <a href="https://www.youtube.com" aria-label="YouTube" target="_blank" rel="noopener">YT</a>
+            <a href="https://www.linkedin.com" aria-label="LinkedIn" target="_blank" rel="noopener">LI</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__heading">Quick Links</h4>
+          <ul class="footer__links">
+            <li><a href="buy.html">Buy With Me</a></li>
+            <li><a href="sell.html">Sell With Me</a></li>
+            <li><a href="veterans.html">Veterans</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer__heading">Areas Served</h4>
+          <ul class="footer__links">
+            <li><a href="#">Jacksonville</a></li>
+            <li><a href="#">Orange Park</a></li>
+            <li><a href="#">St. Augustine</a></li>
+            <li><a href="#">Ponte Vedra</a></li>
+            <li><a href="#">Middleburg</a></li>
+            <li><a href="#">Fleming Island</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer__heading">Contact</h4>
+          <div class="footer__contact-item">
+            <span class="footer__contact-icon">&#9742;</span>
+            <a href="tel:2544495299">(254) 449-5299</a>
+          </div>
+          <div class="footer__contact-item">
+            <span class="footer__contact-icon">&#9993;</span>
+            <a href="mailto:keneshia@fgragent.com">keneshia@fgragent.com</a>
+          </div>
+          <div class="footer__contact-item">
+            <span class="footer__contact-icon">&#9872;</span>
+            <span>1700 Wells Road, Suite 4<br>Orange Park, FL 32073</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>&copy; 2026 Keneshia Haye Real Estate. All rights reserved.</span>
+        <span><a href="#">Privacy Policy</a> &middot; <a href="#">Terms of Service</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
