@@ -1168,19 +1168,23 @@ h1, h2, h3, h4, h5, h6 {
   overflow: hidden;
 }
 
-/* Gradient orb */
-.page-hero::before {
-  content: '';
+/* Background image */
+.page-hero__bg {
   position: absolute;
-  top: 25%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 900px;
-  height: 500px;
-  background: radial-gradient(ellipse, rgba(201,169,110,0.08) 0%, transparent 60%);
-  border-radius: 50%;
-  pointer-events: none;
-  animation: pulse-glow 5s ease-in-out infinite;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.15;
+  filter: saturate(0.5);
+}
+
+/* Dark overlay with gradient */
+.page-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 30%, rgba(201,169,110,0.06) 0%, transparent 50%),
+    linear-gradient(180deg, rgba(6,6,14,0.3) 0%, rgba(6,6,14,0.85) 100%);
 }
 
 /* Grid pattern */
