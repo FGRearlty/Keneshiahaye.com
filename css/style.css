@@ -1609,20 +1609,60 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 0.5rem;
 }
 
+/* --- Sell page stat cards --- */
+.testimonial-card__stars--large {
+  font-size: 2rem;
+}
+
+.testimonial-card h3 {
+  font-size: 1.15rem;
+}
+
+.testimonial-card--stat h3 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.testimonial-card--stat .testimonial-card__text {
+  font-style: normal;
+}
+
 /* ============================================
    Responsive
    ============================================ */
+/* --- Focus & Accessibility --- */
+.btn:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--champagne);
+  outline-offset: 3px;
+}
+
+.form-group input:focus-visible,
+.form-group select:focus-visible,
+.form-group textarea:focus-visible {
+  outline: none;
+  border-color: var(--champagne);
+  box-shadow: 0 0 0 3px rgba(201,169,110,0.12), 0 0 20px rgba(201,169,110,0.08);
+}
+
+/* ============================================
+   Responsive — Desktop-first breakpoints
+   ============================================ */
+
+/* --- Large tablets & small laptops (1024px) --- */
 @media (max-width: 1024px) {
   .hero__title { font-size: 3.5rem; }
   .section-title { font-size: 2.6rem; }
   .cta-banner h2 { font-size: 2.6rem; }
   .services__grid { grid-template-columns: repeat(2, 1fr); }
   .testimonials__grid { grid-template-columns: repeat(2, 1fr); }
-  .footer__grid { grid-template-columns: repeat(2, 1fr); }
+  .footer__grid { grid-template-columns: repeat(2, 1fr); gap: 40px; }
   .process__steps { grid-template-columns: repeat(2, 1fr); }
   .about__grid { gap: 60px; }
+  .contact__grid { gap: 48px; }
 }
 
+/* --- Tablets & mobile (768px) --- */
 @media (max-width: 768px) {
   .nav__links {
     display: none;
@@ -1639,66 +1679,115 @@ h1, h2, h3, h4, h5, h6 {
     gap: 32px;
   }
 
-  .nav__links.active {
-    display: flex;
-  }
+  .nav__links.active { display: flex; }
 
   .nav__toggle {
     display: flex;
     z-index: 1001;
+    padding: 12px;
   }
 
   .nav__toggle.active span:nth-child(1) {
     transform: rotate(45deg) translate(5px, 5px);
   }
-
-  .nav__toggle.active span:nth-child(2) {
-    opacity: 0;
-  }
-
+  .nav__toggle.active span:nth-child(2) { opacity: 0; }
   .nav__toggle.active span:nth-child(3) {
     transform: rotate(-45deg) translate(5px, -5px);
   }
 
   .nav__cta { margin-left: 0; }
+  .nav__logo { font-size: 1.3rem; }
 
-  .hero { min-height: auto; padding: 160px 0 80px; }
-  .hero__title { font-size: 2.8rem; letter-spacing: -1px; }
-  .hero__stats { flex-direction: column; gap: 24px; }
+  .hero { min-height: auto; padding: 140px 0 60px; }
+  .hero__title { font-size: 2.6rem; letter-spacing: -1px; }
+  .hero__subtitle { font-size: 0.95rem; }
+  .hero__stats { flex-direction: column; gap: 20px; }
   .hero__actions { flex-direction: column; }
   .hero__actions .btn { width: 100%; justify-content: center; }
+  .hero__badge { padding: 10px 20px; font-size: 0.62rem; }
 
-  .about__grid { grid-template-columns: 1fr; gap: 48px; }
+  .about__grid { grid-template-columns: 1fr; gap: 32px; }
   .about__values { flex-direction: column; }
-  .about__image { max-height: 400px; }
+  .about__image { max-height: 450px; }
+  .about__value { padding: 20px 14px; }
 
-  .section { padding: 90px 0; }
-  .services__grid { grid-template-columns: 1fr; }
-  .testimonials__grid { grid-template-columns: 1fr; }
-  .areas__grid { grid-template-columns: repeat(2, 1fr); }
-  .footer__grid { grid-template-columns: 1fr; gap: 40px; }
-  .contact__grid { grid-template-columns: 1fr; }
-  .features-list { grid-template-columns: 1fr; }
-  .va-benefits { grid-template-columns: 1fr; }
-  .process__steps { grid-template-columns: 1fr; }
+  .section { padding: 72px 0; }
+  .section-title { font-size: 2.1rem; }
+  .section-label { font-size: 0.65rem; letter-spacing: 3px; padding-left: 32px; }
+  .section-label::before { width: 20px; }
+
+  .services__grid { grid-template-columns: 1fr; gap: 20px; }
+  .service-card { padding: 36px 28px 32px; }
+
+  .testimonials__grid { grid-template-columns: 1fr; gap: 20px; }
+  .testimonial-card { padding: 36px 28px; }
+
+  .areas__grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+
+  .footer__grid { grid-template-columns: 1fr; gap: 32px; }
+  .footer { padding: 72px 0 0; }
+  .footer__bottom { flex-direction: column; gap: 8px; text-align: center; }
+
+  .contact__grid { grid-template-columns: 1fr; gap: 40px; }
+  .features-list { grid-template-columns: 1fr; gap: 16px; }
+  .va-benefits { grid-template-columns: 1fr; gap: 16px; }
+  .va-benefit { padding: 28px 24px; }
+  .process__steps { grid-template-columns: 1fr; gap: 16px; }
+  .process-step { padding: 32px 20px; }
   .form-row { grid-template-columns: 1fr; }
 
-  .page-hero { padding: 160px 0 80px; }
-  .page-hero h1 { font-size: 2.6rem; }
-  .section-title { font-size: 2.1rem; }
-  .cta-banner h2 { font-size: 2.1rem; }
+  .page-hero { padding: 140px 0 60px; }
+  .page-hero h1 { font-size: 2.4rem; }
+  .page-hero p { font-size: 0.95rem; }
 
-  .footer__bottom { flex-direction: column; gap: 8px; text-align: center; }
-  .cta-banner { padding: 80px 0; }
+  .cta-banner { padding: 64px 0; }
+  .cta-banner h2 { font-size: 2.1rem; }
+  .cta-banner p { font-size: 0.92rem; }
+
+  .schedule-box { padding: 32px 24px; }
+  .contact-info-card { padding: 20px; }
+  .map-placeholder { height: 300px; }
+
+  .btn--lg { padding: 18px 36px; font-size: 0.78rem; }
 }
 
+/* --- Small phones (480px) --- */
 @media (max-width: 480px) {
-  .hero__title { font-size: 2.2rem; }
-  .section { padding: 70px 0; }
+  .container { padding: 0 18px; }
+  .nav__logo { font-size: 1.15rem; }
+
+  .hero { padding: 120px 0 48px; }
+  .hero__title { font-size: 2rem; }
+  .hero__stat-number { font-size: 2rem; }
+  .hero__stats { gap: 16px; }
+
+  .section { padding: 56px 0; }
+  .section-title { font-size: 1.7rem; }
+  .section-subtitle { font-size: 0.88rem; }
+
+  .about__image { max-height: 380px; }
+  .about__value { padding: 16px 12px; }
+
+  .service-card { padding: 28px 22px 24px; }
+  .testimonial-card { padding: 28px 22px; }
+
   .areas__grid { grid-template-columns: 1fr; }
-  .section-title { font-size: 1.8rem; }
-  .container { padding: 0 20px; }
-  .page-hero h1 { font-size: 2.1rem; }
-  .cta-banner h2 { font-size: 1.8rem; }
-  .hero__stat-number { font-size: 2.2rem; }
+  .area-card { height: 220px; }
+
+  .page-hero { padding: 110px 0 48px; }
+  .page-hero h1 { font-size: 1.9rem; }
+  .page-hero p { font-size: 0.88rem; }
+
+  .cta-banner { padding: 48px 0; }
+  .cta-banner h2 { font-size: 1.7rem; }
+  .cta-banner p { font-size: 0.88rem; }
+
+  .footer { padding: 56px 0 0; }
+  .footer__grid { gap: 28px; }
+
+  .form-group textarea { min-height: 100px; }
+  .map-placeholder { height: 240px; }
+
+  .btn { padding: 15px 32px; font-size: 0.74rem; }
+  .btn--lg { padding: 16px 28px; font-size: 0.74rem; }
 }
