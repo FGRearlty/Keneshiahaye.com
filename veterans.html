@@ -243,6 +243,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
 <!-- End Google Tag Manager -->
+<!-- GHL Integration Config -->
+<script>
+  // Update this URL after deploying your Cloudflare Worker
+  window.GHL_FORM_ENDPOINT = 'https://keneshia-haye-form-handler.workers.dev';
+</script>
 </head>
 
 <body class="font-sans antialiased bg-white dark:bg-navy-500 text-slate-700 dark:text-slate-300">
@@ -963,8 +968,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           </div>
 
           <!-- Newsletter -->
-          <!-- TODO: Replace REPLACE_WITH_YOUR_WEBHOOK_ID with your actual GHL webhook ID -->
-          <form class="flex gap-2" onsubmit="event.preventDefault(); var btn=this.querySelector('button'); var email=this.querySelector('input').value; fetch('https://services.leadconnectorhq.com/hooks/REPLACE_WITH_YOUR_WEBHOOK_ID',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,formSource:'footer-newsletter'})}).then(function(){btn.textContent='Subscribed!';btn.classList.remove('from-champagne-400','to-champagne-300');btn.classList.add('bg-emerald-500');}).catch(function(){btn.textContent='Subscribed!';btn.classList.remove('from-champagne-400','to-champagne-300');btn.classList.add('bg-emerald-500');});">
+          <form class="flex gap-2" onsubmit="event.preventDefault(); var btn=this.querySelector('button'); var email=this.querySelector('input').value; fetch(window.GHL_FORM_ENDPOINT || 'https://keneshia-haye-form-handler.workers.dev',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,formSource:'footer-newsletter'})}).then(function(){btn.textContent='Subscribed!';btn.classList.remove('from-champagne-400','to-champagne-300');btn.classList.add('bg-emerald-500');}).catch(function(){btn.textContent='Subscribed!';btn.classList.remove('from-champagne-400','to-champagne-300');btn.classList.add('bg-emerald-500');});">
             <input type="email" placeholder="Email" required class="flex-1 px-3 py-2 bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-lg text-sm text-slate-800 dark:text-white placeholder:text-slate-400 outline-none focus:border-champagne-400 transition-all min-w-0">
             <button type="submit" class="px-4 py-2 bg-gradient-to-r from-champagne-400 to-champagne-300 text-navy-500 text-sm font-bold rounded-lg hover:shadow-md transition-all whitespace-nowrap">Subscribe</button>
           </form>
@@ -1112,7 +1116,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
   /* ---- VA Form Submit Handler ---- */
-  // TODO: Replace REPLACE_WITH_YOUR_WEBHOOK_ID with your actual GHL webhook ID
   function handleVAFormSubmit(form) {
     var btn = document.getElementById('vaSubmitBtn');
     var successMsg = document.getElementById('vaFormSuccess');
@@ -1130,7 +1133,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     formData.formSource = 'va-intake';
 
     // POST to GHL webhook
-    fetch('https://services.leadconnectorhq.com/hooks/REPLACE_WITH_YOUR_WEBHOOK_ID', {
+    fetch(window.GHL_FORM_ENDPOINT || 'https://keneshia-haye-form-handler.workers.dev', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData)
