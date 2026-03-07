@@ -12,13 +12,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Remove oversized files
+      - name: Remove oversized and non-site files
         run: |
-          rm -rf va-resources/extracted-zip1 va-resources/extracted-zip2 _deploy
+          rm -rf va-resources/extracted-zip1 va-resources/extracted-zip2 _deploy ghl-integration email-templates guides .github
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy . --project-name=keneshiahaye-com --branch=main --commit-hash=${{ github.sha }} --commit-message="${{ github.event.head_commit.message }}"
+          command: pages deploy . --project-name=keneshiahaye-com --branch=main --commit-hash=${{ github.sha }}
