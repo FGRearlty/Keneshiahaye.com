@@ -2,51 +2,99 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://keneshiahaye.com/</loc>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://keneshiahaye.com/buy.html</loc>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://keneshiahaye.com/sell.html</loc>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://keneshiahaye.com/veterans.html</loc>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://keneshiahaye.com/contact.html</loc>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://keneshiahaye.com/resources.html</loc>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://keneshiahaye.com/va-benefits.html</loc>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://keneshiahaye.com/about.html</loc>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://keneshiahaye.com/blog/</loc>
+    <lastmod>2026-03-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://keneshiahaye.com/blog/jacksonville-neighborhoods-first-time-buyers.html</loc>
+    <lastmod>2026-03-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://keneshiahaye.com/blog/va-loan-guide-jacksonville.html</loc>
+    <lastmod>2026-03-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://keneshiahaye.com/blog/first-time-homebuyer-mistakes.html</loc>
+    <lastmod>2026-03-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://keneshiahaye.com/blog/jacksonville-real-estate-market.html</loc>
+    <lastmod>2026-03-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://keneshiahaye.com/blog/moving-to-jacksonville-military.html</loc>
+    <lastmod>2026-03-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://keneshiahaye.com/free-guide.html</loc>
+    <lastmod>2026-03-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://keneshiahaye.com/review.html</loc>
+    <lastmod>2026-03-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://keneshiahaye.com/privacy-policy.html</loc>
