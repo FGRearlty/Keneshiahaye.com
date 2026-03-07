@@ -1,4 +1,14 @@
+# robots.txt - keneshiahaye.com
+# Florida Gateway Realty
+
 User-agent: *
 Allow: /
 
+# Sitemap
 Sitemap: https://keneshiahaye.com/sitemap.xml
+
+# Disallow admin/script directories
+Disallow: /scripts/
+Disallow: /ghl-integration/
+Disallow: /va-resources/extracted-zip1/
+Disallow: /va-resources/extracted-zip2/
