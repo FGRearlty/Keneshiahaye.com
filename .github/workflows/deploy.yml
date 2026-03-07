@@ -14,7 +14,7 @@ jobs:
 
       - name: Remove oversized and non-site files
         run: |
-          rm -rf va-resources/extracted-zip1 va-resources/extracted-zip2 _deploy ghl-integration email-templates guides .github
+          rm -rf va-resources/extracted-zip1 va-resources/extracted-zip2 _deploy ghl-integration email-templates .github
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
