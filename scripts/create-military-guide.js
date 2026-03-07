@@ -94,7 +94,7 @@ function drawFooter(pageNum) {
     .font('Helvetica')
     .fontSize(7.5)
     .fillColor('#999999')
-    .text('Keneshia Haye | Florida Gateway Realty | (904) 866-2860', MARGIN, footerY, {
+    .text('Keneshia Haye | Florida Gateway Realty | (254) 449-5299', MARGIN, footerY, {
       width: CONTENT_W / 2,
       align: 'left',
     });
@@ -390,7 +390,7 @@ function drawTwoColumnBox(x, y, w, h, title, leftLines, rightLines) {
     .font('Helvetica')
     .fontSize(9)
     .fillColor('#8899aa')
-    .text('Florida Gateway Realty  |  (904) 866-2860', 0, authorBoxY + 70, {
+    .text('Florida Gateway Realty  |  (254) 449-5299', 0, authorBoxY + 70, {
       width: PAGE_W,
       align: 'center',
     });
@@ -1464,7 +1464,7 @@ doc.addPage();
     .stroke();
 
   const contactLines = [
-    { icon: '\u260E', text: '(904) 866-2860' },
+    { icon: '\u260E', text: '(254) 449-5299' },
     { icon: '\u2709', text: 'keneshia@floridagatewayrealty.com' },
     { icon: '\u2302', text: 'Florida Gateway Realty' },
     { icon: '\u2316', text: 'Jacksonville, FL' },

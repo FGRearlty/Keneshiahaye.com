@@ -134,7 +134,7 @@ function drawPageFooter(pageNum) {
   const footerY = PAGE_H - 36;
   drawChampagneLine(MARGIN, footerY, CONTENT_W, 0.5);
   doc.font('Helvetica').fontSize(7.5).fillColor('#999999');
-  doc.text('Keneshia Haye | Florida Gateway Realty | (904) 866-2860', MARGIN, footerY + 6, {
+  doc.text('Keneshia Haye | Florida Gateway Realty | (254) 449-5299', MARGIN, footerY + 6, {
     width: CONTENT_W / 2,
     align: 'left',
   });
@@ -215,7 +215,7 @@ function createCoverPage() {
   drawChampagneLine(boxX + 40, boxY + 60, boxW - 80, 0.5);
 
   doc.font('Helvetica').fontSize(10).fillColor(WHITE);
-  doc.text('Florida Gateway Realty | (904) 866-2860', 0, boxY + 72, { width: PAGE_W, align: 'center' });
+  doc.text('Florida Gateway Realty | (254) 449-5299', 0, boxY + 72, { width: PAGE_W, align: 'center' });
 
   // Bottom section - six step preview
   const stepsY = 575;
@@ -785,7 +785,7 @@ function createPage8() {
 
   // Phone
   doc.font('Helvetica-Bold').fontSize(12).fillColor(WHITE);
-  doc.text('(904) 866-2860', 0, cy, { width: PAGE_W, align: 'center' });
+  doc.text('(254) 449-5299', 0, cy, { width: PAGE_W, align: 'center' });
   cy += 20;
 
   // Email

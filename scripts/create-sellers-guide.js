@@ -105,7 +105,7 @@ function pageFooter() {
   const y = PAGE_H - 36;
   doc.rect(0, y - 4, PAGE_W, 40).fill(NAVY);
   doc.font('Helvetica').fontSize(7).fillColor(CHAMPAGNE);
-  doc.text('Keneshia Haye, REALTOR\u00AE  |  Florida Gateway Realty  |  (904) 866-2860  |  keneshiahaye.com', 0, y + 4, { width: PAGE_W, align: 'center' });
+  doc.text('Keneshia Haye, REALTOR\u00AE  |  Florida Gateway Realty  |  (254) 449-5299  |  keneshiahaye.com', 0, y + 4, { width: PAGE_W, align: 'center' });
 }
 
 /** Bullet point with champagne dot */
@@ -237,7 +237,7 @@ doc.rect(0, PAGE_H - 80, PAGE_W, 80).fill(ACCENT_BG);
 champagneLine(PAGE_H - 80, PAGE_W, false);
 
 doc.font('Helvetica').fontSize(10).fillColor(WHITE);
-doc.text('(904) 866-2860', 0, PAGE_H - 58, { width: PAGE_W, align: 'center' });
+doc.text('(254) 449-5299', 0, PAGE_H - 58, { width: PAGE_W, align: 'center' });
 doc.text('keneshia@fgragent.com', 0, PAGE_H - 42, { width: PAGE_W, align: 'center' });
 doc.font('Helvetica-Bold').fontSize(10).fillColor(CHAMPAGNE);
 doc.text('keneshiahaye.com', 0, PAGE_H - 26, { width: PAGE_W, align: 'center' });
@@ -903,7 +903,7 @@ const contactY = 420;
 champagneLine(contactY - 10, 160, true);
 
 doc.font('Helvetica-Bold').fontSize(18).fillColor(CHAMPAGNE);
-doc.text('(904) 866-2860', 0, contactY + 10, { width: PAGE_W, align: 'center' });
+doc.text('(254) 449-5299', 0, contactY + 10, { width: PAGE_W, align: 'center' });
 
 doc.font('Helvetica').fontSize(12).fillColor(WHITE);
 doc.text('keneshia@fgragent.com', 0, contactY + 42, { width: PAGE_W, align: 'center' });

@@ -121,7 +121,7 @@ def content_page_bg(canvas_obj, doc):
     # Footer
     canvas_obj.setFillColor(MEDIUM_GRAY)
     canvas_obj.setFont("Helvetica", 7)
-    canvas_obj.drawCentredString(PAGE_W / 2, 25, "(904) 866-2860  |  keneshia@fgragent.com  |  keneshiahaye.com")
+    canvas_obj.drawCentredString(PAGE_W / 2, 25, "(254) 449-5299  |  keneshia@fgragent.com  |  keneshiahaye.com")
     # Page number
     canvas_obj.setFillColor(CHAMPAGNE)
     canvas_obj.setFont("Helvetica-Bold", 8)
@@ -400,7 +400,7 @@ def build_cover(styles):
     ))
     story.append(Spacer(1, 20))
     story.append(Paragraph(
-        "(904) 866-2860  |  keneshia@fgragent.com  |  keneshiahaye.com",
+        "(254) 449-5299  |  keneshia@fgragent.com  |  keneshiahaye.com",
         styles["cover_contact"]
     ))
     story.append(PageBreak())
@@ -444,7 +444,7 @@ def build_welcome(styles):
     story.append(Spacer(1, 4))
     story.append(Paragraph("<b>Keneshia Haye</b>", styles["welcome_body"]))
     story.append(Paragraph("Broker/Owner, Florida Gateway Realty", styles["small"]))
-    story.append(Paragraph("(904) 866-2860  |  keneshia@fgragent.com", styles["small"]))
+    story.append(Paragraph("(254) 449-5299  |  keneshia@fgragent.com", styles["small"]))
 
     story.append(PageBreak())
     return story
@@ -906,7 +906,7 @@ def build_after_close(styles):
     story.append(Spacer(1, 12))
     story.append(tip_paragraph(
         "Need a contractor, painter, landscaper, or handyman? "
-        "Call Keneshia for trusted referrals: (904) 866-2860",
+        "Call Keneshia for trusted referrals: (254) 449-5299",
         styles
     ))
 
@@ -978,7 +978,7 @@ def build_back_cover(styles):
     story.append(Spacer(1, 24))
     story.append(GoldLine(300, 2))
     story.append(Spacer(1, 30))
-    story.append(Paragraph("(904) 866-2860", styles["back_info"]))
+    story.append(Paragraph("(254) 449-5299", styles["back_info"]))
     story.append(Paragraph("keneshia@fgragent.com", styles["back_info"]))
     story.append(Paragraph("keneshiahaye.com", styles["back_info"]))
     story.append(Spacer(1, 20))

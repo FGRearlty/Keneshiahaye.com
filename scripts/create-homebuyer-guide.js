@@ -216,7 +216,7 @@ function drawTable(headers, rows, x, y, colWidths) {
   // Contact info
   doc.font('Helvetica').fontSize(10).fillColor(WHITE);
   const contactY = 600;
-  doc.text('(904) 866-2860', M, contactY, { width: CW, align: 'center' });
+  doc.text('(254) 449-5299', M, contactY, { width: CW, align: 'center' });
   doc.text('keneshia@fgragent.com', M, contactY + 16, { width: CW, align: 'center' });
   doc.text('keneshiahaye.com', M, contactY + 32, { width: CW, align: 'center' });
 
@@ -898,7 +898,7 @@ doc.addPage();
   doc.text('Keneshia maintains a trusted vendor list for all your home needs \u2014 from HVAC technicians to landscapers. One call is all it takes.', M + 18, ry, { width: CW - 36, lineGap: 2 });
   ry = doc.y + 8;
   doc.font('Helvetica-Bold').fontSize(11).fillColor(GOLD);
-  doc.text('Call: (904) 866-2860', M + 18, ry, { width: CW - 36 });
+  doc.text('Call: (254) 449-5299', M + 18, ry, { width: CW - 36 });
 
   pageNumberFooter(10);
 })();
@@ -979,7 +979,7 @@ doc.addPage();
   doc.text('She\'ll guide you through every step \u2014 from your Certificate of Eligibility to closing day.', M + 20, doc.y + 6, { width: CW - 40, align: 'center', lineGap: 2 });
 
   doc.font('Helvetica-Bold').fontSize(14).fillColor(GOLD);
-  doc.text('Call Keneshia: (904) 866-2860', M + 20, doc.y + 10, { width: CW - 40, align: 'center' });
+  doc.text('Call Keneshia: (254) 449-5299', M + 20, doc.y + 10, { width: CW - 40, align: 'center' });
 
   pageNumberFooter(11);
 })();
@@ -1017,7 +1017,7 @@ doc.addPage();
   const rowGap = 28;
 
   const contactInfo = [
-    { label: 'Phone:', value: '(904) 866-2860' },
+    { label: 'Phone:', value: '(254) 449-5299' },
     { label: 'Email:', value: 'keneshia@fgragent.com' },
     { label: 'Web:', value: 'keneshiahaye.com' }
   ];

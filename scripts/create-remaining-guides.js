@@ -129,7 +129,7 @@ function drawCtaPage(doc, headline, bodyText) {
   doc.text('Keneshia Haye, REALTOR\u00AE', 0, cursorY, { width: PAGE_W, align: 'center' });
 
   doc.font('Helvetica').fontSize(12).fillColor(CHAMPAGNE);
-  doc.text('(904) 866-2860', 0, cursorY + 26, { width: PAGE_W, align: 'center' });
+  doc.text('(254) 449-5299', 0, cursorY + 26, { width: PAGE_W, align: 'center' });
   doc.text('keneshia@fgragent.com', 0, cursorY + 44, { width: PAGE_W, align: 'center' });
   doc.text('keneshiahaye.com', 0, cursorY + 62, { width: PAGE_W, align: 'center' });
 
@@ -158,7 +158,7 @@ function pageHeader(doc, text) {
 function pageFooter(doc, pageNum) {
   champagneLine(doc, MARGIN, PAGE_H - 40, CONTENT_W, 0.5);
   doc.font('Helvetica').fontSize(8).fillColor('#999999');
-  doc.text('Keneshia Haye  |  (904) 866-2860  |  keneshiahaye.com', MARGIN, PAGE_H - 32, { width: CONTENT_W / 2, lineBreak: false });
+  doc.text('Keneshia Haye  |  (254) 449-5299  |  keneshiahaye.com', MARGIN, PAGE_H - 32, { width: CONTENT_W / 2, lineBreak: false });
   doc.text(String(pageNum), MARGIN, PAGE_H - 32, { width: CONTENT_W, align: 'right', lineBreak: false });
   // Reset cursor to prevent PDFKit from auto-creating a blank page
   doc.x = MARGIN;

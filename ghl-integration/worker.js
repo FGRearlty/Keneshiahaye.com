@@ -27,6 +27,10 @@ const FORM_TAG_MAP = {
   'resource-download':      ['website-guide-download'],
   'footer-newsletter':      ['website-newsletter'],
   'homepage-guide':         ['website-guide-download', 'buyers guide'],
+  'homepage-guide-popup':   ['website-guide-download', 'buyers guide', 'popup-lead'],
+  'landing-page-guide':     ['website-guide-download', 'buyers guide', 'landing-page-lead'],
+  'review-request':         ['review-requested'],
+  'blog-lead-capture':      ['website-blog', 'content-lead'],
 };
 
 // CORS headers for browser requests
