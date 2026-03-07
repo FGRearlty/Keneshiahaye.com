@@ -1,0 +1,407 @@
+<!--
+  ============================================
+  FEATURED PROPERTIES — GHL Custom HTML Snippet
+  ============================================
+  Paste this into a GHL "Custom HTML/JS" element.
+  Located in: Section 5 — Featured Properties
+  ============================================
+-->
+
+<style>
+  /* --- Properties Grid --- */
+  .kh-properties {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
+
+  @media (max-width: 1024px) {
+    .kh-properties {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .kh-properties {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+  }
+
+  /* --- Property Card --- */
+  .kh-prop-card {
+    background: #0f1f38;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+    position: relative;
+  }
+
+  .kh-prop-card:hover {
+    transform: translateY(-10px);
+    border-color: rgba(201, 169, 110, 0.25);
+    box-shadow:
+      0 20px 50px rgba(0, 0, 0, 0.4),
+      0 0 40px rgba(201, 169, 110, 0.1);
+  }
+
+  /* --- Image Container --- */
+  .kh-prop-img-wrap {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+  }
+
+  .kh-prop-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .kh-prop-card:hover .kh-prop-img {
+    transform: scale(1.08);
+  }
+
+  /* Gradient overlay on image */
+  .kh-prop-img-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(to top, rgba(15, 31, 56, 0.9), transparent);
+    pointer-events: none;
+  }
+
+  /* Status badge */
+  .kh-prop-badge {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background: rgba(201, 169, 110, 0.9);
+    color: #0a1628;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 50px;
+    backdrop-filter: blur(8px);
+    z-index: 2;
+  }
+
+  /* Favorite heart */
+  .kh-prop-fav {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 36px;
+    height: 36px;
+    background: rgba(10, 22, 40, 0.6);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 2;
+    color: #94a3b8;
+    font-size: 16px;
+  }
+
+  .kh-prop-fav:hover {
+    background: rgba(201, 169, 110, 0.2);
+    border-color: rgba(201, 169, 110, 0.3);
+    color: #c9a96e;
+    transform: scale(1.1);
+  }
+
+  .kh-prop-fav.active {
+    color: #ef4444;
+    background: rgba(239, 68, 68, 0.15);
+    border-color: rgba(239, 68, 68, 0.3);
+  }
+
+  /* Price overlay on image */
+  .kh-prop-price {
+    position: absolute;
+    bottom: 14px;
+    left: 14px;
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: #ffffff;
+    z-index: 2;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  }
+
+  /* --- Card Body --- */
+  .kh-prop-body {
+    padding: 20px 20px 24px;
+  }
+
+  .kh-prop-address {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+
+  .kh-prop-city {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #64748b;
+    margin-bottom: 16px;
+  }
+
+  /* Property features row */
+  .kh-prop-features {
+    display: flex;
+    gap: 20px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    margin-bottom: 20px;
+  }
+
+  .kh-prop-feat {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #94a3b8;
+  }
+
+  .kh-prop-feat-icon {
+    font-size: 15px;
+    opacity: 0.7;
+  }
+
+  .kh-prop-feat strong {
+    color: #ffffff;
+    font-weight: 600;
+  }
+
+  /* View Property button */
+  .kh-prop-btn {
+    display: block;
+    width: 100%;
+    padding: 12px 20px;
+    background: rgba(201, 169, 110, 0.08);
+    border: 1px solid rgba(201, 169, 110, 0.2);
+    border-radius: 50px;
+    color: #c9a96e;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    letter-spacing: 0.3px;
+  }
+
+  .kh-prop-btn:hover {
+    background: linear-gradient(135deg, #c9a96e, #e3d4ab);
+    color: #0a1628;
+    border-color: #c9a96e;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(201, 169, 110, 0.3);
+  }
+
+  /* --- View All Link --- */
+  .kh-prop-viewall {
+    text-align: center;
+    margin-top: 40px;
+  }
+
+  .kh-prop-viewall a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #c9a96e;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 14px 36px;
+    border: 1.5px solid #c9a96e;
+    border-radius: 50px;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .kh-prop-viewall a:hover {
+    background: rgba(201, 169, 110, 0.1);
+    transform: translateY(-2px);
+    border-color: #e3d4ab;
+    color: #e3d4ab;
+  }
+
+  .kh-prop-viewall a .arrow {
+    transition: transform 0.3s ease;
+  }
+
+  .kh-prop-viewall a:hover .arrow {
+    transform: translateX(4px);
+  }
+</style>
+
+<div class="kh-properties">
+
+  <!-- Property 1 -->
+  <div class="kh-prop-card" data-kh-reveal>
+    <div class="kh-prop-img-wrap">
+      <img
+        class="kh-prop-img"
+        src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&q=80"
+        alt="Modern home in Ponte Vedra"
+        loading="lazy"
+      />
+      <div class="kh-prop-img-overlay"></div>
+      <span class="kh-prop-badge">New Listing</span>
+      <button class="kh-prop-fav" aria-label="Save to favorites" onclick="this.classList.toggle('active')">&#9825;</button>
+      <div class="kh-prop-price">$425,000</div>
+    </div>
+    <div class="kh-prop-body">
+      <div class="kh-prop-address">1842 Windstone Drive</div>
+      <div class="kh-prop-city">Ponte Vedra, FL 32081</div>
+      <div class="kh-prop-features">
+        <span class="kh-prop-feat">
+          <span class="kh-prop-feat-icon">&#128716;</span>
+          <strong>4</strong> Beds
+        </span>
+        <span class="kh-prop-feat">
+          <span class="kh-prop-feat-icon">&#128705;</span>
+          <strong>3</strong> Baths
+        </span>
+        <span class="kh-prop-feat">
+          <span class="kh-prop-feat-icon">&#9633;</span>
+          <strong>2,450</strong> sqft
+        </span>
+      </div>
+      <a href="#" class="kh-prop-btn">View Property</a>
+    </div>
+  </div>
+
+  <!-- Property 2 -->
+  <div class="kh-prop-card" data-kh-reveal>
+    <div class="kh-prop-img-wrap">
+      <img
+        class="kh-prop-img"
+        src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80"
+        alt="Beautiful home in Orange Park"
+        loading="lazy"
+      />
+      <div class="kh-prop-img-overlay"></div>
+      <span class="kh-prop-badge">VA Eligible</span>
+      <button class="kh-prop-fav" aria-label="Save to favorites" onclick="this.classList.toggle('active')">&#9825;</button>
+      <div class="kh-prop-price">$335,000</div>
+    </div>
+    <div class="kh-prop-body">
+      <div class="kh-prop-address">2710 Oakwood Lane</div>
+      <div class="kh-prop-city">Orange Park, FL 32073</div>
+      <div class="kh-prop-features">
+        <span class="kh-prop-feat">
+          <span class="kh-prop-feat-icon">&#128716;</span>
+          <strong>3</strong> Beds
+        </span>
+        <span class="kh-prop-feat">
+          <span class="kh-prop-feat-icon">&#128705;</span>
+          <strong>2</strong> Baths
+        </span>
+        <span class="kh-prop-feat">
+          <span class="kh-prop-feat-icon">&#9633;</span>
+          <strong>1,875</strong> sqft
+        </span>
+      </div>
+      <a href="#" class="kh-prop-btn">View Property</a>
+    </div>
+  </div>
+
+  <!-- Property 3 -->
+  <div class="kh-prop-card" data-kh-reveal>
+    <div class="kh-prop-img-wrap">
+      <img
+        class="kh-prop-img"
+        src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=80"
+        alt="Luxury home in Jacksonville"
+        loading="lazy"
+      />
+      <div class="kh-prop-img-overlay"></div>
+      <span class="kh-prop-badge">Price Reduced</span>
+      <button class="kh-prop-fav" aria-label="Save to favorites" onclick="this.classList.toggle('active')">&#9825;</button>
+      <div class="kh-prop-price">$589,000</div>
+    </div>
+    <div class="kh-prop-body">
+      <div class="kh-prop-address">904 Riverside Crescent</div>
+      <div class="kh-prop-city">Jacksonville, FL 32204</div>
+      <div class="kh-prop-features">
+        <span class="kh-prop-feat">
+          <span class="kh-prop-feat-icon">&#128716;</span>
+          <strong>5</strong> Beds
+        </span>
+        <span class="kh-prop-feat">
+          <span class="kh-prop-feat-icon">&#128705;</span>
+          <strong>4</strong> Baths
+        </span>
+        <span class="kh-prop-feat">
+          <span class="kh-prop-feat-icon">&#9633;</span>
+          <strong>3,200</strong> sqft
+        </span>
+      </div>
+      <a href="#" class="kh-prop-btn">View Property</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- View All Link -->
+<div class="kh-prop-viewall">
+  <a href="#">
+    View All Listings
+    <span class="arrow">&#8594;</span>
+  </a>
+</div>
+
+<script>
+  /* Scroll-reveal animation for property cards */
+  (function() {
+    var cards = document.querySelectorAll('[data-kh-reveal]');
+    if (!cards.length) return;
+
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry, i) {
+        if (entry.isIntersecting) {
+          var siblings = Array.from(entry.target.parentElement.querySelectorAll('[data-kh-reveal]'));
+          var idx = siblings.indexOf(entry.target);
+          var delay = idx >= 0 ? idx * 120 : 0;
+
+          setTimeout(function() {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }, delay);
+
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    cards.forEach(function(card) {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(30px)';
+      card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(card);
+    });
+  })();
+</script>

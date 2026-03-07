@@ -1,260 +1,971 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Buy With Me | Keneshia Haye Real Estate — Jacksonville, FL</title>
-  <meta name="description" content="Ready to buy a home in Jacksonville? Keneshia Haye guides first-time buyers, investors, and veterans through every step of the home buying process.">
-  <meta property="og:title" content="Buy With Me | Keneshia Haye Real Estate">
-  <meta property="og:description" content="Find your perfect home in Jacksonville with expert guidance from Keneshia Haye.">
-  <meta property="og:image" content="images/keneshia-blue-dress.png">
+  <title>Buy a Home | Keneshia Haye — Jacksonville, FL Real Estate</title>
+  <meta name="description" content="Find your perfect home in Jacksonville, FL with expert buyer's agent Keneshia Haye. Personalized property matches, expert negotiation, and first-time buyer guidance.">
+  <meta property="og:title" content="Buy a Home | Keneshia Haye — Jacksonville, FL Real Estate">
+  <meta property="og:description" content="From dream home discovery to closing day — expert guidance for buyers at every stage.">
+  <meta property="og:image" content="https://keneshiahaye.com/images/keneshia-blue-dress.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Buy a Home in Jacksonville FL with Keneshia Haye">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://keneshiahaye.com/buy.html">
+  <meta property="og:site_name" content="Keneshia Haye Real Estate">
+  <meta property="og:locale" content="en_US">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Buy a Home | Keneshia Haye Real Estate — Jacksonville, FL">
+  <meta name="twitter:description" content="Find your perfect home in Jacksonville with expert guidance from Keneshia Haye.">
+  <meta name="twitter:image" content="https://keneshiahaye.com/images/keneshia-blue-dress.png">
+  <link rel="canonical" href="https://keneshiahaye.com/buy.html">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-  <style>
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            serif: ['Playfair Display', 'Georgia', 'serif'],
+          },
+          colors: {
+            navy: { 50: '#f0f4f8', 100: '#d9e2ec', 200: '#bcccdc', 300: '#9fb3c8', 400: '#7b8794', 500: '#0a1628', 600: '#081120', 700: '#060f1d', 800: '#040a14', 900: '#02050a' },
+            champagne: { 50: '#faf6ed', 100: '#f2ebd4', 200: '#e3d4ab', 300: '#d4bd82', 400: '#c9a96e', 500: '#b8944f', 600: '#a07a3a', 700: '#86632e', 800: '#6d4f26', 900: '#583f1f' },
+          },
+        },
+      },
     }
-    .reveal.revealed {
-      opacity: 1;
-      transform: translateY(0);
+  </script>
+  <style>
+    /* Scroll reveal */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* Hero overlay gradient */
+    .hero-overlay {
+      background: linear-gradient(135deg, rgba(10,22,40,0.92) 0%, rgba(10,22,40,0.7) 50%, rgba(10,22,40,0.85) 100%);
+    }
+
+    /* Glassmorphism card */
+    .glass { background: rgba(255,255,255,0.03); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.06); }
+    :root:not(.dark) .glass { background: rgba(255,255,255,0.7); backdrop-filter: blur(16px); border: 1px solid rgba(0,0,0,0.06); }
+
+    /* Feature card top glow line */
+    .feature-glow::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,transparent,#c9a96e,transparent); opacity:0; transition:opacity 0.4s; }
+    .feature-glow:hover::before { opacity:1; }
+
+    /* Smooth transition for dark mode on everything */
+    *, *::before, *::after { transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease; }
+    .reveal, [class*="transition-transform"] { transition-property: opacity, transform, background-color, border-color, color, box-shadow; }
+
+    /* Bottom mobile nav safe area */
+    @media (max-width: 767px) {
+      body { padding-bottom: 72px; }
+    }
+
+    .open > div:last-child { max-height: 200px !important; }
+
+    *:focus-visible {
+      outline: 2px solid #c9a96e;
+      outline-offset: 2px;
+      transition: none !important;
     }
   </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "RealEstateAgent",
+  "name": "Keneshia Haye",
+  "description": "Expert buyer's agent helping home buyers find their perfect home in Jacksonville, FL and surrounding areas.",
+  "image": "https://keneshiahaye.com/images/keneshia-blue-dress.png",
+  "url": "https://keneshiahaye.com/buy.html",
+  "telephone": "+1-904-866-2860",
+  "email": "keneshia@keneshiahaye.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "1700 Wells Road, Suite 4",
+    "addressLocality": "Orange Park",
+    "addressRegion": "FL",
+    "postalCode": "32073",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "30.1628",
+    "longitude": "-81.7070"
+  },
+  "openingHoursSpecification": [
+    {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "09:00", "closes": "18:00"},
+    {"@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "10:00", "closes": "16:00"}
+  ],
+  "priceRange": "$150,000 - $1,500,000+",
+  "hasCredential": {
+    "@type": "EducationalOccupationalCredential",
+    "credentialCategory": "Real Estate License",
+    "identifier": "BK3450416"
+  },
+  "memberOf": {
+    "@type": "Organization",
+    "name": "Florida Gateway Realty"
+  },
+  "areaServed": [
+    {"@type": "City", "name": "Jacksonville", "sameAs": "https://en.wikipedia.org/wiki/Jacksonville,_Florida"},
+    {"@type": "City", "name": "Orange Park", "sameAs": "https://en.wikipedia.org/wiki/Orange_Park,_Florida"},
+    {"@type": "City", "name": "Ponte Vedra Beach", "sameAs": "https://en.wikipedia.org/wiki/Ponte_Vedra_Beach,_Florida"},
+    {"@type": "City", "name": "St. Augustine", "sameAs": "https://en.wikipedia.org/wiki/St._Augustine,_Florida"},
+    {"@type": "City", "name": "Fleming Island", "sameAs": "https://en.wikipedia.org/wiki/Fleming_Island,_Florida"},
+    {"@type": "City", "name": "Mandarin"},
+    {"@type": "City", "name": "Riverside"}
+  ],
+  "knowsAbout": ["Home Buying", "First-Time Buyers", "VA Home Loans", "Jacksonville Real Estate Market", "Mortgage Pre-Approval"]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Home Buying Assistance in Jacksonville, FL",
+  "serviceType": "Buyer Representation",
+  "provider": {
+    "@type": "RealEstateAgent",
+    "name": "Keneshia Haye",
+    "url": "https://keneshiahaye.com"
+  },
+  "areaServed": {"@type": "City", "name": "Jacksonville", "addressRegion": "FL"},
+  "description": "Expert buyer's agent services including property search, negotiation, and closing assistance for Jacksonville, FL home buyers.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD",
+    "description": "Free buyer consultation"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://keneshiahaye.com/"},
+    {"@type": "ListItem", "position": 2, "name": "Buy a Home", "item": "https://keneshiahaye.com/buy.html"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much does it cost to buy a home in Jacksonville, FL?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The median home price in Jacksonville, FL ranges from $250,000 to $350,000 depending on the neighborhood. Areas like Orange Park and Mandarin offer homes under $300K, while Ponte Vedra Beach and Riverside/Avondale range higher. Keneshia Haye can help you find homes within any budget."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need a down payment to buy a home in Jacksonville?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not necessarily. VA loans offer 100% financing with zero down payment for eligible veterans and active-duty military. FHA loans require as little as 3.5% down, and some conventional programs start at 3%. Keneshia can connect you with trusted lenders to explore your options."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does the home buying process take in Florida?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The typical home buying process in Jacksonville takes 30 to 60 days from accepted offer to closing. However, the complete journey from initial consultation through home search to closing usually takes 2 to 4 months. Getting pre-approved first can speed up the process significantly."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What credit score do I need to buy a house in Florida?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For conventional loans, you typically need a 620+ credit score. FHA loans accept scores as low as 580 with 3.5% down. VA loans are more flexible and may work with lower scores. Keneshia works with lenders who specialize in helping buyers at every credit level."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the best neighborhoods to buy a home in Jacksonville?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Jacksonville's top neighborhoods include Riverside/Avondale for historic charm and walkability, Ponte Vedra Beach for luxury coastal living, Orange Park for family-friendly affordability, and Mandarin for excellent schools and suburban feel. Each area offers unique benefits depending on your lifestyle and budget."
+      }
+    }
+  ]
+}
+</script>
 </head>
-<body>
 
-  <!-- ========== NAVIGATION ========== -->
-  <nav class="nav scrolled">
-    <div class="container nav__inner">
-      <a href="index.html" class="nav__logo">Keneshia <span>Haye</span></a>
-      <div class="nav__links">
-        <a href="index.html" class="nav__link">Home</a>
-        <a href="buy.html" class="nav__link">Buy With Me</a>
-        <a href="sell.html" class="nav__link">Sell With Me</a>
-        <a href="veterans.html" class="nav__link">Veterans</a>
-        <a href="contact.html" class="nav__link">Contact</a>
-        <a href="contact.html" class="btn btn--primary btn--sm nav__cta">Let's Connect</a>
-      </div>
-      <button class="nav__toggle" aria-label="Toggle menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-    </div>
-  </nav>
+<body class="font-sans antialiased bg-white dark:bg-navy-500 text-slate-700 dark:text-slate-300">
+<a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-6 focus:py-3 focus:bg-champagne-400 focus:text-navy-500 focus:rounded-full focus:font-bold focus:shadow-lg">Skip to main content</a>
 
-  <!-- ========== PAGE HERO ========== -->
-  <section class="page-hero">
-    <div class="page-hero__bg" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=80');"></div>
-    <div class="page-hero__overlay"></div>
-    <h1>Buy With Me</h1>
-    <p>
-      Your dream home is out there. Let me help you find it, negotiate
-      the best price, and close with confidence.
-    </p>
-  </section>
+  <!-- ===================== STICKY HEADER ===================== -->
+  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-white/80 dark:bg-navy-500/80 backdrop-blur-xl border-b border-transparent">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 lg:h-20">
 
-  <!-- ========== PROCESS ========== -->
-  <section class="section">
-    <div class="container text-center">
-      <span class="section-label">The Process</span>
-      <h2 class="section-title">How Buying Works With Me</h2>
-      <p class="section-subtitle mx-auto">
-        A clear, step-by-step approach designed to take the stress out of
-        home buying.
-      </p>
-      <div class="process__steps">
-        <div class="process-step reveal">
-          <div class="process-step__number">1</div>
-          <h4>Consultation</h4>
-          <p>We'll discuss your goals, budget, preferred neighborhoods, and timeline to create a personalized search strategy.</p>
-        </div>
-        <div class="process-step reveal">
-          <div class="process-step__number">2</div>
-          <h4>Home Search</h4>
-          <p>I'll curate listings that match your criteria and schedule private showings at your convenience.</p>
-        </div>
-        <div class="process-step reveal">
-          <div class="process-step__number">3</div>
-          <h4>Offer &amp; Negotiate</h4>
-          <p>I'll craft a competitive offer and negotiate on your behalf to secure the best possible terms.</p>
-        </div>
-        <div class="process-step reveal">
-          <div class="process-step__number">4</div>
-          <h4>Close &amp; Celebrate</h4>
-          <p>I'll coordinate inspections, appraisals, and paperwork so you can focus on the excitement of your new home.</p>
+        <!-- Logo -->
+        <a href="/" class="flex items-center gap-2 group">
+          <span class="font-serif text-xl lg:text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
+            Keneshia <span class="text-champagne-400">Haye</span>
+          </span>
+        </a>
+
+        <!-- Desktop Nav -->
+        <nav class="hidden md:flex items-center gap-1" aria-label="Main navigation">
+          <a href="buy.html" class="px-4 py-2 text-sm font-medium text-champagne-400 rounded-lg hover:bg-slate-100 dark:hover:bg-white/5 transition-all">Buy</a>
+          <a href="sell.html" class="px-4 py-2 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-champagne-400 dark:hover:text-champagne-400 rounded-lg hover:bg-slate-100 dark:hover:bg-white/5 transition-all">Sell</a>
+          <a href="veterans.html" class="px-4 py-2 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-champagne-400 dark:hover:text-champagne-400 rounded-lg hover:bg-slate-100 dark:hover:bg-white/5 transition-all">Veterans</a>
+          <a href="contact.html" class="px-4 py-2 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-champagne-400 dark:hover:text-champagne-400 rounded-lg hover:bg-slate-100 dark:hover:bg-white/5 transition-all">Contact</a>
+        </nav>
+
+        <!-- Right Actions -->
+        <div class="flex items-center gap-3">
+          <!-- Dark Mode Toggle -->
+          <button id="themeToggle" class="relative w-10 h-10 flex items-center justify-center rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:border-champagne-400/30 transition-all" aria-label="Toggle dark mode">
+            <!-- Sun icon (shown in dark mode) -->
+            <svg class="w-5 h-5 text-champagne-400 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+            <!-- Moon icon (shown in light mode) -->
+            <svg class="w-5 h-5 text-slate-600 block dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+          </button>
+
+          <!-- Contact CTA -->
+          <a href="contact.html" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-champagne-400 to-champagne-300 text-navy-500 font-semibold text-sm rounded-full hover:-translate-y-0.5 hover:shadow-lg hover:shadow-champagne-400/25 active:translate-y-0 transition-all">
+            Contact
+          </a>
+
+          <!-- Mobile Menu Toggle -->
+          <button id="mobileMenuBtn" class="md:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5 rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10" aria-label="Toggle menu">
+            <span class="block w-5 h-0.5 bg-slate-600 dark:bg-slate-300 transition-all origin-center" id="bar1"></span>
+            <span class="block w-5 h-0.5 bg-slate-600 dark:bg-slate-300 transition-all" id="bar2"></span>
+            <span class="block w-3.5 h-0.5 bg-slate-600 dark:bg-slate-300 transition-all origin-center" id="bar3"></span>
+          </button>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- ========== WHY BUY WITH ME ========== -->
-  <section class="section section--dark">
-    <div class="container">
-      <div class="text-center">
-        <span class="section-label">Why Choose Me</span>
-        <h2 class="section-title">What You Get When You Buy With Me</h2>
-      </div>
-      <div class="features-list">
-        <div class="feature-item reveal">
-          <div class="feature-item__icon">&#128269;</div>
-          <div>
-            <h4>Personalized Property Search</h4>
-            <p>Curated listings based on your specific needs, not a generic feed.</p>
-          </div>
+    <!-- Mobile Menu Panel -->
+    <div id="mobileMenu" class="md:hidden max-h-0 overflow-hidden transition-all duration-500 bg-white dark:bg-navy-700 border-t border-slate-100 dark:border-white/5">
+      <nav class="px-4 py-6 flex flex-col gap-1" aria-label="Mobile menu">
+        <a href="buy.html" class="mobile-nav-link px-4 py-3 text-base font-medium text-champagne-400 rounded-xl bg-champagne-400/5 transition-all">Buy a Home</a>
+        <a href="sell.html" class="mobile-nav-link px-4 py-3 text-base font-medium text-slate-600 dark:text-slate-300 hover:text-champagne-400 rounded-xl hover:bg-slate-50 dark:hover:bg-white/5 transition-all">Sell Your Home</a>
+        <a href="veterans.html" class="mobile-nav-link px-4 py-3 text-base font-medium text-slate-600 dark:text-slate-300 hover:text-champagne-400 rounded-xl hover:bg-slate-50 dark:hover:bg-white/5 transition-all">Veterans</a>
+        <a href="contact.html" class="mobile-nav-link px-4 py-3 text-base font-medium text-slate-600 dark:text-slate-300 hover:text-champagne-400 rounded-xl hover:bg-slate-50 dark:hover:bg-white/5 transition-all">Contact</a>
+        <div class="mt-4 px-4">
+          <a href="contact.html" class="mobile-nav-link block w-full text-center px-6 py-3 bg-gradient-to-r from-champagne-400 to-champagne-300 text-navy-500 font-semibold rounded-full">Contact Me</a>
         </div>
-        <div class="feature-item reveal">
-          <div class="feature-item__icon">&#128176;</div>
-          <div>
-            <h4>Expert Price Analysis</h4>
-            <p>Detailed market comparisons so you never overpay for a property.</p>
-          </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+  <!-- ===================== HERO SECTION ===================== -->
+  <section class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+    <!-- Background Image -->
+    <div class="absolute inset-0">
+      <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1920&q=80" alt="" class="w-full h-full object-cover" aria-hidden="true">
+      <div class="absolute inset-0 hero-overlay"></div>
+    </div>
+
+    <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+      <div class="max-w-3xl">
+        <!-- Badge -->
+        <div class="reveal inline-flex items-center gap-2 px-4 py-2 rounded-full bg-champagne-400/10 border border-champagne-400/20 mb-8">
+          <span class="text-champagne-400 text-sm">&#127968;</span>
+          <span class="text-champagne-400 text-xs font-semibold tracking-widest uppercase">Your Home Buying Journey Starts Here</span>
         </div>
-        <div class="feature-item reveal">
-          <div class="feature-item__icon">&#128221;</div>
-          <div>
-            <h4>Contract Guidance</h4>
-            <p>Clear explanation of every document — no confusing legal jargon.</p>
-          </div>
-        </div>
-        <div class="feature-item reveal">
-          <div class="feature-item__icon">&#129309;</div>
-          <div>
-            <h4>Skilled Negotiation</h4>
-            <p>I fight for the best price, terms, repairs, and closing costs on your behalf.</p>
-          </div>
-        </div>
-        <div class="feature-item reveal">
-          <div class="feature-item__icon">&#127968;</div>
-          <div>
-            <h4>Inspection Coordination</h4>
-            <p>I manage inspections, appraisals, and any needed repairs seamlessly.</p>
-          </div>
-        </div>
-        <div class="feature-item reveal">
-          <div class="feature-item__icon">&#127894;</div>
-          <div>
-            <h4>VA Loan Expertise</h4>
-            <p>Specialized support for veterans using VA benefits to purchase a home.</p>
-          </div>
+
+        <!-- Headline -->
+        <h1 class="reveal font-serif text-4xl sm:text-5xl lg:text-7xl font-extrabold text-white leading-[1.08] mb-6">
+          Find Your Perfect<br>Home in
+          <span class="text-champagne-400">Jacksonville</span>
+        </h1>
+
+        <!-- Subheadline -->
+        <p class="reveal text-lg sm:text-xl text-slate-300 leading-relaxed max-w-xl mb-10">
+          From dream home discovery to closing day &mdash; expert guidance for buyers at every stage.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="reveal flex flex-col sm:flex-row items-start gap-4">
+          <a href="#buyer-form" class="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-champagne-400 to-champagne-300 text-navy-500 font-bold rounded-full hover:-translate-y-0.5 hover:shadow-xl hover:shadow-champagne-400/25 transition-all text-base">
+            Start My Home Search
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="tel:9048662860" class="inline-flex items-center gap-2 px-8 py-4 border-2 border-white/20 text-white font-semibold rounded-full hover:bg-white/10 hover:border-white/40 transition-all text-base">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            (904) 866-2860
+          </a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ========== BUYER TYPES ========== -->
-  <section class="section">
-    <div class="container text-center">
-      <span class="section-label">I Help Everyone</span>
-      <h2 class="section-title">No Matter Where You Are in Your Journey</h2>
-      <div class="services__grid" style="margin-top: 3rem;">
-        <div class="service-card reveal">
-          <div class="service-card__icon">&#127919;</div>
-          <h3 class="service-card__title">First-Time Buyers</h3>
-          <p class="service-card__text">
-            New to the process? I'll walk you through every step, from pre-approval
-            to closing day. You'll feel confident and informed throughout.
-          </p>
+
+  <!-- ===================== WHY BUY WITH KENESHIA ===================== -->
+  <section class="relative py-20 lg:py-28 bg-slate-50 dark:bg-navy-700">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Section Header -->
+      <div class="text-center mb-14 lg:mb-20">
+        <span class="reveal inline-block text-champagne-400 text-xs font-semibold tracking-[3px] uppercase mb-4">Why Choose Me</span>
+        <h2 class="reveal font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-4">Why Buy With Keneshia</h2>
+        <p class="reveal text-slate-500 dark:text-slate-400 text-lg max-w-2xl mx-auto">I bring dedication, market expertise, and genuine care to every buyer I work with.</p>
+      </div>
+
+      <!-- Cards Grid -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+
+        <!-- Card 1: Personalized Matches -->
+        <div class="reveal reveal-delay-1 group relative bg-white dark:bg-navy-500/50 border border-slate-200 dark:border-white/6 rounded-2xl p-8 hover:-translate-y-2 hover:shadow-xl hover:shadow-slate-200/50 dark:hover:shadow-champagne-400/5 hover:border-champagne-400/20 transition-all duration-500 overflow-hidden feature-glow">
+          <div class="w-14 h-14 flex items-center justify-center rounded-2xl bg-champagne-400/10 text-2xl mb-6 group-hover:scale-110 transition-transform duration-500">&#127967;</div>
+          <h3 class="font-serif text-lg font-bold text-slate-900 dark:text-white mb-3">Personalized Property Matches</h3>
+          <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">I listen to your needs and curate a tailored list of properties that fit your lifestyle, budget, and goals &mdash; no generic listings.</p>
         </div>
-        <div class="service-card reveal">
-          <div class="service-card__icon">&#128200;</div>
-          <h3 class="service-card__title">Investors</h3>
-          <p class="service-card__text">
-            Looking for your next investment property? I'll help you analyze ROI,
-            identify emerging neighborhoods, and build your portfolio.
-          </p>
+
+        <!-- Card 2: Expert Negotiation -->
+        <div class="reveal reveal-delay-2 group relative bg-white dark:bg-navy-500/50 border border-slate-200 dark:border-white/6 rounded-2xl p-8 hover:-translate-y-2 hover:shadow-xl hover:shadow-slate-200/50 dark:hover:shadow-champagne-400/5 hover:border-champagne-400/20 transition-all duration-500 overflow-hidden feature-glow">
+          <div class="w-14 h-14 flex items-center justify-center rounded-2xl bg-champagne-400/10 text-2xl mb-6 group-hover:scale-110 transition-transform duration-500">&#128176;</div>
+          <h3 class="font-serif text-lg font-bold text-slate-900 dark:text-white mb-3">Expert Negotiation</h3>
+          <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">My clients save an average of $12K through strategic offers and skilled negotiation. I fight for every dollar on your behalf.</p>
         </div>
-        <div class="service-card reveal">
-          <div class="service-card__icon">&#127757;</div>
-          <h3 class="service-card__title">Relocating Families</h3>
-          <p class="service-card__text">
-            Moving to Jacksonville? I'll be your local guide — from neighborhood
-            recommendations to school districts and everything in between.
-          </p>
+
+        <!-- Card 3: First-Time Buyer Specialist -->
+        <div class="reveal reveal-delay-3 group relative bg-white dark:bg-navy-500/50 border border-slate-200 dark:border-white/6 rounded-2xl p-8 hover:-translate-y-2 hover:shadow-xl hover:shadow-slate-200/50 dark:hover:shadow-champagne-400/5 hover:border-champagne-400/20 transition-all duration-500 overflow-hidden feature-glow">
+          <div class="w-14 h-14 flex items-center justify-center rounded-2xl bg-champagne-400/10 text-2xl mb-6 group-hover:scale-110 transition-transform duration-500">&#128305;</div>
+          <h3 class="font-serif text-lg font-bold text-slate-900 dark:text-white mb-3">First-Time Buyer Specialist</h3>
+          <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">Buying your first home can feel overwhelming. I simplify the entire process with patient guidance at every step.</p>
+        </div>
+
+        <!-- Card 4: Military Relocation Expert -->
+        <div class="reveal reveal-delay-4 group relative bg-white dark:bg-navy-500/50 border border-slate-200 dark:border-white/6 rounded-2xl p-8 hover:-translate-y-2 hover:shadow-xl hover:shadow-slate-200/50 dark:hover:shadow-champagne-400/5 hover:border-champagne-400/20 transition-all duration-500 overflow-hidden feature-glow">
+          <div class="w-14 h-14 flex items-center justify-center rounded-2xl bg-champagne-400/10 text-2xl mb-6 group-hover:scale-110 transition-transform duration-500">&#127894;</div>
+          <h3 class="font-serif text-lg font-bold text-slate-900 dark:text-white mb-3">Military Relocation Expert</h3>
+          <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">As a veteran myself, I understand PCS moves and military timelines. I help service members transition smoothly into Jacksonville.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ========== CTA BANNER ========== -->
-  <section class="cta-banner">
-    <div class="container">
-      <h2 class="reveal">Ready to Find Your Dream Home?</h2>
-      <p class="reveal">
-        Let's start with a free consultation to discuss your goals and timeline.
-      </p>
-      <div class="btn-group reveal">
-        <a href="contact.html" class="btn btn--primary btn--lg">Schedule a Consultation</a>
-        <a href="tel:2544495299" class="btn btn--outline btn--lg">Call (254) 449-5299</a>
+
+  <!-- ===================== THE BUYING PROCESS (TIMELINE) ===================== -->
+  <section class="py-20 lg:py-28 bg-white dark:bg-navy-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Section Header -->
+      <div class="text-center mb-14 lg:mb-20">
+        <span class="reveal inline-block text-champagne-400 text-xs font-semibold tracking-[3px] uppercase mb-4">Step by Step</span>
+        <h2 class="reveal font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-4">The Buying Process</h2>
+        <p class="reveal text-slate-500 dark:text-slate-400 text-lg max-w-2xl mx-auto">From our first conversation to handing you the keys &mdash; here's how we'll make it happen together.</p>
+      </div>
+
+      <!-- Timeline -->
+      <div class="relative max-w-4xl mx-auto">
+
+        <!-- Step 1 -->
+        <div class="reveal relative flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-12 mb-12 md:mb-16">
+          <!-- Number Circle -->
+          <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-full bg-gradient-to-br from-champagne-400 to-champagne-300 text-navy-500 font-bold text-lg shadow-lg shadow-champagne-400/20 z-10">1</div>
+          <!-- Connecting line (mobile) -->
+          <div class="absolute left-[23px] top-12 bottom-0 w-0.5 bg-gradient-to-b from-champagne-400/40 to-champagne-400/10 md:hidden"></div>
+          <!-- Content -->
+          <div class="flex-1 bg-slate-50 dark:bg-navy-700 border border-slate-200 dark:border-white/6 rounded-2xl p-6 lg:p-8 hover:border-champagne-400/20 transition-all duration-300">
+            <h3 class="font-serif text-xl font-bold text-slate-900 dark:text-white mb-2">Discovery Call</h3>
+            <p class="text-slate-500 dark:text-slate-400 leading-relaxed">We start with a conversation to understand your needs, budget, must-haves, and timeline. No pressure &mdash; just a clear picture of what you're looking for.</p>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="reveal relative flex flex-col md:flex-row-reverse items-start md:items-center gap-6 md:gap-12 mb-12 md:mb-16">
+          <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-full bg-gradient-to-br from-champagne-400 to-champagne-300 text-navy-500 font-bold text-lg shadow-lg shadow-champagne-400/20 z-10 md:order-none">2</div>
+          <div class="absolute left-[23px] top-12 bottom-0 w-0.5 bg-gradient-to-b from-champagne-400/40 to-champagne-400/10 md:hidden"></div>
+          <div class="flex-1 bg-slate-50 dark:bg-navy-700 border border-slate-200 dark:border-white/6 rounded-2xl p-6 lg:p-8 hover:border-champagne-400/20 transition-all duration-300">
+            <h3 class="font-serif text-xl font-bold text-slate-900 dark:text-white mb-2">Pre-Approval</h3>
+            <p class="text-slate-500 dark:text-slate-400 leading-relaxed">I'll connect you with trusted local lenders to get pre-approved, so you know exactly what you can afford and sellers take your offer seriously.</p>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="reveal relative flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-12 mb-12 md:mb-16">
+          <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-full bg-gradient-to-br from-champagne-400 to-champagne-300 text-navy-500 font-bold text-lg shadow-lg shadow-champagne-400/20 z-10">3</div>
+          <div class="absolute left-[23px] top-12 bottom-0 w-0.5 bg-gradient-to-b from-champagne-400/40 to-champagne-400/10 md:hidden"></div>
+          <div class="flex-1 bg-slate-50 dark:bg-navy-700 border border-slate-200 dark:border-white/6 rounded-2xl p-6 lg:p-8 hover:border-champagne-400/20 transition-all duration-300">
+            <h3 class="font-serif text-xl font-bold text-slate-900 dark:text-white mb-2">Home Search</h3>
+            <p class="text-slate-500 dark:text-slate-400 leading-relaxed">I curate property tours based on your criteria &mdash; no wasting time on homes that don't fit. You'll see only the best options the market has to offer.</p>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="reveal relative flex flex-col md:flex-row-reverse items-start md:items-center gap-6 md:gap-12 mb-12 md:mb-16">
+          <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-full bg-gradient-to-br from-champagne-400 to-champagne-300 text-navy-500 font-bold text-lg shadow-lg shadow-champagne-400/20 z-10">4</div>
+          <div class="absolute left-[23px] top-12 bottom-0 w-0.5 bg-gradient-to-b from-champagne-400/40 to-champagne-400/10 md:hidden"></div>
+          <div class="flex-1 bg-slate-50 dark:bg-navy-700 border border-slate-200 dark:border-white/6 rounded-2xl p-6 lg:p-8 hover:border-champagne-400/20 transition-all duration-300">
+            <h3 class="font-serif text-xl font-bold text-slate-900 dark:text-white mb-2">Make an Offer</h3>
+            <p class="text-slate-500 dark:text-slate-400 leading-relaxed">When you find the one, I'll craft a strategic offer with competitive pricing and skilled negotiation to give you the best chance of winning.</p>
+          </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="reveal relative flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-12 mb-12 md:mb-16">
+          <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-full bg-gradient-to-br from-champagne-400 to-champagne-300 text-navy-500 font-bold text-lg shadow-lg shadow-champagne-400/20 z-10">5</div>
+          <div class="absolute left-[23px] top-12 bottom-0 w-0.5 bg-gradient-to-b from-champagne-400/40 to-champagne-400/10 md:hidden"></div>
+          <div class="flex-1 bg-slate-50 dark:bg-navy-700 border border-slate-200 dark:border-white/6 rounded-2xl p-6 lg:p-8 hover:border-champagne-400/20 transition-all duration-300">
+            <h3 class="font-serif text-xl font-bold text-slate-900 dark:text-white mb-2">Inspection & Appraisal</h3>
+            <p class="text-slate-500 dark:text-slate-400 leading-relaxed">I coordinate inspections and appraisals to protect your investment. If issues come up, I negotiate repairs or credits on your behalf.</p>
+          </div>
+        </div>
+
+        <!-- Step 6 -->
+        <div class="reveal relative flex flex-col md:flex-row-reverse items-start md:items-center gap-6 md:gap-12">
+          <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-full bg-gradient-to-br from-champagne-400 to-champagne-300 text-navy-500 font-bold text-lg shadow-lg shadow-champagne-400/20 z-10">6</div>
+          <div class="flex-1 bg-gradient-to-br from-champagne-400/10 to-champagne-400/5 dark:from-champagne-400/10 dark:to-champagne-400/5 border border-champagne-400/20 rounded-2xl p-6 lg:p-8 ring-1 ring-champagne-400/10">
+            <h3 class="font-serif text-xl font-bold text-slate-900 dark:text-white mb-2">Close & Celebrate!</h3>
+            <p class="text-slate-500 dark:text-slate-400 leading-relaxed">Keys in hand! I guide you through the final walkthrough, closing paperwork, and everything in between. Welcome home!</p>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- ========== FOOTER ========== -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer__grid">
+
+  <!-- ===================== FEATURED NEIGHBORHOODS ===================== -->
+  <section class="py-20 lg:py-28 bg-slate-50 dark:bg-navy-700">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Section Header -->
+      <div class="text-center mb-14 lg:mb-20">
+        <span class="reveal inline-block text-champagne-400 text-xs font-semibold tracking-[3px] uppercase mb-4">Explore the Area</span>
+        <h2 class="reveal font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-4">Featured Neighborhoods</h2>
+        <p class="reveal text-slate-500 dark:text-slate-400 text-lg max-w-2xl mx-auto">Jacksonville has something for everyone. Here are some of the top areas I help buyers explore.</p>
+      </div>
+
+      <!-- Neighborhood Cards -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+
+        <!-- Riverside/Avondale -->
+        <div class="reveal reveal-delay-1 group bg-white dark:bg-navy-500/50 border border-slate-200 dark:border-white/6 rounded-2xl overflow-hidden hover:-translate-y-2 hover:shadow-xl hover:shadow-slate-200/50 dark:hover:shadow-champagne-400/5 hover:border-champagne-400/20 transition-all duration-500">
+          <div class="relative h-44 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80" alt="Riverside Avondale neighborhood" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-transparent"></div>
+            <div class="absolute bottom-3 left-4">
+              <h3 class="font-serif text-lg font-bold text-white">Riverside / Avondale</h3>
+            </div>
+          </div>
+          <div class="p-5">
+            <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">Historic charm, tree-lined streets, walkable dining and shops. Perfect for those who love character and community.</p>
+          </div>
+        </div>
+
+        <!-- Ponte Vedra Beach -->
+        <div class="reveal reveal-delay-2 group bg-white dark:bg-navy-500/50 border border-slate-200 dark:border-white/6 rounded-2xl overflow-hidden hover:-translate-y-2 hover:shadow-xl hover:shadow-slate-200/50 dark:hover:shadow-champagne-400/5 hover:border-champagne-400/20 transition-all duration-500">
+          <div class="relative h-44 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&q=80" alt="Ponte Vedra Beach area" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-transparent"></div>
+            <div class="absolute bottom-3 left-4">
+              <h3 class="font-serif text-lg font-bold text-white">Ponte Vedra Beach</h3>
+            </div>
+          </div>
+          <div class="p-5">
+            <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">Luxury coastal living with pristine beaches, world-class golf, and top-rated schools. An upscale lifestyle awaits.</p>
+          </div>
+        </div>
+
+        <!-- Orange Park -->
+        <div class="reveal reveal-delay-3 group bg-white dark:bg-navy-500/50 border border-slate-200 dark:border-white/6 rounded-2xl overflow-hidden hover:-translate-y-2 hover:shadow-xl hover:shadow-slate-200/50 dark:hover:shadow-champagne-400/5 hover:border-champagne-400/20 transition-all duration-500">
+          <div class="relative h-44 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=80" alt="Orange Park neighborhood" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-transparent"></div>
+            <div class="absolute bottom-3 left-4">
+              <h3 class="font-serif text-lg font-bold text-white">Orange Park</h3>
+            </div>
+          </div>
+          <div class="p-5">
+            <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">Family-friendly and affordable with great value. Close to NAS Jacksonville with easy access to shopping and parks.</p>
+          </div>
+        </div>
+
+        <!-- Mandarin -->
+        <div class="reveal reveal-delay-4 group bg-white dark:bg-navy-500/50 border border-slate-200 dark:border-white/6 rounded-2xl overflow-hidden hover:-translate-y-2 hover:shadow-xl hover:shadow-slate-200/50 dark:hover:shadow-champagne-400/5 hover:border-champagne-400/20 transition-all duration-500">
+          <div class="relative h-44 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=600&q=80" alt="Mandarin area" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-transparent"></div>
+            <div class="absolute bottom-3 left-4">
+              <h3 class="font-serif text-lg font-bold text-white">Mandarin</h3>
+            </div>
+          </div>
+          <div class="p-5">
+            <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">Great schools, suburban feel, and a strong sense of community. A top choice for families looking for space and convenience.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===================== BUYER INTAKE FORM ===================== -->
+  <section id="buyer-form" class="py-20 lg:py-28 bg-white dark:bg-navy-500 relative overflow-hidden">
+    <!-- Decorative gradient blob -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-champagne-400/5 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Section Header -->
+      <div class="text-center mb-10">
+        <span class="reveal inline-block text-champagne-400 text-xs font-semibold tracking-[3px] uppercase mb-4">Get Started</span>
+        <h2 class="reveal font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-4">Let's Find Your Dream Home</h2>
+        <p class="reveal text-slate-500 dark:text-slate-400 text-lg max-w-xl mx-auto">Tell me what you're looking for and I'll start the search.</p>
+      </div>
+
+      <!-- Form Card -->
+      <div class="reveal glass dark:bg-navy-700/50 rounded-2xl border border-slate-200 dark:border-champagne-400/15 p-6 sm:p-8 lg:p-10">
+        <form id="buyerIntakeForm" class="space-y-6" onsubmit="event.preventDefault(); handleBuyerForm(this);">
+
+          <!-- Row: Name + Email -->
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label for="fullName" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Full Name <span class="text-red-400">*</span></label>
+              <input type="text" id="fullName" name="fullName" required placeholder="Your full name" class="w-full px-4 py-3 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none focus:border-champagne-400 focus:ring-2 focus:ring-champagne-400/15 transition-all">
+            </div>
+            <div>
+              <label for="email" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Email <span class="text-red-400">*</span></label>
+              <input type="email" id="email" name="email" required placeholder="you@email.com" class="w-full px-4 py-3 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none focus:border-champagne-400 focus:ring-2 focus:ring-champagne-400/15 transition-all">
+            </div>
+          </div>
+
+          <!-- Row: Phone + Budget -->
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label for="phone" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Phone <span class="text-red-400">*</span></label>
+              <input type="tel" id="phone" name="phone" required placeholder="(555) 123-4567" class="w-full px-4 py-3 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none focus:border-champagne-400 focus:ring-2 focus:ring-champagne-400/15 transition-all">
+            </div>
+            <div>
+              <label for="budget" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Ideal Budget Range</label>
+              <select id="budget" name="budget" class="w-full px-4 py-3 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white outline-none focus:border-champagne-400 focus:ring-2 focus:ring-champagne-400/15 transition-all appearance-none cursor-pointer">
+                <option value="">Select a range</option>
+                <option value="under-200k">Under $200K</option>
+                <option value="200k-300k">$200K - $300K</option>
+                <option value="300k-400k">$300K - $400K</option>
+                <option value="400k-500k">$400K - $500K</option>
+                <option value="500k-750k">$500K - $750K</option>
+                <option value="750k-plus">$750K+</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Row: Property Type + Bedrooms -->
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label for="propertyType" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Property Type Preference</label>
+              <select id="propertyType" name="propertyType" class="w-full px-4 py-3 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white outline-none focus:border-champagne-400 focus:ring-2 focus:ring-champagne-400/15 transition-all appearance-none cursor-pointer">
+                <option value="">Select type</option>
+                <option value="single-family">Single Family</option>
+                <option value="condo-townhouse">Condo / Townhouse</option>
+                <option value="multi-family">Multi-Family</option>
+                <option value="land-lot">Land / Lot</option>
+                <option value="no-preference">No Preference</option>
+              </select>
+            </div>
+            <div>
+              <label for="bedrooms" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">How Many Bedrooms?</label>
+              <select id="bedrooms" name="bedrooms" class="w-full px-4 py-3 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white outline-none focus:border-champagne-400 focus:ring-2 focus:ring-champagne-400/15 transition-all appearance-none cursor-pointer">
+                <option value="">Select</option>
+                <option value="1-2">1 - 2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5+">5+</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Preferred Areas -->
+          <div>
+            <label for="areas" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Preferred Areas in Jacksonville</label>
+            <input type="text" id="areas" name="areas" placeholder="e.g., Riverside, Ponte Vedra, Orange Park" class="w-full px-4 py-3 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none focus:border-champagne-400 focus:ring-2 focus:ring-champagne-400/15 transition-all">
+          </div>
+
+          <!-- Row: First-time + Pre-approved -->
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label for="firstTime" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Are You a First-Time Buyer?</label>
+              <select id="firstTime" name="firstTime" class="w-full px-4 py-3 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white outline-none focus:border-champagne-400 focus:ring-2 focus:ring-champagne-400/15 transition-all appearance-none cursor-pointer">
+                <option value="">Select</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+              </select>
+            </div>
+            <div>
+              <label for="preApproved" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Pre-Approved for a Mortgage?</label>
+              <select id="preApproved" name="preApproved" class="w-full px-4 py-3 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white outline-none focus:border-champagne-400 focus:ring-2 focus:ring-champagne-400/15 transition-all appearance-none cursor-pointer">
+                <option value="">Select</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+                <option value="not-yet">Not Yet</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Timeline -->
+          <div>
+            <label for="timeline" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Timeline to Buy</label>
+            <select id="timeline" name="timeline" class="w-full px-4 py-3 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white outline-none focus:border-champagne-400 focus:ring-2 focus:ring-champagne-400/15 transition-all appearance-none cursor-pointer">
+              <option value="">Select timeline</option>
+              <option value="asap">ASAP</option>
+              <option value="1-3-months">1 - 3 Months</option>
+              <option value="3-6-months">3 - 6 Months</option>
+              <option value="6-12-months">6 - 12 Months</option>
+              <option value="just-browsing">Just Browsing</option>
+            </select>
+          </div>
+
+          <!-- Additional Notes -->
+          <div>
+            <label for="notes" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Anything Else I Should Know?</label>
+            <textarea id="notes" name="notes" rows="4" placeholder="Special requirements, dream features, or questions you have..." class="w-full px-4 py-3 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none focus:border-champagne-400 focus:ring-2 focus:ring-champagne-400/15 transition-all resize-none"></textarea>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" class="w-full py-4 bg-gradient-to-r from-champagne-400 to-champagne-300 text-navy-500 font-bold text-base rounded-full hover:-translate-y-0.5 hover:shadow-xl hover:shadow-champagne-400/25 active:translate-y-0 transition-all flex items-center justify-center gap-2">
+            Start My Home Search
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </form>
+
+        <!-- Success Message (hidden by default) -->
+        <div id="formSuccess" class="hidden text-center py-10">
+          <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center rounded-full bg-emerald-500/15 text-emerald-500 text-3xl">&#10003;</div>
+          <h3 class="font-serif text-2xl font-bold text-slate-900 dark:text-white mb-2">Thank You!</h3>
+          <p class="text-slate-500 dark:text-slate-400 text-lg">I'll be in touch within 24 hours to start your home search.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===================== FAQ SECTION ===================== -->
+  <section class="py-20 lg:py-28 bg-slate-50 dark:bg-navy-700">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <span class="reveal inline-block text-champagne-400 text-xs font-semibold tracking-[3px] uppercase mb-4">Common Questions</span>
+        <h2 class="reveal font-serif text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">
+          Buying a Home in <span class="text-champagne-400">Jacksonville</span>
+        </h2>
+      </div>
+
+      <div class="space-y-4">
+        <div class="reveal glass rounded-2xl overflow-hidden">
+          <button onclick="this.parentElement.classList.toggle('open'); this.querySelector('.faq-icon').classList.toggle('rotate-45'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true')" aria-expanded="false" class="w-full flex items-center justify-between p-6 text-left">
+            <h3 class="font-semibold text-slate-900 dark:text-white pr-4">How much does it cost to buy a home in Jacksonville, FL?</h3>
+            <span class="faq-icon text-champagne-400 text-2xl font-light transition-transform duration-300 flex-shrink-0">+</span>
+          </button>
+          <div class="max-h-0 overflow-hidden transition-all duration-500 open:max-h-40" style="max-height:0">
+            <p class="px-6 pb-6 text-sm text-slate-500 dark:text-slate-400 leading-relaxed">The median home price in Jacksonville, FL ranges from $250,000 to $350,000 depending on the neighborhood. Areas like Orange Park and Mandarin offer homes under $300K, while Ponte Vedra Beach and Riverside/Avondale range higher. I can help you find homes within any budget.</p>
+          </div>
+        </div>
+
+        <div class="reveal glass rounded-2xl overflow-hidden">
+          <button onclick="this.parentElement.classList.toggle('open'); this.querySelector('.faq-icon').classList.toggle('rotate-45'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true')" aria-expanded="false" class="w-full flex items-center justify-between p-6 text-left">
+            <h3 class="font-semibold text-slate-900 dark:text-white pr-4">Do I need a down payment to buy a home in Jacksonville?</h3>
+            <span class="faq-icon text-champagne-400 text-2xl font-light transition-transform duration-300 flex-shrink-0">+</span>
+          </button>
+          <div class="max-h-0 overflow-hidden transition-all duration-500" style="max-height:0">
+            <p class="px-6 pb-6 text-sm text-slate-500 dark:text-slate-400 leading-relaxed">Not necessarily. VA loans offer 100% financing with zero down payment for eligible veterans and active-duty military. FHA loans require as little as 3.5% down, and some conventional programs start at 3%. I can connect you with trusted lenders to explore your options.</p>
+          </div>
+        </div>
+
+        <div class="reveal glass rounded-2xl overflow-hidden">
+          <button onclick="this.parentElement.classList.toggle('open'); this.querySelector('.faq-icon').classList.toggle('rotate-45'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true')" aria-expanded="false" class="w-full flex items-center justify-between p-6 text-left">
+            <h3 class="font-semibold text-slate-900 dark:text-white pr-4">How long does the home buying process take in Florida?</h3>
+            <span class="faq-icon text-champagne-400 text-2xl font-light transition-transform duration-300 flex-shrink-0">+</span>
+          </button>
+          <div class="max-h-0 overflow-hidden transition-all duration-500" style="max-height:0">
+            <p class="px-6 pb-6 text-sm text-slate-500 dark:text-slate-400 leading-relaxed">The typical home buying process in Jacksonville takes 30 to 60 days from accepted offer to closing. However, the complete journey from initial consultation through home search to closing usually takes 2 to 4 months. Getting pre-approved first can speed up the process significantly.</p>
+          </div>
+        </div>
+
+        <div class="reveal glass rounded-2xl overflow-hidden">
+          <button onclick="this.parentElement.classList.toggle('open'); this.querySelector('.faq-icon').classList.toggle('rotate-45'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true')" aria-expanded="false" class="w-full flex items-center justify-between p-6 text-left">
+            <h3 class="font-semibold text-slate-900 dark:text-white pr-4">What credit score do I need to buy a house in Florida?</h3>
+            <span class="faq-icon text-champagne-400 text-2xl font-light transition-transform duration-300 flex-shrink-0">+</span>
+          </button>
+          <div class="max-h-0 overflow-hidden transition-all duration-500" style="max-height:0">
+            <p class="px-6 pb-6 text-sm text-slate-500 dark:text-slate-400 leading-relaxed">For conventional loans, you typically need a 620+ credit score. FHA loans accept scores as low as 580 with 3.5% down. VA loans are more flexible and may work with lower scores. I work with lenders who specialize in helping buyers at every credit level.</p>
+          </div>
+        </div>
+
+        <div class="reveal glass rounded-2xl overflow-hidden">
+          <button onclick="this.parentElement.classList.toggle('open'); this.querySelector('.faq-icon').classList.toggle('rotate-45'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true')" aria-expanded="false" class="w-full flex items-center justify-between p-6 text-left">
+            <h3 class="font-semibold text-slate-900 dark:text-white pr-4">What are the best neighborhoods to buy a home in Jacksonville?</h3>
+            <span class="faq-icon text-champagne-400 text-2xl font-light transition-transform duration-300 flex-shrink-0">+</span>
+          </button>
+          <div class="max-h-0 overflow-hidden transition-all duration-500" style="max-height:0">
+            <p class="px-6 pb-6 text-sm text-slate-500 dark:text-slate-400 leading-relaxed">Jacksonville's top neighborhoods include Riverside/Avondale for historic charm and walkability, Ponte Vedra Beach for luxury coastal living, Orange Park for family-friendly affordability, and Mandarin for excellent schools and suburban feel. Each area offers unique benefits depending on your lifestyle and budget.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===================== CTA SECTION ===================== -->
+  <section class="py-20 lg:py-28 bg-slate-50 dark:bg-navy-700 relative overflow-hidden">
+    <!-- Decorative gradient blob -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-champagne-400/5 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <span class="reveal inline-block text-champagne-400 text-xs font-semibold tracking-[3px] uppercase mb-4">Let's Connect</span>
+      <h2 class="reveal font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-4">Ready to Start Your Home Search?</h2>
+      <p class="reveal text-slate-500 dark:text-slate-400 text-lg max-w-xl mx-auto mb-10">The perfect home is out there &mdash; let's find it together. Reach out today for a free, no-obligation consultation.</p>
+
+      <div class="reveal flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="contact.html" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-champagne-400 to-champagne-300 text-navy-500 font-bold rounded-full hover:-translate-y-0.5 hover:shadow-xl hover:shadow-champagne-400/25 transition-all text-base">
+          Schedule a Consultation
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="tel:9048662860" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-champagne-400/30 text-champagne-400 font-semibold rounded-full hover:bg-champagne-400/10 hover:border-champagne-400/50 transition-all text-base">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+          (904) 866-2860
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="bg-white dark:bg-navy-800 border-t border-slate-200 dark:border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-16">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12">
+
+        <!-- Brand Column -->
+        <div class="sm:col-span-2 lg:col-span-1">
+          <a href="/" class="font-serif text-xl font-bold text-slate-900 dark:text-white">Keneshia <span class="text-champagne-400">Haye</span></a>
+          <p class="mt-3 text-sm text-slate-500 dark:text-slate-400 leading-relaxed">Veteran-led real estate expert serving the greater Jacksonville, FL area. Dedicated, Determined, Dependable.</p>
+          <!-- Social -->
+          <div class="flex items-center gap-3 mt-5">
+            <a href="#" target="_blank" rel="noopener noreferrer" class="w-9 h-9 flex items-center justify-center rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-500 dark:text-slate-400 hover:bg-champagne-400/10 hover:border-champagne-400/20 hover:text-champagne-400 transition-all text-xs font-semibold" aria-label="Facebook">FB</a>
+            <a href="#" target="_blank" rel="noopener noreferrer" class="w-9 h-9 flex items-center justify-center rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-500 dark:text-slate-400 hover:bg-champagne-400/10 hover:border-champagne-400/20 hover:text-champagne-400 transition-all text-xs font-semibold" aria-label="Instagram">IG</a>
+            <a href="#" target="_blank" rel="noopener noreferrer" class="w-9 h-9 flex items-center justify-center rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-500 dark:text-slate-400 hover:bg-champagne-400/10 hover:border-champagne-400/20 hover:text-champagne-400 transition-all text-xs font-semibold" aria-label="YouTube">YT</a>
+            <a href="#" target="_blank" rel="noopener noreferrer" class="w-9 h-9 flex items-center justify-center rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-500 dark:text-slate-400 hover:bg-champagne-400/10 hover:border-champagne-400/20 hover:text-champagne-400 transition-all text-xs font-semibold" aria-label="LinkedIn">LI</a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
         <div>
-          <div class="footer__brand">Keneshia <span>Haye</span></div>
-          <p class="footer__about">
-            Veteran-led real estate expert serving the greater Jacksonville, FL area.
-            Dedicated, Determined, Dependable — your trusted partner in real estate.
-          </p>
-          <div class="footer__social">
-            <a href="https://www.facebook.com" aria-label="Facebook" target="_blank" rel="noopener">FB</a>
-            <a href="https://www.instagram.com" aria-label="Instagram" target="_blank" rel="noopener">IG</a>
-            <a href="https://www.youtube.com" aria-label="YouTube" target="_blank" rel="noopener">YT</a>
-            <a href="https://www.linkedin.com" aria-label="LinkedIn" target="_blank" rel="noopener">LI</a>
-          </div>
-        </div>
-        <div>
-          <h4 class="footer__heading">Quick Links</h4>
-          <ul class="footer__links">
-            <li><a href="buy.html">Buy With Me</a></li>
-            <li><a href="sell.html">Sell With Me</a></li>
-            <li><a href="veterans.html">Veterans</a></li>
-            <li><a href="contact.html">Contact</a></li>
+          <h4 class="text-sm font-semibold text-slate-900 dark:text-white mb-4">Quick Links</h4>
+          <ul class="space-y-2.5">
+            <li><a href="buy.html" class="text-sm text-slate-500 dark:text-slate-400 hover:text-champagne-400 transition-colors">Buy a Home</a></li>
+            <li><a href="sell.html" class="text-sm text-slate-500 dark:text-slate-400 hover:text-champagne-400 transition-colors">Sell Your Home</a></li>
+            <li><a href="veterans.html" class="text-sm text-slate-500 dark:text-slate-400 hover:text-champagne-400 transition-colors">Veterans & VA</a></li>
+            <li><a href="contact.html" class="text-sm text-slate-500 dark:text-slate-400 hover:text-champagne-400 transition-colors">Contact</a></li>
           </ul>
         </div>
+
+        <!-- Areas Served -->
         <div>
-          <h4 class="footer__heading">Areas Served</h4>
-          <ul class="footer__links">
-            <li><a href="#">Jacksonville</a></li>
-            <li><a href="#">Orange Park</a></li>
-            <li><a href="#">St. Augustine</a></li>
-            <li><a href="#">Ponte Vedra</a></li>
-            <li><a href="#">Middleburg</a></li>
-            <li><a href="#">Fleming Island</a></li>
+          <h4 class="text-sm font-semibold text-slate-900 dark:text-white mb-4">Areas Served</h4>
+          <ul class="space-y-2.5">
+            <li><a href="buy.html" class="text-sm text-slate-500 dark:text-slate-400 hover:text-champagne-400 transition-colors">Jacksonville</a></li>
+            <li><a href="buy.html" class="text-sm text-slate-500 dark:text-slate-400 hover:text-champagne-400 transition-colors">Orange Park</a></li>
+            <li><a href="buy.html" class="text-sm text-slate-500 dark:text-slate-400 hover:text-champagne-400 transition-colors">St. Augustine</a></li>
+            <li><a href="buy.html" class="text-sm text-slate-500 dark:text-slate-400 hover:text-champagne-400 transition-colors">Ponte Vedra</a></li>
+            <li><a href="buy.html" class="text-sm text-slate-500 dark:text-slate-400 hover:text-champagne-400 transition-colors">Fleming Island</a></li>
           </ul>
         </div>
+
+        <!-- Contact & Newsletter -->
         <div>
-          <h4 class="footer__heading">Contact</h4>
-          <div class="footer__contact-item">
-            <span class="footer__contact-icon">&#9742;</span>
-            <a href="tel:2544495299">(254) 449-5299</a>
+          <h4 class="text-sm font-semibold text-slate-900 dark:text-white mb-4">Get In Touch</h4>
+          <div class="space-y-3 mb-6">
+            <a href="tel:9048662860" class="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 hover:text-champagne-400 transition-colors">
+              <svg class="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+              (904) 866-2860
+            </a>
+            <a href="mailto:keneshia@fgragent.com" class="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 hover:text-champagne-400 transition-colors">
+              <svg class="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              keneshia@fgragent.com
+            </a>
+            <div class="flex items-start gap-2 text-sm text-slate-500 dark:text-slate-400">
+              <svg class="w-4 h-4 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              <span>1700 Wells Road, Suite 4<br>Orange Park, FL 32073</span>
+            </div>
           </div>
-          <div class="footer__contact-item">
-            <span class="footer__contact-icon">&#9993;</span>
-            <a href="mailto:keneshia@fgragent.com">keneshia@fgragent.com</a>
-          </div>
-          <div class="footer__contact-item">
-            <span class="footer__contact-icon">&#9872;</span>
-            <span>1700 Wells Road, Suite 4<br>Orange Park, FL 32073</span>
-          </div>
+
+          <!-- Newsletter -->
+          <form class="flex gap-2" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Subscribed!'; this.querySelector('button').classList.remove('from-champagne-400','to-champagne-300'); this.querySelector('button').classList.add('bg-emerald-500');">
+            <input type="email" placeholder="Email" required class="flex-1 px-3 py-2 bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-lg text-sm text-slate-800 dark:text-white placeholder:text-slate-400 outline-none focus:border-champagne-400 transition-all min-w-0">
+            <button type="submit" class="px-4 py-2 bg-gradient-to-r from-champagne-400 to-champagne-300 text-navy-500 text-sm font-bold rounded-lg hover:shadow-md transition-all whitespace-nowrap">Subscribe</button>
+          </form>
         </div>
       </div>
-      <div class="footer__bottom">
-        <span>&copy; 2026 Keneshia Haye Real Estate. All rights reserved.</span>
-        <span><a href="#">Privacy Policy</a> &middot; <a href="#">Terms of Service</a></span>
+
+      <!-- Bottom Bar -->
+      <div class="mt-12 pt-8 border-t border-slate-200 dark:border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-xs text-slate-400 dark:text-slate-500">&copy; 2026 Keneshia Haye &middot; Florida Gateway Realty &middot; License: BK3450416</p>
+        <div class="flex items-center gap-4">
+          <a href="/privacy-policy.html" class="text-xs text-slate-400 dark:text-slate-500 hover:text-champagne-400 transition-colors">Privacy Policy</a>
+          <a href="/terms.html" class="text-xs text-slate-400 dark:text-slate-500 hover:text-champagne-400 transition-colors">Terms of Service</a>
+          <span class="text-xs text-slate-400 dark:text-slate-500">Equal Housing Opportunity</span>
+        </div>
       </div>
     </div>
   </footer>
 
-  <script src="js/main.js" defer></script>
+
+  <!-- ===================== MOBILE BOTTOM NAV ===================== -->
+  <nav id="mobileBottomNav" class="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/90 dark:bg-navy-500/90 backdrop-blur-xl border-t border-slate-200 dark:border-white/10 py-2 px-2 safe-area-bottom" aria-label="Mobile bottom navigation">
+    <div class="flex items-center justify-around">
+      <a href="/" class="flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-xl text-slate-400 dark:text-slate-500 hover:text-champagne-400 transition-all">
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+        <span class="text-[10px] font-medium">Home</span>
+      </a>
+      <a href="buy.html" class="flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-xl text-champagne-400 transition-all">
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <span class="text-[10px] font-semibold">Buy</span>
+      </a>
+      <a href="veterans.html" class="flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-xl text-slate-400 dark:text-slate-500 hover:text-champagne-400 transition-all">
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+        <span class="text-[10px] font-medium">Veterans</span>
+      </a>
+      <a href="sell.html" class="flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-xl text-slate-400 dark:text-slate-500 hover:text-champagne-400 transition-all">
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <span class="text-[10px] font-medium">Sell</span>
+      </a>
+      <a href="contact.html" class="flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-xl text-slate-400 dark:text-slate-500 hover:text-champagne-400 transition-all">
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+        <span class="text-[10px] font-medium">Contact</span>
+      </a>
+    </div>
+  </nav>
+
+
+  <!-- ===================== JAVASCRIPT ===================== -->
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+
+    /* ---- Dark Mode Toggle ---- */
+    var html = document.documentElement;
+    var toggle = document.getElementById('themeToggle');
+    var stored = localStorage.getItem('kh-theme');
+
+    // Initialize: default to dark if no preference
+    if (stored === 'light') {
+      html.classList.remove('dark');
+    } else {
+      html.classList.add('dark');
+      localStorage.setItem('kh-theme', 'dark');
+    }
+
+    toggle.addEventListener('click', function() {
+      html.classList.toggle('dark');
+      localStorage.setItem('kh-theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+
+
+    /* ---- Navbar scroll effect ---- */
+    var navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 40) {
+        navbar.classList.add('border-slate-200', 'dark:border-white/8', 'shadow-sm', 'dark:shadow-none');
+      } else {
+        navbar.classList.remove('border-slate-200', 'dark:border-white/8', 'shadow-sm', 'dark:shadow-none');
+      }
+    }, { passive: true });
+
+
+    /* ---- Mobile Menu ---- */
+    var menuBtn = document.getElementById('mobileMenuBtn');
+    var mobileMenu = document.getElementById('mobileMenu');
+    var bar1 = document.getElementById('bar1');
+    var bar2 = document.getElementById('bar2');
+    var bar3 = document.getElementById('bar3');
+    var isMenuOpen = false;
+
+    menuBtn.addEventListener('click', function() {
+      isMenuOpen = !isMenuOpen;
+      if (isMenuOpen) {
+        mobileMenu.style.maxHeight = mobileMenu.scrollHeight + 'px';
+        bar1.style.transform = 'rotate(45deg) translate(4px, 4px)';
+        bar2.style.opacity = '0';
+        bar3.style.transform = 'rotate(-45deg) translate(4px, -4px)';
+        bar3.style.width = '20px';
+      } else {
+        mobileMenu.style.maxHeight = '0px';
+        bar1.style.transform = '';
+        bar2.style.opacity = '1';
+        bar3.style.transform = '';
+        bar3.style.width = '';
+      }
+    });
+
+    // Close mobile menu on link click
+    document.querySelectorAll('.mobile-nav-link').forEach(function(link) {
+      link.addEventListener('click', function() {
+        isMenuOpen = false;
+        mobileMenu.style.maxHeight = '0px';
+        bar1.style.transform = '';
+        bar2.style.opacity = '1';
+        bar3.style.transform = '';
+        bar3.style.width = '';
+      });
+    });
+
+
+    /* ---- Scroll Reveal ---- */
+    var revealEls = document.querySelectorAll('.reveal');
+    var revealObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    revealEls.forEach(function(el) { revealObserver.observe(el); });
+
+
+    /* ---- Smooth scroll for anchor links ---- */
+    document.querySelectorAll('a[href^="#"]').forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        var target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          var offset = 80;
+          var top = target.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top: top, behavior: 'smooth' });
+        }
+      });
+    });
+
+  });
+
+
+  /* ---- Buyer Intake Form Handler ---- */
+  function handleBuyerForm(form) {
+    var formEl = document.getElementById('buyerIntakeForm');
+    var successEl = document.getElementById('formSuccess');
+    formEl.style.display = 'none';
+    successEl.classList.remove('hidden');
+    successEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+  </script>
+
 </body>
 </html>

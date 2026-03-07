@@ -1,0 +1,608 @@
+/* ============================================
+   Keneshia Haye — GoHighLevel Custom CSS
+   Paste this entire file into:
+   GHL → Sites/Funnels → [Your Funnel] → Settings → Custom CSS
+   ============================================ */
+
+/* --- Google Fonts (also add via GHL Settings → Typography) --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap');
+
+/* --- CSS Variables --- */
+:root {
+  --kh-navy: #0a1628;
+  --kh-navy-deep: #060f1d;
+  --kh-surface: #0f1f38;
+  --kh-surface-light: #142847;
+  --kh-champagne: #c9a96e;
+  --kh-champagne-light: #e3d4ab;
+  --kh-champagne-glow: rgba(201, 169, 110, 0.15);
+  --kh-champagne-glow-strong: rgba(201, 169, 110, 0.3);
+  --kh-white: #ffffff;
+  --kh-text: #94a3b8;
+  --kh-text-dim: #64748b;
+  --kh-border: rgba(255, 255, 255, 0.08);
+  --kh-border-light: rgba(255, 255, 255, 0.12);
+  --kh-radius: 12px;
+  --kh-radius-lg: 16px;
+  --kh-radius-pill: 50px;
+  --kh-transition: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  --kh-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --kh-shadow-glow: 0 0 40px rgba(201, 169, 110, 0.12);
+}
+
+/* ============================================
+   1. GLOBAL OVERRIDES
+   ============================================ */
+
+/* Force dark background on the entire page body */
+.body-wrapper,
+body {
+  background-color: var(--kh-navy) !important;
+  color: var(--kh-text) !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ============================================
+   2. TYPOGRAPHY
+   ============================================ */
+
+/* All GHL headlines — apply Playfair Display */
+h1, h2, h3,
+.hl_page-creator__heading,
+.hl_page-creator__sub-heading {
+  font-family: 'Playfair Display', Georgia, serif !important;
+  color: var(--kh-white) !important;
+  line-height: 1.15 !important;
+}
+
+/* Body / paragraph text */
+p, span, li,
+.hl_page-creator__paragraph {
+  font-family: 'Inter', sans-serif !important;
+  color: var(--kh-text) !important;
+  line-height: 1.7 !important;
+}
+
+/* Champagne accent text — add class "kh-accent" to any text */
+.kh-accent {
+  color: var(--kh-champagne) !important;
+}
+
+/* Section label style — add class "kh-label" */
+.kh-label,
+.kh-label * {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  letter-spacing: 3px !important;
+  text-transform: uppercase !important;
+  color: var(--kh-champagne) !important;
+}
+
+/* ============================================
+   3. BUTTONS
+   ============================================ */
+
+/* Primary CTA button — add class "kh-btn-primary" */
+.kh-btn-primary,
+.kh-btn-primary a,
+.kh-btn-primary button {
+  background: linear-gradient(135deg, var(--kh-champagne), var(--kh-champagne-light)) !important;
+  color: var(--kh-navy) !important;
+  border: none !important;
+  border-radius: var(--kh-radius-pill) !important;
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 15px !important;
+  letter-spacing: 0.3px !important;
+  padding: 14px 32px !important;
+  cursor: pointer !important;
+  transition: all var(--kh-transition) !important;
+  box-shadow: 0 4px 20px rgba(201, 169, 110, 0.25) !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.kh-btn-primary:hover,
+.kh-btn-primary a:hover,
+.kh-btn-primary button:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 30px rgba(201, 169, 110, 0.4) !important;
+  background: linear-gradient(135deg, var(--kh-champagne-light), var(--kh-champagne)) !important;
+}
+
+.kh-btn-primary:active,
+.kh-btn-primary a:active,
+.kh-btn-primary button:active {
+  transform: translateY(0) !important;
+}
+
+/* Outline/Ghost button — add class "kh-btn-outline" */
+.kh-btn-outline,
+.kh-btn-outline a,
+.kh-btn-outline button {
+  background: transparent !important;
+  color: var(--kh-champagne) !important;
+  border: 1.5px solid var(--kh-champagne) !important;
+  border-radius: var(--kh-radius-pill) !important;
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 15px !important;
+  padding: 14px 32px !important;
+  cursor: pointer !important;
+  transition: all var(--kh-transition) !important;
+  text-decoration: none !important;
+}
+
+.kh-btn-outline:hover,
+.kh-btn-outline a:hover,
+.kh-btn-outline button:hover {
+  background: rgba(201, 169, 110, 0.1) !important;
+  border-color: var(--kh-champagne-light) !important;
+  color: var(--kh-champagne-light) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* ============================================
+   4. GHL FORM STYLING
+   ============================================ */
+
+/* Form container — glassmorphism */
+.hl_wrapper--inner,
+form.hl-form-body {
+  background: rgba(15, 31, 56, 0.85) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid var(--kh-border) !important;
+  border-radius: var(--kh-radius-lg) !important;
+  padding: 32px !important;
+}
+
+/* Form field labels */
+.hl_form-input--label,
+label.hl-form-label,
+.hl-form-label {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  color: var(--kh-text) !important;
+  letter-spacing: 0.3px !important;
+  margin-bottom: 6px !important;
+}
+
+/* Text / Email / Phone inputs */
+input.hl-text-input,
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+input[type="url"],
+textarea,
+.hl-text-input,
+.hl_form-input input,
+.hl_form-input textarea {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid var(--kh-border) !important;
+  border-radius: var(--kh-radius) !important;
+  color: var(--kh-white) !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 15px !important;
+  padding: 14px 16px !important;
+  transition: all var(--kh-transition) !important;
+  width: 100% !important;
+  outline: none !important;
+}
+
+input.hl-text-input:focus,
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+textarea:focus,
+.hl-text-input:focus,
+.hl_form-input input:focus,
+.hl_form-input textarea:focus {
+  border-color: var(--kh-champagne) !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  box-shadow: 0 0 0 3px var(--kh-champagne-glow), var(--kh-shadow-glow) !important;
+}
+
+/* Placeholder text */
+input::placeholder,
+textarea::placeholder {
+  color: var(--kh-text-dim) !important;
+  opacity: 1 !important;
+}
+
+/* Dropdown / Select */
+select,
+.hl-form-select,
+.hl_form-input select {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid var(--kh-border) !important;
+  border-radius: var(--kh-radius) !important;
+  color: var(--kh-white) !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 15px !important;
+  padding: 14px 16px !important;
+  transition: border-color var(--kh-transition) !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 16px center !important;
+}
+
+select:focus,
+.hl-form-select:focus {
+  border-color: var(--kh-champagne) !important;
+  box-shadow: 0 0 0 3px var(--kh-champagne-glow) !important;
+}
+
+/* Checkbox styling */
+input[type="checkbox"] {
+  width: 20px !important;
+  height: 20px !important;
+  border: 1.5px solid var(--kh-border-light) !important;
+  border-radius: 5px !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  cursor: pointer !important;
+  accent-color: var(--kh-champagne) !important;
+}
+
+input[type="checkbox"]:checked {
+  background: var(--kh-champagne) !important;
+  border-color: var(--kh-champagne) !important;
+}
+
+/* Submit button — inherits from kh-btn-primary */
+.hl_cta_wrap button,
+button[type="submit"],
+.hl_form-submit,
+.hl_submit-button,
+input[type="submit"] {
+  background: linear-gradient(135deg, var(--kh-champagne), var(--kh-champagne-light)) !important;
+  color: var(--kh-navy) !important;
+  border: none !important;
+  border-radius: var(--kh-radius-pill) !important;
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 15px !important;
+  padding: 16px 32px !important;
+  cursor: pointer !important;
+  transition: all var(--kh-transition) !important;
+  box-shadow: 0 4px 20px rgba(201, 169, 110, 0.25) !important;
+  width: 100% !important;
+  letter-spacing: 0.3px !important;
+}
+
+.hl_cta_wrap button:hover,
+button[type="submit"]:hover,
+.hl_form-submit:hover,
+.hl_submit-button:hover,
+input[type="submit"]:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 30px rgba(201, 169, 110, 0.4) !important;
+  background: linear-gradient(135deg, var(--kh-champagne-light), var(--kh-champagne)) !important;
+}
+
+/* ============================================
+   5. GHL CALENDAR WIDGET STYLING
+   ============================================ */
+
+/* Calendar container */
+.hl_calendar,
+.calendar-widget,
+[class*="calendar-container"] {
+  background: var(--kh-surface) !important;
+  border: 1px solid var(--kh-border) !important;
+  border-radius: var(--kh-radius-lg) !important;
+  color: var(--kh-white) !important;
+  overflow: hidden !important;
+}
+
+/* Calendar header */
+.hl_calendar .header,
+.calendar-widget .header {
+  background: var(--kh-navy-deep) !important;
+  color: var(--kh-white) !important;
+  border-bottom: 1px solid var(--kh-border) !important;
+}
+
+/* Calendar day cells */
+.hl_calendar .day,
+.calendar-widget td {
+  color: var(--kh-text) !important;
+  transition: all 0.2s ease !important;
+}
+
+.hl_calendar .day:hover,
+.calendar-widget td:hover {
+  background: var(--kh-champagne-glow) !important;
+  color: var(--kh-champagne) !important;
+}
+
+/* Selected / active day */
+.hl_calendar .day.selected,
+.hl_calendar .day.active,
+.calendar-widget td.selected {
+  background: var(--kh-champagne) !important;
+  color: var(--kh-navy) !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+}
+
+/* Time slots */
+.hl_calendar .time-slot,
+.calendar-widget .time-slot {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid var(--kh-border) !important;
+  border-radius: var(--kh-radius) !important;
+  color: var(--kh-text) !important;
+  transition: all 0.2s ease !important;
+}
+
+.hl_calendar .time-slot:hover,
+.calendar-widget .time-slot:hover {
+  border-color: var(--kh-champagne) !important;
+  background: var(--kh-champagne-glow) !important;
+  color: var(--kh-champagne) !important;
+}
+
+.hl_calendar .time-slot.selected,
+.calendar-widget .time-slot.selected {
+  background: var(--kh-champagne) !important;
+  color: var(--kh-navy) !important;
+  border-color: var(--kh-champagne) !important;
+  font-weight: 600 !important;
+}
+
+/* ============================================
+   6. FEATURE CARDS (3 D's Section)
+   ============================================ */
+
+.kh-feature-card {
+  background: var(--kh-surface) !important;
+  border: 1px solid var(--kh-border) !important;
+  border-radius: var(--kh-radius-lg) !important;
+  padding: 40px 28px !important;
+  transition: all var(--kh-transition) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.kh-feature-card::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 3px !important;
+  background: linear-gradient(90deg, transparent, var(--kh-champagne), transparent) !important;
+  opacity: 0 !important;
+  transition: opacity var(--kh-transition) !important;
+}
+
+.kh-feature-card:hover {
+  transform: translateY(-8px) !important;
+  border-color: rgba(201, 169, 110, 0.2) !important;
+  box-shadow: var(--kh-shadow), var(--kh-shadow-glow) !important;
+}
+
+.kh-feature-card:hover::before {
+  opacity: 1 !important;
+}
+
+/* ============================================
+   7. ABOUT SECTION IMAGE
+   ============================================ */
+
+.kh-about-image {
+  border-radius: var(--kh-radius-lg) !important;
+  border: 2px solid rgba(201, 169, 110, 0.15) !important;
+  transition: all var(--kh-transition) !important;
+  object-fit: cover !important;
+}
+
+.kh-about-image:hover {
+  border-color: rgba(201, 169, 110, 0.35) !important;
+  box-shadow: var(--kh-shadow), 0 0 60px rgba(201, 169, 110, 0.1) !important;
+  transform: scale(1.02) !important;
+}
+
+/* ============================================
+   8. RESOURCE CARDS
+   ============================================ */
+
+.kh-resource-card {
+  background: var(--kh-surface) !important;
+  border: 1px solid var(--kh-border) !important;
+  border-radius: var(--kh-radius-lg) !important;
+  padding: 32px !important;
+  transition: all var(--kh-transition) !important;
+}
+
+.kh-resource-card:hover {
+  border-color: rgba(201, 169, 110, 0.15) !important;
+  box-shadow: var(--kh-shadow) !important;
+}
+
+/* ============================================
+   9. NAVIGATION / STICKY HEADER
+   ============================================ */
+
+/* Make the nav stick and add backdrop blur */
+.hl_page-creator__body > div:first-child,
+[class*="nav-section"],
+.kh-nav-sticky {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1000 !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  background: rgba(10, 22, 40, 0.9) !important;
+  border-bottom: 1px solid var(--kh-border) !important;
+}
+
+/* Nav link hover */
+.kh-nav-link,
+.kh-nav-link a {
+  transition: color 0.3s ease !important;
+}
+
+.kh-nav-link:hover,
+.kh-nav-link a:hover {
+  color: var(--kh-champagne) !important;
+}
+
+/* ============================================
+   10. DIVIDERS
+   ============================================ */
+
+hr,
+.divider {
+  border: none !important;
+  border-top: 1px solid var(--kh-border) !important;
+  margin: 24px 0 !important;
+}
+
+/* ============================================
+   11. ANIMATIONS — SCROLL REVEAL
+   ============================================ */
+
+/* Add class "kh-reveal" to any element you want to animate in */
+.kh-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.kh-reveal.kh-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered animation delays for sibling elements */
+.kh-reveal-delay-1 { transition-delay: 0.1s; }
+.kh-reveal-delay-2 { transition-delay: 0.2s; }
+.kh-reveal-delay-3 { transition-delay: 0.3s; }
+
+/* ============================================
+   12. MOBILE RESPONSIVE OVERRIDES
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Reduce padding on all sections */
+  .hl_page-creator__body section,
+  .section-element {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  /* Stack hero columns */
+  .hl_page-creator__body .row-element {
+    flex-direction: column !important;
+  }
+
+  /* Make all buttons full-width on mobile */
+  .kh-btn-primary,
+  .kh-btn-outline,
+  .kh-btn-primary a,
+  .kh-btn-outline a {
+    width: 100% !important;
+    text-align: center !important;
+  }
+
+  /* Form field larger touch targets */
+  input.hl-text-input,
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  textarea,
+  select {
+    padding: 16px !important;
+    font-size: 16px !important; /* Prevents iOS zoom */
+    min-height: 52px !important;
+  }
+
+  /* Feature cards full width */
+  .kh-feature-card {
+    margin-bottom: 16px !important;
+  }
+
+  /* Reduce headline sizes */
+  h1 {
+    font-size: 32px !important;
+  }
+
+  h2 {
+    font-size: 28px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 28px !important;
+  }
+
+  h2 {
+    font-size: 24px !important;
+  }
+
+  /* Tighter padding on forms */
+  .hl_wrapper--inner,
+  form.hl-form-body {
+    padding: 24px 16px !important;
+  }
+}
+
+/* ============================================
+   13. UTILITY CLASSES
+   ============================================ */
+
+/* Champagne gradient text — add class "kh-gradient-text" */
+.kh-gradient-text {
+  background: linear-gradient(135deg, var(--kh-champagne), var(--kh-champagne-light)) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+/* Glass card background — add class "kh-glass" */
+.kh-glass {
+  background: rgba(15, 31, 56, 0.6) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid var(--kh-border) !important;
+  border-radius: var(--kh-radius-lg) !important;
+}
+
+/* Champagne border glow — add class "kh-glow-border" */
+.kh-glow-border {
+  border: 1px solid rgba(201, 169, 110, 0.2) !important;
+  box-shadow: 0 0 30px rgba(201, 169, 110, 0.08) !important;
+}
+
+/* Hide on mobile — add class "kh-hide-mobile" */
+@media (max-width: 768px) {
+  .kh-hide-mobile {
+    display: none !important;
+  }
+}
+
+/* Hide on desktop — add class "kh-hide-desktop" */
+@media (min-width: 769px) {
+  .kh-hide-desktop {
+    display: none !important;
+  }
+}

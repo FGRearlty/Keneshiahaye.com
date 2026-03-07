@@ -1,0 +1,398 @@
+<!--
+  ============================================
+  CONVERSATIONAL SEARCH — GHL Custom HTML Snippet
+  ============================================
+  Paste this into a GHL "Custom HTML/JS" element.
+  Located in: Section 2 — Hero (Column 1, below subheadline)
+  ============================================
+-->
+
+<style>
+  /* --- Search Container --- */
+  .kh-search {
+    max-width: 540px;
+    position: relative;
+    margin-top: 8px;
+  }
+
+  /* --- Search Wrapper --- */
+  .kh-search-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: rgba(15, 31, 56, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 60px;
+    padding: 6px 6px 6px 24px;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+  }
+
+  .kh-search-wrap:focus-within {
+    border-color: rgba(201, 169, 110, 0.4);
+    box-shadow:
+      0 4px 24px rgba(0, 0, 0, 0.2),
+      0 0 0 3px rgba(201, 169, 110, 0.1),
+      0 0 40px rgba(201, 169, 110, 0.08);
+  }
+
+  /* --- Search Icon --- */
+  .kh-search-icon {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    margin-right: 12px;
+    color: #64748b;
+    transition: color 0.3s ease;
+  }
+
+  .kh-search-wrap:focus-within .kh-search-icon {
+    color: #c9a96e;
+  }
+
+  /* --- Search Input --- */
+  .kh-search-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    padding: 12px 0;
+    min-width: 0;
+  }
+
+  .kh-search-input::placeholder {
+    color: #64748b;
+    transition: color 0.3s ease;
+  }
+
+  .kh-search-input:focus::placeholder {
+    color: #94a3b8;
+  }
+
+  /* --- Search Button --- */
+  .kh-search-btn {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #c9a96e, #e3d4ab);
+    color: #0a1628;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 24px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    white-space: nowrap;
+    letter-spacing: 0.3px;
+  }
+
+  .kh-search-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(201, 169, 110, 0.35);
+    background: linear-gradient(135deg, #e3d4ab, #c9a96e);
+  }
+
+  .kh-search-btn:active {
+    transform: scale(0.98);
+  }
+
+  /* --- Suggestion Chips --- */
+  .kh-search-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+    padding-left: 4px;
+  }
+
+  .kh-search-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 50px;
+    padding: 7px 14px;
+    color: #94a3b8;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+  }
+
+  .kh-search-chip:hover {
+    background: rgba(201, 169, 110, 0.1);
+    border-color: rgba(201, 169, 110, 0.25);
+    color: #c9a96e;
+  }
+
+  .kh-search-chip-icon {
+    font-size: 13px;
+  }
+
+  /* --- Expanded dropdown (appears on focus) --- */
+  .kh-search-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    background: #0f1f38;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 12px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 50;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+  }
+
+  .kh-search-dropdown.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .kh-search-dropdown-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #64748b;
+    padding: 8px 12px 6px;
+  }
+
+  .kh-search-dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    color: #94a3b8;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+  }
+
+  .kh-search-dropdown-item:hover {
+    background: rgba(201, 169, 110, 0.08);
+    color: #ffffff;
+  }
+
+  .kh-search-dropdown-item-icon {
+    width: 36px;
+    height: 36px;
+    background: rgba(201, 169, 110, 0.1);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  .kh-search-dropdown-item-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .kh-search-dropdown-item-label {
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 14px;
+  }
+
+  .kh-search-dropdown-item-desc {
+    color: #64748b;
+    font-size: 12px;
+    margin-top: 1px;
+  }
+
+  /* --- Mobile --- */
+  @media (max-width: 640px) {
+    .kh-search {
+      max-width: 100%;
+    }
+
+    .kh-search-wrap {
+      padding: 5px 5px 5px 16px;
+    }
+
+    .kh-search-input {
+      font-size: 14px;
+    }
+
+    .kh-search-btn {
+      padding: 12px 18px;
+      font-size: 13px;
+    }
+
+    .kh-search-btn-text {
+      display: none;
+    }
+
+    .kh-search-chips {
+      gap: 6px;
+    }
+  }
+</style>
+
+<div class="kh-search">
+  <!-- Search Bar -->
+  <div class="kh-search-wrap">
+    <svg class="kh-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"></circle>
+      <path d="m21 21-4.35-4.35"></path>
+    </svg>
+    <input
+      type="text"
+      class="kh-search-input"
+      id="khSearchInput"
+      placeholder="Tell me what you're looking for..."
+      autocomplete="off"
+    />
+    <button class="kh-search-btn" id="khSearchBtn">
+      <span class="kh-search-btn-text">Search</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
+  </div>
+
+  <!-- Quick suggestion chips -->
+  <div class="kh-search-chips">
+    <span class="kh-search-chip" data-query="VA eligible homes in Jacksonville">
+      <span class="kh-search-chip-icon">&#127894;</span> VA Homes
+    </span>
+    <span class="kh-search-chip" data-query="Homes under $350k near Orange Park">
+      <span class="kh-search-chip-icon">&#127968;</span> Under $350k
+    </span>
+    <span class="kh-search-chip" data-query="Waterfront property in Ponte Vedra">
+      <span class="kh-search-chip-icon">&#127754;</span> Waterfront
+    </span>
+    <span class="kh-search-chip" data-query="New construction Jacksonville FL">
+      <span class="kh-search-chip-icon">&#128296;</span> New Build
+    </span>
+  </div>
+
+  <!-- Dropdown (shows on input focus) -->
+  <div class="kh-search-dropdown" id="khSearchDropdown">
+    <div class="kh-search-dropdown-title">Popular Searches</div>
+    <a href="#" class="kh-search-dropdown-item">
+      <div class="kh-search-dropdown-item-icon">&#127968;</div>
+      <div class="kh-search-dropdown-item-text">
+        <span class="kh-search-dropdown-item-label">First-time buyer homes</span>
+        <span class="kh-search-dropdown-item-desc">Affordable options in Jacksonville</span>
+      </div>
+    </a>
+    <a href="#" class="kh-search-dropdown-item">
+      <div class="kh-search-dropdown-item-icon">&#127894;</div>
+      <div class="kh-search-dropdown-item-text">
+        <span class="kh-search-dropdown-item-label">VA loan eligible properties</span>
+        <span class="kh-search-dropdown-item-desc">Zero down payment options</span>
+      </div>
+    </a>
+    <a href="#" class="kh-search-dropdown-item">
+      <div class="kh-search-dropdown-item-icon">&#127758;</div>
+      <div class="kh-search-dropdown-item-text">
+        <span class="kh-search-dropdown-item-label">Military relocation (PCS)</span>
+        <span class="kh-search-dropdown-item-desc">NAS Jacksonville & Mayport area</span>
+      </div>
+    </a>
+    <a href="#" class="kh-search-dropdown-item">
+      <div class="kh-search-dropdown-item-icon">&#128200;</div>
+      <div class="kh-search-dropdown-item-text">
+        <span class="kh-search-dropdown-item-label">Sell my home</span>
+        <span class="kh-search-dropdown-item-desc">Free home value estimate</span>
+      </div>
+    </a>
+  </div>
+</div>
+
+<script>
+(function() {
+  var input = document.getElementById('khSearchInput');
+  var dropdown = document.getElementById('khSearchDropdown');
+  var chips = document.querySelectorAll('.kh-search-chip');
+  var searchBtn = document.getElementById('khSearchBtn');
+
+  if (!input || !dropdown) return;
+
+  /* Show dropdown on focus */
+  input.addEventListener('focus', function() {
+    dropdown.classList.add('active');
+  });
+
+  /* Hide dropdown on outside click */
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.kh-search')) {
+      dropdown.classList.remove('active');
+    }
+  });
+
+  /* Chip click fills input */
+  chips.forEach(function(chip) {
+    chip.addEventListener('click', function() {
+      var query = this.getAttribute('data-query');
+      input.value = query;
+      input.focus();
+      dropdown.classList.remove('active');
+    });
+  });
+
+  /* Dropdown item click fills input */
+  var items = dropdown.querySelectorAll('.kh-search-dropdown-item');
+  items.forEach(function(item) {
+    item.addEventListener('click', function(e) {
+      e.preventDefault();
+      var label = this.querySelector('.kh-search-dropdown-item-label');
+      if (label) {
+        input.value = label.textContent;
+      }
+      dropdown.classList.remove('active');
+    });
+  });
+
+  /* Search button - scroll to contact / form section */
+  searchBtn.addEventListener('click', function() {
+    var query = input.value.trim();
+    if (!query) {
+      input.focus();
+      return;
+    }
+
+    /* Option A: Scroll to the lead capture form */
+    var formSection = document.querySelector('#calendar') ||
+                      document.querySelector('.hl_wrapper--inner') ||
+                      document.querySelector('form');
+    if (formSection) {
+      formSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    /* Option B: If you have a search results page, redirect:
+       window.location.href = '/search?q=' + encodeURIComponent(query);
+    */
+  });
+
+  /* Enter key triggers search */
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      searchBtn.click();
+    }
+  });
+})();
+</script>

@@ -1,0 +1,688 @@
+/* ============================================
+   Keneshia Haye — GHL Custom CSS (Clarity Theme)
+   Light Luxury Minimalist · Inspired by AP Endeavor
+   ============================================
+   Paste this entire file into:
+   GHL → Sites/Funnels → [Your Funnel] → Settings → Custom CSS
+   ============================================ */
+
+/* --- Google Fonts (also add via GHL Settings → Typography) --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap');
+
+/* --- CSS Variables --- */
+:root {
+  --cl-white: #ffffff;
+  --cl-off-white: #f5f4f0;
+  --cl-cream: #faf9f6;
+  --cl-navy: #1a1a2e;
+  --cl-navy-deep: #12121f;
+  --cl-gold: #b8945f;
+  --cl-gold-light: #d4b87a;
+  --cl-gold-glow: rgba(184, 148, 95, 0.12);
+  --cl-gold-glow-strong: rgba(184, 148, 95, 0.25);
+  --cl-gray: #6b6b7b;
+  --cl-gray-light: #9a9aab;
+  --cl-border: #e8e6e1;
+  --cl-border-light: rgba(0, 0, 0, 0.05);
+  --cl-radius: 12px;
+  --cl-radius-lg: 16px;
+  --cl-radius-pill: 50px;
+  --cl-transition: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  --cl-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  --cl-shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.1);
+  --cl-shadow-gold: 0 4px 20px rgba(184, 148, 95, 0.15);
+}
+
+/* ============================================
+   1. GLOBAL OVERRIDES
+   ============================================ */
+
+/* Force light background on the entire page body */
+.body-wrapper,
+body {
+  background-color: var(--cl-white) !important;
+  color: var(--cl-gray) !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ============================================
+   2. TYPOGRAPHY
+   ============================================ */
+
+/* All GHL headlines — apply Playfair Display */
+h1, h2, h3,
+.hl_page-creator__heading,
+.hl_page-creator__sub-heading {
+  font-family: 'Playfair Display', Georgia, serif !important;
+  color: var(--cl-navy) !important;
+  line-height: 1.15 !important;
+}
+
+/* Body / paragraph text */
+p, span, li,
+.hl_page-creator__paragraph {
+  font-family: 'Inter', sans-serif !important;
+  color: var(--cl-gray) !important;
+  line-height: 1.7 !important;
+}
+
+/* Gold accent text — add class "cl-accent" to any text */
+.cl-accent {
+  color: var(--cl-gold) !important;
+}
+
+/* Section label style — add class "cl-label" */
+.cl-label,
+.cl-label * {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  letter-spacing: 3px !important;
+  text-transform: uppercase !important;
+  color: var(--cl-gold) !important;
+}
+
+/* ============================================
+   3. BUTTONS
+   ============================================ */
+
+/* Primary CTA button — solid navy — add class "cl-btn-primary" */
+.cl-btn-primary,
+.cl-btn-primary a,
+.cl-btn-primary button {
+  background: var(--cl-navy) !important;
+  color: var(--cl-white) !important;
+  border: none !important;
+  border-radius: var(--cl-radius-pill) !important;
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 15px !important;
+  letter-spacing: 0.3px !important;
+  padding: 14px 32px !important;
+  cursor: pointer !important;
+  transition: all var(--cl-transition) !important;
+  box-shadow: var(--cl-shadow) !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.cl-btn-primary:hover,
+.cl-btn-primary a:hover,
+.cl-btn-primary button:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: var(--cl-shadow-hover) !important;
+  background: var(--cl-navy-deep) !important;
+}
+
+.cl-btn-primary:active,
+.cl-btn-primary a:active,
+.cl-btn-primary button:active {
+  transform: translateY(0) !important;
+}
+
+/* Gold outline button — add class "cl-btn-outline" */
+.cl-btn-outline,
+.cl-btn-outline a,
+.cl-btn-outline button {
+  background: transparent !important;
+  color: var(--cl-gold) !important;
+  border: 1.5px solid var(--cl-gold) !important;
+  border-radius: var(--cl-radius-pill) !important;
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 15px !important;
+  padding: 14px 32px !important;
+  cursor: pointer !important;
+  transition: all var(--cl-transition) !important;
+  text-decoration: none !important;
+}
+
+.cl-btn-outline:hover,
+.cl-btn-outline a:hover,
+.cl-btn-outline button:hover {
+  background: var(--cl-gold) !important;
+  color: var(--cl-white) !important;
+  border-color: var(--cl-gold) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: var(--cl-shadow-gold) !important;
+}
+
+/* Gold solid button — add class "cl-btn-gold" */
+.cl-btn-gold,
+.cl-btn-gold a,
+.cl-btn-gold button {
+  background: var(--cl-gold) !important;
+  color: var(--cl-white) !important;
+  border: none !important;
+  border-radius: var(--cl-radius-pill) !important;
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 15px !important;
+  padding: 14px 32px !important;
+  cursor: pointer !important;
+  transition: all var(--cl-transition) !important;
+  box-shadow: var(--cl-shadow-gold) !important;
+  text-decoration: none !important;
+}
+
+.cl-btn-gold:hover,
+.cl-btn-gold a:hover,
+.cl-btn-gold button:hover {
+  background: var(--cl-gold-light) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 30px rgba(184, 148, 95, 0.3) !important;
+}
+
+/* ============================================
+   4. GHL FORM STYLING
+   ============================================ */
+
+/* Form container — white glassmorphism */
+.hl_wrapper--inner,
+form.hl-form-body {
+  background: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid var(--cl-border) !important;
+  border-radius: var(--cl-radius-lg) !important;
+  padding: 32px !important;
+  box-shadow: var(--cl-shadow) !important;
+}
+
+/* Form field labels */
+.hl_form-input--label,
+label.hl-form-label,
+.hl-form-label {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  color: var(--cl-navy) !important;
+  letter-spacing: 0.3px !important;
+  margin-bottom: 6px !important;
+}
+
+/* Text / Email / Phone inputs */
+input.hl-text-input,
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+input[type="url"],
+textarea,
+.hl-text-input,
+.hl_form-input input,
+.hl_form-input textarea {
+  background: var(--cl-white) !important;
+  border: 1px solid var(--cl-border) !important;
+  border-radius: var(--cl-radius) !important;
+  color: var(--cl-navy) !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 15px !important;
+  padding: 14px 16px !important;
+  transition: all var(--cl-transition) !important;
+  width: 100% !important;
+  outline: none !important;
+}
+
+input.hl-text-input:focus,
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+textarea:focus,
+.hl-text-input:focus,
+.hl_form-input input:focus,
+.hl_form-input textarea:focus {
+  border-color: var(--cl-gold) !important;
+  box-shadow: 0 0 0 3px var(--cl-gold-glow) !important;
+}
+
+/* Placeholder text */
+input::placeholder,
+textarea::placeholder {
+  color: var(--cl-gray-light) !important;
+  opacity: 1 !important;
+}
+
+/* Dropdown / Select */
+select,
+.hl-form-select,
+.hl_form-input select {
+  background: var(--cl-white) !important;
+  border: 1px solid var(--cl-border) !important;
+  border-radius: var(--cl-radius) !important;
+  color: var(--cl-navy) !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 15px !important;
+  padding: 14px 16px !important;
+  transition: border-color var(--cl-transition) !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b6b7b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 16px center !important;
+}
+
+select:focus,
+.hl-form-select:focus {
+  border-color: var(--cl-gold) !important;
+  box-shadow: 0 0 0 3px var(--cl-gold-glow) !important;
+}
+
+/* Checkbox styling */
+input[type="checkbox"] {
+  width: 20px !important;
+  height: 20px !important;
+  border: 1.5px solid var(--cl-border) !important;
+  border-radius: 5px !important;
+  background: var(--cl-white) !important;
+  cursor: pointer !important;
+  accent-color: var(--cl-gold) !important;
+}
+
+input[type="checkbox"]:checked {
+  background: var(--cl-gold) !important;
+  border-color: var(--cl-gold) !important;
+}
+
+/* Submit button — solid navy */
+.hl_cta_wrap button,
+button[type="submit"],
+.hl_form-submit,
+.hl_submit-button,
+input[type="submit"] {
+  background: var(--cl-navy) !important;
+  color: var(--cl-white) !important;
+  border: none !important;
+  border-radius: var(--cl-radius-pill) !important;
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 15px !important;
+  padding: 16px 32px !important;
+  cursor: pointer !important;
+  transition: all var(--cl-transition) !important;
+  box-shadow: var(--cl-shadow) !important;
+  width: 100% !important;
+  letter-spacing: 0.3px !important;
+}
+
+.hl_cta_wrap button:hover,
+button[type="submit"]:hover,
+.hl_form-submit:hover,
+.hl_submit-button:hover,
+input[type="submit"]:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: var(--cl-shadow-hover) !important;
+  background: var(--cl-navy-deep) !important;
+}
+
+/* ============================================
+   5. GHL CALENDAR WIDGET STYLING
+   ============================================ */
+
+/* Calendar container */
+.hl_calendar,
+.calendar-widget,
+[class*="calendar-container"] {
+  background: var(--cl-white) !important;
+  border: 1px solid var(--cl-border) !important;
+  border-radius: var(--cl-radius-lg) !important;
+  color: var(--cl-navy) !important;
+  overflow: hidden !important;
+}
+
+/* Calendar header */
+.hl_calendar .header,
+.calendar-widget .header {
+  background: var(--cl-off-white) !important;
+  color: var(--cl-navy) !important;
+  border-bottom: 1px solid var(--cl-border) !important;
+}
+
+/* Calendar day cells */
+.hl_calendar .day,
+.calendar-widget td {
+  color: var(--cl-gray) !important;
+  transition: all 0.2s ease !important;
+}
+
+.hl_calendar .day:hover,
+.calendar-widget td:hover {
+  background: var(--cl-gold-glow) !important;
+  color: var(--cl-gold) !important;
+}
+
+/* Selected / active day */
+.hl_calendar .day.selected,
+.hl_calendar .day.active,
+.calendar-widget td.selected {
+  background: var(--cl-navy) !important;
+  color: var(--cl-white) !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+}
+
+/* Time slots */
+.hl_calendar .time-slot,
+.calendar-widget .time-slot {
+  background: var(--cl-off-white) !important;
+  border: 1px solid var(--cl-border) !important;
+  border-radius: var(--cl-radius) !important;
+  color: var(--cl-gray) !important;
+  transition: all 0.2s ease !important;
+}
+
+.hl_calendar .time-slot:hover,
+.calendar-widget .time-slot:hover {
+  border-color: var(--cl-gold) !important;
+  background: var(--cl-gold-glow) !important;
+  color: var(--cl-gold) !important;
+}
+
+.hl_calendar .time-slot.selected,
+.calendar-widget .time-slot.selected {
+  background: var(--cl-navy) !important;
+  color: var(--cl-white) !important;
+  border-color: var(--cl-navy) !important;
+  font-weight: 600 !important;
+}
+
+/* ============================================
+   6. FEATURE CARDS (3 D's Section)
+   ============================================ */
+
+.cl-feature-card {
+  background: var(--cl-white) !important;
+  border: 1px solid var(--cl-border) !important;
+  border-radius: var(--cl-radius-lg) !important;
+  padding: 40px 28px !important;
+  transition: all var(--cl-transition) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.cl-feature-card::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 3px !important;
+  background: linear-gradient(90deg, transparent, var(--cl-gold), transparent) !important;
+  opacity: 0 !important;
+  transition: opacity var(--cl-transition) !important;
+}
+
+.cl-feature-card:hover {
+  transform: translateY(-8px) !important;
+  border-color: rgba(184, 148, 95, 0.2) !important;
+  box-shadow: var(--cl-shadow-hover), 0 0 40px rgba(184, 148, 95, 0.06) !important;
+}
+
+.cl-feature-card:hover::before {
+  opacity: 1 !important;
+}
+
+/* ============================================
+   7. ABOUT SECTION IMAGE
+   ============================================ */
+
+.cl-about-image {
+  border-radius: var(--cl-radius-lg) !important;
+  border: 1px solid var(--cl-border) !important;
+  transition: all var(--cl-transition) !important;
+  object-fit: cover !important;
+  box-shadow: var(--cl-shadow) !important;
+}
+
+.cl-about-image:hover {
+  border-color: rgba(184, 148, 95, 0.3) !important;
+  box-shadow: var(--cl-shadow-hover), 0 0 60px rgba(184, 148, 95, 0.06) !important;
+  transform: scale(1.02) !important;
+}
+
+/* ============================================
+   8. RESOURCE CARDS
+   ============================================ */
+
+.cl-resource-card {
+  background: var(--cl-white) !important;
+  border: 1px solid var(--cl-border) !important;
+  border-radius: var(--cl-radius-lg) !important;
+  padding: 32px !important;
+  transition: all var(--cl-transition) !important;
+}
+
+.cl-resource-card:hover {
+  border-color: rgba(184, 148, 95, 0.2) !important;
+  box-shadow: var(--cl-shadow-hover) !important;
+}
+
+/* ============================================
+   9. NAVIGATION / STICKY HEADER
+   ============================================ */
+
+/* Make the nav stick and add backdrop blur */
+.hl_page-creator__body > div:first-child,
+[class*="nav-section"],
+.cl-nav-sticky {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1000 !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  background: rgba(255, 255, 255, 0.92) !important;
+  border-bottom: 1px solid var(--cl-border) !important;
+}
+
+/* Nav link hover */
+.cl-nav-link,
+.cl-nav-link a {
+  color: var(--cl-gray) !important;
+  transition: color 0.3s ease !important;
+}
+
+.cl-nav-link:hover,
+.cl-nav-link a:hover {
+  color: var(--cl-gold) !important;
+}
+
+/* ============================================
+   10. SECTION BACKGROUNDS
+   ============================================ */
+
+/* White section */
+.cl-section-white {
+  background-color: var(--cl-white) !important;
+}
+
+/* Cream/off-white alternating section */
+.cl-section-cream {
+  background-color: var(--cl-off-white) !important;
+}
+
+/* Dark navy section (footer, hero overlay) */
+.cl-section-dark {
+  background-color: var(--cl-navy) !important;
+}
+
+.cl-section-dark h1,
+.cl-section-dark h2,
+.cl-section-dark h3,
+.cl-section-dark .hl_page-creator__heading {
+  color: var(--cl-white) !important;
+}
+
+.cl-section-dark p,
+.cl-section-dark span,
+.cl-section-dark li,
+.cl-section-dark .hl_page-creator__paragraph {
+  color: var(--cl-gray-light) !important;
+}
+
+/* ============================================
+   11. DIVIDERS
+   ============================================ */
+
+hr,
+.divider {
+  border: none !important;
+  border-top: 1px solid var(--cl-border) !important;
+  margin: 24px 0 !important;
+}
+
+/* ============================================
+   12. ANIMATIONS — SCROLL REVEAL
+   ============================================ */
+
+/* Add class "cl-reveal" to any element you want to animate in */
+.cl-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.cl-reveal.cl-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered animation delays for sibling elements */
+.cl-reveal-delay-1 { transition-delay: 0.1s; }
+.cl-reveal-delay-2 { transition-delay: 0.2s; }
+.cl-reveal-delay-3 { transition-delay: 0.3s; }
+
+/* ============================================
+   13. MOBILE RESPONSIVE OVERRIDES
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Reduce padding on all sections */
+  .hl_page-creator__body section,
+  .section-element {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  /* Stack hero columns */
+  .hl_page-creator__body .row-element {
+    flex-direction: column !important;
+  }
+
+  /* Make all buttons full-width on mobile */
+  .cl-btn-primary,
+  .cl-btn-outline,
+  .cl-btn-gold,
+  .cl-btn-primary a,
+  .cl-btn-outline a,
+  .cl-btn-gold a {
+    width: 100% !important;
+    text-align: center !important;
+  }
+
+  /* Form field larger touch targets */
+  input.hl-text-input,
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  textarea,
+  select {
+    padding: 16px !important;
+    font-size: 16px !important; /* Prevents iOS zoom */
+    min-height: 52px !important;
+  }
+
+  /* Feature cards full width */
+  .cl-feature-card {
+    margin-bottom: 16px !important;
+  }
+
+  /* Reduce headline sizes */
+  h1 {
+    font-size: 32px !important;
+  }
+
+  h2 {
+    font-size: 28px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 28px !important;
+  }
+
+  h2 {
+    font-size: 24px !important;
+  }
+
+  /* Tighter padding on forms */
+  .hl_wrapper--inner,
+  form.hl-form-body {
+    padding: 24px 16px !important;
+  }
+}
+
+/* ============================================
+   14. UTILITY CLASSES
+   ============================================ */
+
+/* Gold gradient text — add class "cl-gradient-text" */
+.cl-gradient-text {
+  background: linear-gradient(135deg, var(--cl-gold), var(--cl-gold-light)) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+/* Glass card background — add class "cl-glass" */
+.cl-glass {
+  background: rgba(255, 255, 255, 0.7) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid var(--cl-border-light) !important;
+  border-radius: var(--cl-radius-lg) !important;
+}
+
+/* Subtle border glow — add class "cl-glow-border" */
+.cl-glow-border {
+  border: 1px solid rgba(184, 148, 95, 0.2) !important;
+  box-shadow: 0 0 30px rgba(184, 148, 95, 0.06) !important;
+}
+
+/* Hide on mobile — add class "cl-hide-mobile" */
+@media (max-width: 768px) {
+  .cl-hide-mobile {
+    display: none !important;
+  }
+}
+
+/* Hide on desktop — add class "cl-hide-desktop" */
+@media (min-width: 769px) {
+  .cl-hide-desktop {
+    display: none !important;
+  }
+}
+
+/* ============================================
+   15. ACCESSIBILITY — FOCUS STATES
+   ============================================ */
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--cl-gold) !important;
+  outline-offset: 3px !important;
+}
