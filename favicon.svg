@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="0.4" y2="1">
+      <stop offset="0%" stop-color="#D4AF5A"/>
+      <stop offset="40%" stop-color="#C09A48"/>
+      <stop offset="100%" stop-color="#7A6838"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" fill="#000"/>
+  <!-- KH Monogram -->
+  <g fill="url(#gold)">
+    <!-- K - left vertical -->
+    <polygon points="88,72 148,72 148,440 88,440"/>
+    <!-- K - upper diagonal -->
+    <polygon points="148,230 148,190 340,72 410,72"/>
+    <!-- K - lower diagonal -->
+    <polygon points="148,270 148,310 340,440 410,440"/>
+    <!-- H - right vertical -->
+    <polygon points="364,72 424,72 424,440 364,440"/>
+    <!-- Diagonal crossover creating the intertwined look -->
+    <polygon points="200,230 340,140 340,180 200,270"/>
+    <polygon points="200,240 200,280 340,370 340,330"/>
+  </g>
+</svg>
