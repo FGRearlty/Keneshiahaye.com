@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="0.3" y2="1">
+      <stop offset="0%" stop-color="#D4AF5A"/>
+      <stop offset="50%" stop-color="#C09A48"/>
+      <stop offset="100%" stop-color="#7A6838"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="64" fill="#1A1A1A"/>
+  <!-- Bold K -->
+  <g fill="url(#gold)">
+    <!-- Vertical stroke -->
+    <rect x="112" y="80" width="72" height="352" rx="4"/>
+    <!-- Upper diagonal -->
+    <polygon points="184,256 184,208 360,80 424,80 424,108"/>
+    <!-- Lower diagonal -->
+    <polygon points="184,256 184,304 360,432 424,432 424,404"/>
+  </g>
+</svg>
