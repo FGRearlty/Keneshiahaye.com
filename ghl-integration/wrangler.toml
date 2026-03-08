@@ -5,6 +5,6 @@ compatibility_date = "2024-01-01"
 [vars]
 GHL_LOCATION_ID = "BL54FprV9T5BTudmrsdB"
 
-# IMPORTANT: Set this as a secret, not a var!
+# IMPORTANT: GHL_API_KEY must be set as a Cloudflare secret, not a var!
 # Run: npx wrangler secret put GHL_API_KEY
-# Then paste your PIT key: pit-ee837709-0146-4551-801d-a868faf78be9
+# Then paste your PIT key when prompted
