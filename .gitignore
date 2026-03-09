@@ -1,5 +1,7 @@
 node_modules/
 .claude/
+_deploy/
+va-resources/extracted-zip*/
 *.log
 .DS_Store
 Thumbs.db
