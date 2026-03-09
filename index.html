@@ -780,7 +780,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <input type="email" id="guide-email" name="email" placeholder="Your email" required class="flex-1 px-4 py-3 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-full text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none focus:border-champagne-400 focus:ring-2 focus:ring-champagne-400/15 transition-all min-w-0">
               </div>
               <div class="flex gap-2">
-                <input type="tel" name="phone" placeholder="Phone (optional)" class="flex-1 px-4 py-3 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-full text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none focus:border-champagne-400 focus:ring-2 focus:ring-champagne-400/15 transition-all min-w-0">
+                <input type="tel" name="phone" required placeholder="Phone *" class="flex-1 px-4 py-3 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-full text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none focus:border-champagne-400 focus:ring-2 focus:ring-champagne-400/15 transition-all min-w-0">
                 <button type="submit" class="flex-shrink-0 px-6 py-3 bg-gradient-to-r from-champagne-400 to-champagne-300 text-navy-500 font-bold text-sm rounded-full hover:-translate-y-0.5 hover:shadow-lg hover:shadow-champagne-400/25 transition-all whitespace-nowrap">Get Free Guide</button>
               </div>
             </form>
@@ -1278,7 +1278,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               class="w-full px-4 py-3 rounded-xl text-sm text-white placeholder-white/30 bg-white/[0.04] border border-white/10 focus:outline-none transition-all" />
           </div>
           <div>
-            <input type="tel" name="phone" placeholder="Phone (optional)" autocomplete="tel"
+            <input type="tel" name="phone" required placeholder="Phone *" autocomplete="tel"
               class="w-full px-4 py-3 rounded-xl text-sm text-white placeholder-white/30 bg-white/[0.04] border border-white/10 focus:outline-none transition-all" />
           </div>
           <button type="submit" class="popup-btn w-full py-3.5 rounded-xl text-sm font-bold tracking-wide uppercase text-navy-500 cursor-pointer">
@@ -1371,7 +1371,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     var lastName = form.querySelector('input[name="lastName"]').value.trim();
     var email = form.querySelector('input[name="email"]').value.trim();
     var phone = form.querySelector('input[name="phone"]') ? form.querySelector('input[name="phone"]').value.trim() : '';
-    if (!firstName || !lastName || !email) return;
+    if (!firstName || !lastName || !email || !phone) return;
 
     var btn = form.querySelector('button[type="submit"]');
     btn.disabled = true;

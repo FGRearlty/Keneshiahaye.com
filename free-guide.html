@@ -256,8 +256,8 @@
                       class="guide-input w-full px-4 py-3.5 rounded-xl text-sm text-white placeholder-white/30 bg-white/[0.04] border border-white/10 focus:outline-none transition-all" />
                   </div>
                   <div>
-                    <label for="guide-phone" class="sr-only">Phone number (optional)</label>
-                    <input id="guide-phone" type="tel" name="phone" placeholder="Phone number (optional)" autocomplete="tel"
+                    <label for="guide-phone" class="sr-only">Phone number</label>
+                    <input id="guide-phone" type="tel" name="phone" required placeholder="Phone number *" autocomplete="tel"
                       class="guide-input w-full px-4 py-3.5 rounded-xl text-sm text-white placeholder-white/30 bg-white/[0.04] border border-white/10 focus:outline-none transition-all" />
                   </div>
                   <button type="submit" class="btn-gold w-full py-4 rounded-xl text-sm font-bold tracking-wide uppercase text-navy-500 cursor-pointer mt-1">
@@ -347,7 +347,7 @@
       var lastName = form.querySelector('input[name="lastName"]').value.trim();
       var email = form.querySelector('input[name="email"]').value.trim();
       var phone = form.querySelector('input[name="phone"]').value.trim();
-      if (!firstName || !lastName || !email) return;
+      if (!firstName || !lastName || !email || !phone) return;
 
       var btn = form.querySelector('button[type="submit"]');
       btn.disabled = true;
@@ -357,9 +357,9 @@
         firstName: firstName,
         lastName: lastName,
         email: email,
+        phone: phone,
         formSource: 'landing-page-guide'
       };
-      if (phone) payload.phone = phone;
 
       fetch('https://keneshia-haye-form-handler.jutsuxx.workers.dev', {
         method: 'POST',
