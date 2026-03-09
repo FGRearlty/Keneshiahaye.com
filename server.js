@@ -19,12 +19,19 @@ const MIME = {
   '.webp': 'image/webp',
   '.woff': 'font/woff',
   '.woff2': 'font/woff2',
+  '.pdf': 'application/pdf',
 };
 
 http.createServer((req, res) => {
-  let filePath = path.join(ROOT, req.url === '/' ? 'index.html' : req.url);
+  const urlPath = req.url.split('?')[0];
+  let filePath = path.join(ROOT, urlPath === '/' ? 'index.html' : urlPath);
   const ext = path.extname(filePath);
-  if (!ext) filePath += '.html';
+  // Serve index.html for directory paths (e.g., /blog/)
+  if (!ext && filePath.endsWith(path.sep)) {
+    filePath = path.join(filePath, 'index.html');
+  } else if (!ext) {
+    filePath += '.html';
+  }
 
   fs.readFile(filePath, (err, data) => {
     if (err) {
