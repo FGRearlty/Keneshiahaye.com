@@ -1,24 +1,4 @@
-# Clean URLs — remove .html extensions
-# Cloudflare Pages processes these top-to-bottom, first match wins
+# Redirects — Cloudflare Pages handles clean URLs natively
+# Only rules for actual path redirects go here
 
-/buy        /buy.html        200
-/sell       /sell.html       200
-/veterans   /veterans.html   200
-/course     /course.html     200
-/contact    /contact.html    200
-/resources  /resources.html  200
-/about      /about.html      200
-/va-benefits /va-benefits.html 200
-/free-guide /free-guide.html 200
-/review     /review.html     200
 /privacy    /privacy-policy  301
-/privacy-policy /privacy-policy.html 200
-/terms      /terms.html      200
-
-# Blog clean URLs
-/blog/va-loan-guide-jacksonville                /blog/va-loan-guide-jacksonville.html               200
-/blog/first-time-homebuyer-mistakes             /blog/first-time-homebuyer-mistakes.html             200
-/blog/jacksonville-real-estate-market            /blog/jacksonville-real-estate-market.html            200
-/blog/jacksonville-neighborhoods-first-time-buyers /blog/jacksonville-neighborhoods-first-time-buyers.html 200
-/blog/moving-to-jacksonville-military            /blog/moving-to-jacksonville-military.html            200
-/blog/sell-your-home-fast-jacksonville           /blog/sell-your-home-fast-jacksonville.html           200
