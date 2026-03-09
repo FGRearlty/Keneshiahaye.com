@@ -1,6 +1,7 @@
 node_modules/
 .claude/
 _deploy/
+.wrangler/
 va-resources/extracted-zip*/
 *.log
 .DS_Store

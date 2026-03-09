@@ -1,0 +1,15 @@
+# Clean URLs — remove .html extensions
+# Cloudflare Pages processes these top-to-bottom, first match wins
+
+/buy        /buy.html        200
+/sell       /sell.html       200
+/veterans   /veterans.html   200
+/course     /course.html     200
+/contact    /contact.html    200
+/resources  /resources.html  200
+/about      /about.html      200
+/va-benefits /va-benefits.html 200
+/free-guide /free-guide.html 200
+/review     /review.html     200
+/privacy-policy /privacy-policy.html 200
+/terms      /terms.html      200
