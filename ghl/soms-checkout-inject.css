@@ -1,0 +1,376 @@
+/* ============================================
+   SOMS CHECKOUT — Client Club Offer Page Override
+
+   WHERE TO PASTE:
+   GHL Admin → Memberships → Courses → Stand on My Shoulder
+   → Offers → Edit offer → Customize (or Settings → Custom CSS)
+
+   If GHL doesn't have a custom CSS field on the offer page,
+   paste this inside a <style> tag in the "Custom Code" /
+   "Tracking Code" → Header section:
+
+   <style>
+     [paste everything below]
+   </style>
+   ============================================ */
+
+/* --- Google Fonts --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap');
+
+/* ============================================
+   1. PAGE BACKGROUND
+   ============================================ */
+
+body,
+html,
+.bg-gray-100,
+.bg-gray-100.flex-1.md\\:min-h-screen {
+  background: #0a1628 !important;
+  color: #94a3b8 !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+}
+
+/* Subtle radial glow */
+.bg-gray-100::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 20% 10%, rgba(201,169,110,0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 90%, rgba(201,169,110,0.03) 0%, transparent 50%);
+  z-index: 0;
+}
+
+.bg-gray-100 {
+  position: relative;
+}
+
+/* ============================================
+   2. BANNER / HEADER IMAGE
+   ============================================ */
+
+/* The blue banner at top — replace with navy gradient */
+.flex.justify-center.mr-auto,
+.offer-content > div:first-child img,
+[style*="background-image"] {
+  display: none !important;
+}
+
+/* Add custom header bar */
+.offer-content::before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, #c9a96e, transparent);
+  margin-bottom: 0;
+}
+
+/* ============================================
+   3. CONTENT AREA — LEFT COLUMN
+   ============================================ */
+
+/* Course title */
+.col-span-3 .font-medium.text-3xl {
+  font-family: 'Playfair Display', Georgia, serif !important;
+  font-size: 36px !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  line-height: 1.2 !important;
+  padding-top: 32px !important;
+}
+
+/* Course description */
+.col-span-3 .text-lg.editor-content,
+.col-span-3 .text-lg.editor-content * {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 16px !important;
+  color: #94a3b8 !important;
+  line-height: 1.7 !important;
+}
+
+/* ============================================
+   4. ORDER CARD — RIGHT COLUMN
+   ============================================ */
+
+/* Card container */
+.hl-card {
+  background: rgba(15, 31, 56, 0.85) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 40px rgba(201, 169, 110, 0.06) !important;
+  overflow: hidden !important;
+}
+
+/* Card header — Total Amount */
+.hl-card-header {
+  background: rgba(10, 22, 40, 0.95) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+  padding: 24px 28px !important;
+}
+
+/* "Total Amount" label */
+.hl-card-header .hl-text-xs-medium,
+.hl-card-header .text-gray-700 {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  letter-spacing: 1.5px !important;
+  text-transform: uppercase !important;
+  color: #c9a96e !important;
+}
+
+/* "$20.00" price */
+.hl-card-header .hl-display-sm-medium {
+  font-family: 'Playfair Display', Georgia, serif !important;
+  font-size: 40px !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  line-height: 1.2 !important;
+}
+
+/* Card body / content area */
+.hl-card-content {
+  padding: 28px !important;
+  background: transparent !important;
+}
+
+/* ============================================
+   5. FORM FIELDS
+   ============================================ */
+
+/* Form item labels */
+.hl-form-item label,
+.n-form-item-label,
+.n-form-item-label__text {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  color: #94a3b8 !important;
+  letter-spacing: 0.3px !important;
+}
+
+/* Required asterisk */
+.n-form-item-label .n-form-item-label__asterisk {
+  color: #c9a96e !important;
+}
+
+/* Text inputs */
+.n-input,
+.n-input .n-input__input-el,
+.hl-input-text,
+.form__input,
+input[type="email"],
+input[type="text"] {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  border-radius: 12px !important;
+  color: #ffffff !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 15px !important;
+  caret-color: #c9a96e !important;
+}
+
+.n-input {
+  --n-border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  --n-border-hover: 1px solid rgba(201, 169, 110, 0.4) !important;
+  --n-border-focus: 1px solid #c9a96e !important;
+  --n-box-shadow-focus: 0 0 0 3px rgba(201, 169, 110, 0.15) !important;
+  --n-color: rgba(255, 255, 255, 0.04) !important;
+  --n-color-focus: rgba(255, 255, 255, 0.06) !important;
+  --n-text-color: #ffffff !important;
+  --n-placeholder-color: #64748b !important;
+  --n-caret-color: #c9a96e !important;
+  --n-border-radius: 12px !important;
+}
+
+/* Input wrapper background override */
+.n-input .n-input-wrapper {
+  background: transparent !important;
+}
+
+/* Placeholder text */
+.n-input .n-input__placeholder,
+input::placeholder {
+  color: #64748b !important;
+  opacity: 1 !important;
+}
+
+/* Focus states */
+.n-input--focus,
+.n-input:focus-within {
+  border-color: #c9a96e !important;
+  box-shadow: 0 0 0 3px rgba(201, 169, 110, 0.15), 0 0 40px rgba(201, 169, 110, 0.08) !important;
+}
+
+/* ============================================
+   6. COUPON CODE SECTION
+   ============================================ */
+
+/* Coupon input row */
+.hl-form-item:last-child .n-input,
+input[placeholder="Enter coupon code"] {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px dashed rgba(255, 255, 255, 0.12) !important;
+  border-radius: 12px !important;
+}
+
+/* Apply button */
+.n-button--tertiary-type,
+button.hover\\:text-blue-600 {
+  background: rgba(201, 169, 110, 0.1) !important;
+  color: #c9a96e !important;
+  border: 1px solid rgba(201, 169, 110, 0.3) !important;
+  border-radius: 10px !important;
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  transition: all 0.3s ease !important;
+}
+
+.n-button--tertiary-type:hover {
+  background: rgba(201, 169, 110, 0.2) !important;
+  border-color: #c9a96e !important;
+}
+
+/* ============================================
+   7. PROCEED TO CHECKOUT BUTTON
+   ============================================ */
+
+.n-button--primary-type,
+.n-button--primary-type.w-full {
+  background: linear-gradient(135deg, #c9a96e, #e3d4ab) !important;
+  color: #0a1628 !important;
+  border: none !important;
+  border-radius: 50px !important;
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 16px !important;
+  letter-spacing: 0.5px !important;
+  padding: 20px 32px !important;
+  height: auto !important;
+  min-height: 56px !important;
+  cursor: pointer !important;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  box-shadow: 0 4px 20px rgba(201, 169, 110, 0.3) !important;
+  --n-color: linear-gradient(135deg, #c9a96e, #e3d4ab) !important;
+  --n-text-color: #0a1628 !important;
+  --n-border: none !important;
+}
+
+.n-button--primary-type:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 30px rgba(201, 169, 110, 0.45) !important;
+  background: linear-gradient(135deg, #e3d4ab, #c9a96e) !important;
+  --n-color-hover: linear-gradient(135deg, #e3d4ab, #c9a96e) !important;
+}
+
+.n-button--primary-type:active {
+  transform: translateY(0) !important;
+}
+
+/* Override Naive UI button internals */
+.n-button--primary-type .n-button__content {
+  color: #0a1628 !important;
+  font-weight: 700 !important;
+}
+
+/* ============================================
+   8. "SAFER, EASIER WAY TO PAY" TEXT
+   ============================================ */
+
+.hl-card-content > div:last-child,
+div:has(> .n-button--primary-type) + div {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 12px !important;
+  color: #64748b !important;
+  text-align: center !important;
+}
+
+/* ============================================
+   9. GRID / LAYOUT
+   ============================================ */
+
+/* Main content grid */
+.offer-content {
+  position: relative;
+  z-index: 1;
+}
+
+.block.mx-5.md\\:grid {
+  padding-top: 40px !important;
+  padding-bottom: 60px !important;
+}
+
+/* Right column (card) - add some top margin on mobile */
+.col-span-2 {
+  position: relative;
+}
+
+/* ============================================
+   10. SCROLLBAR
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a1628;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(201, 169, 110, 0.2);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(201, 169, 110, 0.4);
+}
+
+/* ============================================
+   11. MOBILE RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+  .col-span-3 .font-medium.text-3xl {
+    font-size: 28px !important;
+    padding-top: 24px !important;
+  }
+
+  .hl-card-header .hl-display-sm-medium {
+    font-size: 32px !important;
+  }
+
+  .hl-card {
+    border-radius: 12px !important;
+  }
+
+  .hl-card-header,
+  .hl-card-content {
+    padding: 20px !important;
+  }
+
+  .n-button--primary-type {
+    padding: 16px 24px !important;
+    min-height: 50px !important;
+    font-size: 15px !important;
+  }
+}
+
+/* ============================================
+   12. NAIVE UI VARIABLE OVERRIDES
+   ============================================ */
+
+/* Override the Naive UI design token vars globally */
+.n-config-provider {
+  --n-text-color-base: #94a3b8 !important;
+}
+
+/* Override all Naive UI internal button colors */
+.n-button {
+  --n-ripple-color: rgba(201, 169, 110, 0.3) !important;
+}
