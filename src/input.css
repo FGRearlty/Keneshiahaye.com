@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+@source "../*.html";
+@source "../blog/*.html";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
+
+  --color-navy-50: #f0f4f8;
+  --color-navy-100: #d9e2ec;
+  --color-navy-200: #bcccdc;
+  --color-navy-300: #9fb3c8;
+  --color-navy-400: #7b8794;
+  --color-navy-500: #0a1628;
+  --color-navy-600: #081120;
+  --color-navy-700: #060f1d;
+  --color-navy-800: #040a14;
+  --color-navy-900: #02050a;
+
+  --color-champagne-50: #faf6ed;
+  --color-champagne-100: #f2ebd4;
+  --color-champagne-200: #e3d4ab;
+  --color-champagne-300: #d4bd82;
+  --color-champagne-400: #c9a96e;
+  --color-champagne-500: #b8944f;
+  --color-champagne-600: #a07a3a;
+  --color-champagne-700: #86632e;
+  --color-champagne-800: #6d4f26;
+  --color-champagne-900: #583f1f;
+}

@@ -12,9 +12,21 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Tailwind CSS
+        run: npx @tailwindcss/cli -i src/input.css -o css/styles.css --minify
+
       - name: Remove oversized and non-site files
         run: |
-          rm -rf va-resources/extracted-zip1 va-resources/extracted-zip2 _deploy ghl-integration email-templates .github
+          rm -rf va-resources/extracted-zip1 va-resources/extracted-zip2 _deploy ghl-integration email-templates .github node_modules src scripts
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3

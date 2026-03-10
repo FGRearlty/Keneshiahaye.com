@@ -1,10 +1,16 @@
 {
+  "scripts": {
+    "build:css": "tailwindcss -i src/input.css -o css/styles.css --minify",
+    "dev:css": "tailwindcss -i src/input.css -o css/styles.css --watch"
+  },
   "dependencies": {
     "mammoth": "^1.11.0",
     "pdfkit": "^0.17.2",
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
-    "sharp": "^0.34.5"
+    "@tailwindcss/cli": "^4.2.1",
+    "sharp": "^0.34.5",
+    "tailwindcss": "^4.2.1"
   }
 }
