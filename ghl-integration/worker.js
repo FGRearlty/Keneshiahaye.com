@@ -31,6 +31,8 @@ const FORM_TAG_MAP = {
   'landing-page-guide':     ['website-guide-download', 'buyers guide', 'landing-page-lead'],
   'review-request':         ['review-requested'],
   'blog-lead-capture':      ['website-blog', 'content-lead'],
+  'course-interest':        ['website-course', 'soms-course'],
+  'course-enrollment':      ['website-course', 'soms-course', 'enrolled'],
 };
 
 // CORS headers for browser requests
