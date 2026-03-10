@@ -33,6 +33,7 @@ const FORM_TAG_MAP = {
   'blog-lead-capture':      ['website-blog', 'content-lead'],
   'course-interest':        ['website-course', 'soms-course'],
   'course-enrollment':      ['website-course', 'soms-course', 'enrolled'],
+  'course-gift':            ['website-course', 'soms-course', 'course-gift'],
 };
 
 // CORS headers for browser requests
