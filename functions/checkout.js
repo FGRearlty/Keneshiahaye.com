@@ -339,13 +339,40 @@ export async function onRequest(context) {
   </div>
 
   <script>
-    // On form submit, redirect to GHL checkout
-    // GHL may or may not pre-fill fields, but we capture the contact info
-    document.getElementById('checkoutForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      // Always redirect to the GHL checkout page
-      window.location.href = '${GHL_CHECKOUT_URL}';
-    });
+    (function() {
+      var params = new URLSearchParams(window.location.search);
+      var emailInput = document.querySelector('input[name="email"]');
+      var nameInput = document.querySelector('input[name="name"]');
+
+      /* Pre-fill from URL params (passed from gift form or enroll button) */
+      if (params.get('email') && emailInput) emailInput.value = params.get('email');
+      if (params.get('name') && nameInput) nameInput.value = params.get('name');
+
+      /* Show gift badge if this is a gift purchase */
+      if (params.get('gift') === '1' && params.get('recipient')) {
+        var badge = document.querySelector('.badge');
+        if (badge) badge.textContent = '🎁 Gift for ' + params.get('recipient');
+      }
+
+      /* On form submit, build GHL URL with the entered info and redirect */
+      document.getElementById('checkoutForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        var email = emailInput ? emailInput.value : '';
+        var name = nameInput ? nameInput.value : '';
+        var ghlParams = new URLSearchParams();
+        if (email) ghlParams.set('email', email);
+        if (name) {
+          ghlParams.set('name', name);
+          var parts = name.trim().split(/\\s+/);
+          if (parts.length >= 2) {
+            ghlParams.set('first_name', parts[0]);
+            ghlParams.set('last_name', parts.slice(1).join(' '));
+          }
+        }
+        var ghlUrl = '${GHL_CHECKOUT_URL}' + (ghlParams.toString() ? '?' + ghlParams.toString() : '');
+        window.location.href = ghlUrl;
+      });
+    })();
   </script>
 </body>
 </html>`;

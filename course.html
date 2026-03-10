@@ -580,11 +580,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <p class="text-slate-600 dark:text-slate-300 mb-6 max-w-md mx-auto">
             Complete your $20 payment below. Once confirmed, we'll send <span id="giftRecipientName" class="font-semibold text-champagne-400"></span> their course access via email.
           </p>
-          <a href="/checkout" class="inline-flex items-center justify-center gap-2 px-10 py-4 bg-gradient-to-r from-champagne-400 to-champagne-300 text-navy-500 font-bold text-base rounded-full hover:-translate-y-0.5 hover:shadow-lg hover:shadow-champagne-400/25 active:translate-y-0 transition-all">
+          <a href="/checkout" id="giftPayBtn" class="inline-flex items-center justify-center gap-2 px-10 py-4 bg-gradient-to-r from-champagne-400 to-champagne-300 text-navy-500 font-bold text-base rounded-full hover:-translate-y-0.5 hover:shadow-lg hover:shadow-champagne-400/25 active:translate-y-0 transition-all">
             <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
             Complete Payment — $20
           </a>
-          <p class="text-slate-400 dark:text-slate-500 text-sm mt-4">You'll continue to our secure branded checkout.</p>
+          <p class="text-slate-400 dark:text-slate-500 text-sm mt-4">Redirecting to checkout in <span id="giftCountdown" class="font-semibold text-champagne-400">4</span> seconds...</p>
         </div>
       </div>
     </div>
@@ -809,6 +809,30 @@ document.addEventListener('DOMContentLoaded', function() {
         var successEl = document.getElementById('giftSuccess');
         successEl.classList.remove('hidden');
         document.getElementById('giftRecipientName').textContent = data.firstName;
+
+        /* Build checkout URL with buyer info so they don't re-enter it */
+        var checkoutParams = new URLSearchParams({
+          email: data.buyerEmail,
+          name: data.buyerFirstName + ' ' + data.buyerLastName,
+          gift: '1',
+          recipient: data.firstName + ' ' + data.lastName
+        });
+        var checkoutUrl = '/checkout?' + checkoutParams.toString();
+        var payBtn = document.getElementById('giftPayBtn');
+        if (payBtn) payBtn.href = checkoutUrl;
+
+        /* Auto-redirect to checkout after 4 seconds */
+        var countdown = 4;
+        var timer = document.getElementById('giftCountdown');
+        if (timer) timer.textContent = countdown;
+        var interval = setInterval(function() {
+          countdown--;
+          if (timer) timer.textContent = countdown;
+          if (countdown <= 0) {
+            clearInterval(interval);
+            window.location.href = checkoutUrl;
+          }
+        }, 1000);
       })
       .catch(function() {
         btn.innerHTML = origText;
