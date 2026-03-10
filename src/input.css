@@ -2,6 +2,7 @@
 
 @source "../*.html";
 @source "../blog/*.html";
+@source "../areas/*.html";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
