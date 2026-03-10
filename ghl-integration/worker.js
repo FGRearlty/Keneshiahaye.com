@@ -114,14 +114,13 @@ async function handleFormSubmission(data, env) {
   // Determine tags based on form source
   const tags = FORM_TAG_MAP[formSource] || ['website-contact'];
 
-  // Build contact payload
+  // Build contact payload (tags added separately to trigger workflows)
   const contactPayload = {
     firstName: fName,
     lastName: lName,
     email: email,
     phone: phone || '',
     locationId: env.GHL_LOCATION_ID,
-    tags: tags,
     source: 'keneshiahaye.com',
   };
 
@@ -133,34 +132,49 @@ async function handleFormSubmission(data, env) {
     env.GHL_API_KEY
   );
 
-  const contactId = contactResult?.contact?.id;
+  let contactId = contactResult?.contact?.id;
+  let isNew = true;
 
   if (!contactId) {
-    // If contact already exists, try to find and update
-    const searchResult = await ghlRequest(
-      `/contacts/lookup?locationId=${env.GHL_LOCATION_ID}&email=${encodeURIComponent(email)}`,
-      'GET',
-      null,
-      env.GHL_API_KEY
-    );
+    // GHL returns existing contact ID in meta.contactId for duplicates
+    contactId = contactResult?.meta?.contactId;
+    isNew = false;
 
-    const existingId = searchResult?.contacts?.[0]?.id;
-    if (existingId) {
-      // Add tags to existing contact
-      await ghlRequest(
-        `/contacts/${existingId}/tags`,
-        'POST',
-        { tags: tags },
+    if (!contactId) {
+      // Last resort: search by email using the search endpoint
+      const searchResult = await ghlRequest(
+        `/contacts/?locationId=${env.GHL_LOCATION_ID}&query=${encodeURIComponent(email)}`,
+        'GET',
+        null,
         env.GHL_API_KEY
       );
 
-      // Add note with form details
-      await addContactNote(existingId, formSource, data, env.GHL_API_KEY);
-
-      return { success: true, contactId: existingId, action: 'updated' };
+      contactId = searchResult?.contacts?.[0]?.id;
     }
 
-    return { success: false, error: 'Could not create or find contact' };
+    if (!contactId) {
+      return { success: false, error: 'Could not create or find contact' };
+    }
+  }
+
+  // Always add tags via the dedicated tags endpoint.
+  // This triggers "Tag Added" workflow events in GHL,
+  // unlike tags set during contact creation which don't.
+  try {
+    await ghlRequest(
+      `/contacts/${contactId}/tags`,
+      'POST',
+      { tags: tags },
+      env.GHL_API_KEY
+    );
+  } catch (e) {
+    console.error('Tag assignment error (non-fatal):', e);
+  }
+
+  // Add note with form details
+  if (!isNew) {
+    await addContactNote(contactId, formSource, data, env.GHL_API_KEY);
+    return { success: true, contactId, action: 'updated' };
   }
 
   // Add to Lead Pipeline as "New Lead"
