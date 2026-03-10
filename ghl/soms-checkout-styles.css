@@ -1,0 +1,604 @@
+/* ============================================
+   SOMS Checkout Page — Custom CSS
+   Standing on Our Shoulders Course Checkout
+
+   PASTE INTO: GHL → Sites/Funnels → SOMS Checkout
+   → Settings → Custom CSS
+
+   NOTE: Also paste the base custom-styles.css FIRST,
+   then paste this below it. Or combine both files.
+   ============================================ */
+
+/* ============================================
+   1. PAGE-LEVEL OVERRIDES
+   ============================================ */
+
+/* Dark background for entire checkout page */
+.body-wrapper,
+body,
+html {
+  background: linear-gradient(180deg, #0a1628 0%, #0d1e35 50%, #0a1628 100%) !important;
+  min-height: 100vh !important;
+}
+
+/* Subtle background texture / mesh gradient */
+.body-wrapper::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 20% 10%, rgba(201, 169, 110, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 90%, rgba(201, 169, 110, 0.03) 0%, transparent 50%);
+  z-index: 0;
+}
+
+/* ============================================
+   2. CHECKOUT HEADER / HERO
+   ============================================ */
+
+.soms-checkout-hero {
+  text-align: center;
+  padding: 48px 24px 32px;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.soms-checkout-hero .soms-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(201, 169, 110, 0.1);
+  border: 1px solid rgba(201, 169, 110, 0.2);
+  border-radius: 50px;
+  padding: 8px 20px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #c9a96e;
+  margin-bottom: 24px;
+}
+
+.soms-checkout-hero h1 {
+  font-family: 'Playfair Display', Georgia, serif !important;
+  font-size: 42px !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  line-height: 1.15 !important;
+  margin: 0 0 16px !important;
+}
+
+.soms-checkout-hero h1 em {
+  font-style: italic;
+  color: #c9a96e;
+}
+
+.soms-checkout-hero .soms-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  color: #94a3b8;
+  line-height: 1.7;
+  margin: 0 0 8px;
+}
+
+.soms-checkout-hero .soms-price-tag {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.soms-checkout-hero .soms-price-tag .price {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: #c9a96e;
+}
+
+.soms-checkout-hero .soms-price-tag .price-note {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: #64748b;
+}
+
+/* ============================================
+   3. ORDER FORM CONTAINER
+   ============================================ */
+
+/* Main order form wrapper */
+.order-form-container,
+.hl_page-creator__body .order-form,
+[class*="order-form"],
+.hl-order-form {
+  background: rgba(15, 31, 56, 0.85) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 16px !important;
+  padding: 40px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 40px rgba(201, 169, 110, 0.06) !important;
+  max-width: 560px !important;
+  margin: 0 auto 40px !important;
+}
+
+/* ============================================
+   4. ORDER FORM — PRODUCT SECTION
+   ============================================ */
+
+/* Product summary row */
+.order-form__product,
+[class*="product-row"],
+.hl-order-product {
+  display: flex !important;
+  align-items: center !important;
+  gap: 16px !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 12px !important;
+  padding: 20px !important;
+  margin-bottom: 24px !important;
+}
+
+/* Product image/icon */
+.order-form__product img,
+.order-form__product-image {
+  width: 64px !important;
+  height: 64px !important;
+  border-radius: 12px !important;
+  object-fit: cover !important;
+  border: 1px solid rgba(201, 169, 110, 0.2) !important;
+}
+
+/* Product name */
+.order-form__product-name,
+[class*="product-name"] {
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 16px !important;
+  color: #ffffff !important;
+}
+
+/* Product price */
+.order-form__product-price,
+[class*="product-price"] {
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 18px !important;
+  color: #c9a96e !important;
+}
+
+/* ============================================
+   5. ORDER FORM — PAYMENT FIELDS
+   ============================================ */
+
+/* Section headers inside the form */
+.order-form h3,
+.order-form__section-title,
+[class*="order-form"] h3 {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  letter-spacing: 1.5px !important;
+  text-transform: uppercase !important;
+  color: #c9a96e !important;
+  margin: 24px 0 12px !important;
+  padding-bottom: 8px !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+/* Card number / expiry / CVC fields (Stripe elements) */
+.StripeElement,
+[class*="card-element"],
+[class*="stripe-element"],
+.payment-element iframe,
+.hl-payment-element {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 12px !important;
+  padding: 14px 16px !important;
+  transition: border-color 0.35s ease, box-shadow 0.35s ease !important;
+}
+
+.StripeElement--focus,
+[class*="card-element"]:focus-within {
+  border-color: #c9a96e !important;
+  box-shadow: 0 0 0 3px rgba(201, 169, 110, 0.15), 0 0 40px rgba(201, 169, 110, 0.12) !important;
+}
+
+/* Credit card icon row */
+.soms-card-icons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 0 16px;
+}
+
+.soms-card-icons img {
+  height: 24px;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+
+.soms-card-icons img:hover {
+  opacity: 0.8;
+}
+
+/* ============================================
+   6. ORDER SUMMARY / TOTALS
+   ============================================ */
+
+.order-form__summary,
+[class*="order-summary"],
+.hl-order-summary {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 12px !important;
+  padding: 20px !important;
+  margin: 24px 0 !important;
+}
+
+/* Summary line items */
+.order-form__summary-row,
+[class*="summary-row"] {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 8px 0 !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 14px !important;
+  color: #94a3b8 !important;
+}
+
+/* Total line */
+.order-form__summary-total,
+[class*="summary-total"],
+.order-form__summary-row:last-child {
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  padding-top: 12px !important;
+  margin-top: 8px !important;
+  font-weight: 700 !important;
+  font-size: 18px !important;
+  color: #ffffff !important;
+}
+
+.order-form__summary-total .amount,
+[class*="summary-total"] .amount {
+  color: #c9a96e !important;
+  font-size: 20px !important;
+}
+
+/* ============================================
+   7. SUBMIT / PAY BUTTON
+   ============================================ */
+
+/* "Complete Purchase" / "Pay Now" button */
+.order-form button[type="submit"],
+.order-form .hl_cta_wrap button,
+[class*="order-form"] button[type="submit"],
+.hl-order-submit {
+  background: linear-gradient(135deg, #c9a96e, #e3d4ab) !important;
+  color: #0a1628 !important;
+  border: none !important;
+  border-radius: 50px !important;
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 16px !important;
+  letter-spacing: 0.5px !important;
+  padding: 18px 32px !important;
+  cursor: pointer !important;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  box-shadow: 0 4px 20px rgba(201, 169, 110, 0.3) !important;
+  width: 100% !important;
+  margin-top: 16px !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.order-form button[type="submit"]:hover,
+[class*="order-form"] button[type="submit"]:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 30px rgba(201, 169, 110, 0.45) !important;
+  background: linear-gradient(135deg, #e3d4ab, #c9a96e) !important;
+}
+
+.order-form button[type="submit"]:active,
+[class*="order-form"] button[type="submit"]:active {
+  transform: translateY(0) !important;
+}
+
+/* ============================================
+   8. TRUST SIGNALS / SECURITY BADGES
+   ============================================ */
+
+.soms-trust-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  padding: 16px 0;
+  margin-top: 12px;
+}
+
+.soms-trust-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #64748b;
+}
+
+.soms-trust-item svg {
+  width: 16px;
+  height: 16px;
+  color: #c9a96e;
+  flex-shrink: 0;
+}
+
+/* ============================================
+   9. WHAT'S INCLUDED SIDEBAR / SECTION
+   ============================================ */
+
+.soms-included {
+  background: rgba(15, 31, 56, 0.85);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 32px;
+  margin-bottom: 24px;
+}
+
+.soms-included h3 {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  letter-spacing: 1.5px !important;
+  text-transform: uppercase !important;
+  color: #c9a96e !important;
+  margin: 0 0 20px !important;
+}
+
+.soms-included-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.soms-included-item:last-child {
+  border-bottom: none;
+}
+
+.soms-included-item .check {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: #c9a96e;
+  margin-top: 1px;
+}
+
+.soms-included-item .text {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: #94a3b8;
+  line-height: 1.5;
+}
+
+.soms-included-item .text strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* ============================================
+   10. INSTRUCTOR BADGE
+   ============================================ */
+
+.soms-instructor {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin: 24px 0;
+}
+
+.soms-instructor img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(201, 169, 110, 0.3);
+}
+
+.soms-instructor .info {
+  display: flex;
+  flex-direction: column;
+}
+
+.soms-instructor .name {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  color: #ffffff;
+}
+
+.soms-instructor .title {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: #64748b;
+}
+
+/* ============================================
+   11. GUARANTEE / MONEY-BACK BADGE
+   ============================================ */
+
+.soms-guarantee {
+  text-align: center;
+  padding: 24px;
+  margin: 24px 0 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.soms-guarantee .icon {
+  width: 40px;
+  height: 40px;
+  color: #c9a96e;
+  margin: 0 auto 12px;
+}
+
+.soms-guarantee .headline {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: #ffffff;
+  margin-bottom: 6px;
+}
+
+.soms-guarantee .text {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: #64748b;
+  line-height: 1.6;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* ============================================
+   12. COUPON / PROMO CODE
+   ============================================ */
+
+.order-form [class*="coupon"],
+.order-form [class*="promo"],
+[class*="coupon-input"] {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px dashed rgba(255, 255, 255, 0.12) !important;
+  border-radius: 12px !important;
+  padding: 12px 16px !important;
+}
+
+.order-form [class*="coupon"] input,
+[class*="coupon-input"] input {
+  background: transparent !important;
+  border: none !important;
+  color: #ffffff !important;
+  font-size: 14px !important;
+}
+
+.order-form [class*="coupon"] button,
+[class*="coupon-input"] button {
+  background: rgba(201, 169, 110, 0.15) !important;
+  color: #c9a96e !important;
+  border: 1px solid rgba(201, 169, 110, 0.3) !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  padding: 8px 16px !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+}
+
+.order-form [class*="coupon"] button:hover {
+  background: rgba(201, 169, 110, 0.25) !important;
+}
+
+/* ============================================
+   13. SUCCESS / THANK YOU STATE
+   ============================================ */
+
+.soms-success {
+  text-align: center;
+  padding: 60px 32px;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.soms-success .icon {
+  width: 64px;
+  height: 64px;
+  background: rgba(201, 169, 110, 0.15);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+}
+
+.soms-success .icon svg {
+  width: 32px;
+  height: 32px;
+  color: #c9a96e;
+}
+
+.soms-success h2 {
+  font-family: 'Playfair Display', Georgia, serif !important;
+  font-size: 32px !important;
+  color: #ffffff !important;
+  margin: 0 0 12px !important;
+}
+
+.soms-success p {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 16px !important;
+  color: #94a3b8 !important;
+  line-height: 1.7 !important;
+}
+
+/* ============================================
+   14. MOBILE RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+  .soms-checkout-hero {
+    padding: 32px 16px 24px;
+  }
+
+  .soms-checkout-hero h1 {
+    font-size: 30px !important;
+  }
+
+  .soms-checkout-hero .soms-price-tag .price {
+    font-size: 36px;
+  }
+
+  .order-form-container,
+  .hl_page-creator__body .order-form,
+  [class*="order-form"],
+  .hl-order-form {
+    padding: 24px 16px !important;
+    margin: 0 12px 32px !important;
+    border-radius: 12px !important;
+  }
+
+  .soms-included {
+    padding: 24px 16px;
+    margin: 0 12px 24px;
+  }
+
+  .soms-trust-bar {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .soms-instructor {
+    margin: 16px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .soms-checkout-hero h1 {
+    font-size: 26px !important;
+  }
+
+  .order-form button[type="submit"],
+  [class*="order-form"] button[type="submit"] {
+    padding: 16px 24px !important;
+    font-size: 15px !important;
+  }
+}
