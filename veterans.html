@@ -611,11 +611,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div class="grid sm:grid-cols-2 gap-5">
             <div class="reveal">
               <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">First Name <span class="text-red-400">*</span></label>
-              <input type="text" name="firstName" required placeholder="First Name" class="form-input w-full px-4 py-3 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all">
+              <input type="text" name="firstName" required placeholder="First Name" aria-label="First Name" class="form-input w-full px-4 py-3 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all">
             </div>
             <div class="reveal">
               <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Last Name <span class="text-red-400">*</span></label>
-              <input type="text" name="lastName" required placeholder="Last Name" class="form-input w-full px-4 py-3 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all">
+              <input type="text" name="lastName" required placeholder="Last Name" aria-label="Last Name" class="form-input w-full px-4 py-3 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all">
             </div>
           </div>
 
@@ -623,18 +623,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div class="grid sm:grid-cols-2 gap-5">
             <div class="reveal">
               <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Email <span class="text-red-400">*</span></label>
-              <input type="email" name="email" required placeholder="your@email.com" class="form-input w-full px-4 py-3 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all">
+              <input type="email" name="email" required placeholder="your@email.com" aria-label="Email" class="form-input w-full px-4 py-3 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all">
             </div>
             <div class="reveal">
               <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Phone <span class="text-red-400">*</span></label>
-              <input type="tel" name="phone" required placeholder="(555) 123-4567" class="form-input w-full px-4 py-3 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all">
+              <input type="tel" name="phone" required placeholder="(555) 123-4567" aria-label="Phone" class="form-input w-full px-4 py-3 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all">
             </div>
           </div>
 
           <!-- Row: Branch -->
           <div class="reveal">
             <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Military Branch <span class="text-red-400">*</span></label>
-            <select name="branch" required class="form-input w-full px-4 py-3 bg-white dark:bg-[#0f1f38] border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white outline-none transition-all appearance-none cursor-pointer">
+            <select name="branch" required aria-label="Military Branch" class="form-input w-full px-4 py-3 bg-white dark:bg-[#0f1f38] border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white outline-none transition-all appearance-none cursor-pointer">
               <option value="" disabled selected>Select your branch</option>
               <option value="Army">Army</option>
               <option value="Navy">Navy</option>
@@ -650,7 +650,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div class="grid sm:grid-cols-2 gap-5">
             <div class="reveal">
               <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Service Status <span class="text-red-400">*</span></label>
-              <select name="serviceStatus" required class="form-input w-full px-4 py-3 bg-white dark:bg-[#0f1f38] border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white outline-none transition-all appearance-none cursor-pointer">
+              <select name="serviceStatus" required aria-label="Service Status" class="form-input w-full px-4 py-3 bg-white dark:bg-[#0f1f38] border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white outline-none transition-all appearance-none cursor-pointer">
                 <option value="" disabled selected>Select status</option>
                 <option value="Active Duty">Active Duty</option>
                 <option value="Veteran">Veteran</option>
@@ -661,7 +661,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </div>
             <div class="reveal">
               <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Do you have your COE?</label>
-              <select name="coe" class="form-input w-full px-4 py-3 bg-white dark:bg-[#0f1f38] border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white outline-none transition-all appearance-none cursor-pointer">
+              <select name="coe" aria-label="Certificate of Eligibility" class="form-input w-full px-4 py-3 bg-white dark:bg-[#0f1f38] border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white outline-none transition-all appearance-none cursor-pointer">
                 <option value="" disabled selected>Certificate of Eligibility</option>
                 <option value="Yes">Yes</option>
                 <option value="No">No</option>
@@ -674,7 +674,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div class="grid sm:grid-cols-2 gap-5">
             <div class="reveal">
               <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Used VA loan before?</label>
-              <select name="vaLoanUsed" class="form-input w-full px-4 py-3 bg-white dark:bg-[#0f1f38] border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white outline-none transition-all appearance-none cursor-pointer">
+              <select name="vaLoanUsed" aria-label="Used VA loan before" class="form-input w-full px-4 py-3 bg-white dark:bg-[#0f1f38] border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white outline-none transition-all appearance-none cursor-pointer">
                 <option value="" disabled selected>Select one</option>
                 <option value="Yes - once">Yes - once</option>
                 <option value="Yes - multiple times">Yes - multiple times</option>
@@ -684,7 +684,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </div>
             <div class="reveal">
               <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">I'm Looking To <span class="text-red-400">*</span></label>
-              <select name="lookingTo" required class="form-input w-full px-4 py-3 bg-white dark:bg-[#0f1f38] border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white outline-none transition-all appearance-none cursor-pointer">
+              <select name="lookingTo" required aria-label="Looking to buy or sell" class="form-input w-full px-4 py-3 bg-white dark:bg-[#0f1f38] border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white outline-none transition-all appearance-none cursor-pointer">
                 <option value="" disabled selected>Select your goal</option>
                 <option value="Buy a Home">Buy a Home</option>
                 <option value="Sell My Home">Sell My Home</option>
@@ -698,7 +698,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <!-- PCS Checkbox -->
           <div class="reveal">
             <label class="inline-flex items-center gap-3 cursor-pointer group">
-              <input type="checkbox" name="pcsToJax" class="w-5 h-5 rounded border-slate-300 dark:border-white/20 text-champagne-400 bg-white dark:bg-white/5 focus:ring-champagne-400/30 cursor-pointer">
+              <input type="checkbox" name="pcsToJax" aria-label="PCS to Jacksonville" class="w-5 h-5 rounded border-slate-300 dark:border-white/20 text-champagne-400 bg-white dark:bg-white/5 focus:ring-champagne-400/30 cursor-pointer">
               <span class="text-sm text-slate-600 dark:text-slate-400 group-hover:text-slate-800 dark:group-hover:text-slate-200 transition-colors">Are you PCS-ing to Jacksonville?</span>
             </label>
           </div>
@@ -707,11 +707,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div class="grid sm:grid-cols-2 gap-5">
             <div class="reveal">
               <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Current/Expected Duty Station</label>
-              <input type="text" name="dutyStation" placeholder="e.g., NAS Jacksonville" class="form-input w-full px-4 py-3 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all">
+              <input type="text" name="dutyStation" placeholder="e.g., NAS Jacksonville" aria-label="Current or Expected Duty Station" class="form-input w-full px-4 py-3 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all">
             </div>
             <div class="reveal">
               <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Timeline</label>
-              <select name="timeline" class="form-input w-full px-4 py-3 bg-white dark:bg-[#0f1f38] border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white outline-none transition-all appearance-none cursor-pointer">
+              <select name="timeline" aria-label="Timeline" class="form-input w-full px-4 py-3 bg-white dark:bg-[#0f1f38] border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white outline-none transition-all appearance-none cursor-pointer">
                 <option value="" disabled selected>When do you need to move?</option>
                 <option value="ASAP">ASAP</option>
                 <option value="1-3 Months">1-3 Months</option>
@@ -724,7 +724,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <!-- Budget -->
           <div class="reveal">
             <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Budget Range</label>
-            <select name="budget" class="form-input w-full px-4 py-3 bg-white dark:bg-[#0f1f38] border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white outline-none transition-all appearance-none cursor-pointer">
+            <select name="budget" aria-label="Budget Range" class="form-input w-full px-4 py-3 bg-white dark:bg-[#0f1f38] border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white outline-none transition-all appearance-none cursor-pointer">
               <option value="" disabled selected>Select your budget range</option>
               <option value="Under $200k">Under $200k</option>
               <option value="$200k-$350k">$200k - $350k</option>
@@ -737,7 +737,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <!-- Additional Details -->
           <div class="reveal">
             <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Additional Details</label>
-            <textarea name="details" rows="4" placeholder="Tell me about your situation, timeline, or any questions you have about the VA home buying process..." class="form-input w-full px-4 py-3 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all resize-none"></textarea>
+            <textarea name="details" rows="4" placeholder="Tell me about your situation, timeline, or any questions you have about the VA home buying process..." aria-label="Additional Details" class="form-input w-full px-4 py-3 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all resize-none"></textarea>
           </div>
 
           <!-- Submit Button -->
@@ -1002,7 +1002,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
           <!-- Newsletter -->
           <form class="flex gap-2" onsubmit="event.preventDefault(); var btn=this.querySelector('button'); var email=this.querySelector('input').value; fetch(window.GHL_FORM_ENDPOINT || 'https://keneshia-haye-form-handler.jutsuxx.workers.dev',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,formSource:'footer-newsletter'})}).then(function(){btn.textContent='Subscribed!';btn.classList.remove('from-champagne-400','to-champagne-300');btn.classList.add('bg-emerald-500');}).catch(function(){btn.textContent='Subscribed!';btn.classList.remove('from-champagne-400','to-champagne-300');btn.classList.add('bg-emerald-500');});">
-            <input type="email" placeholder="Email" required class="flex-1 px-3 py-2 bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-lg text-sm text-slate-800 dark:text-white placeholder:text-slate-400 outline-none focus:border-champagne-400 transition-all min-w-0">
+            <input type="email" placeholder="Email" required aria-label="Email address for newsletter" class="flex-1 px-3 py-2 bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-lg text-sm text-slate-800 dark:text-white placeholder:text-slate-400 outline-none focus:border-champagne-400 transition-all min-w-0">
             <button type="submit" class="px-4 py-2 bg-gradient-to-r from-champagne-400 to-champagne-300 text-navy-500 text-sm font-bold rounded-lg hover:shadow-md transition-all whitespace-nowrap">Subscribe</button>
           </form>
         </div>
