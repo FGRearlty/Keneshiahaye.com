@@ -34,6 +34,11 @@ const FORM_TAG_MAP = {
   'course-interest':        ['website-course', 'soms-course'],
   'course-enrollment':      ['website-course', 'soms-course', 'enrolled'],
   'course-gift':            ['website-course', 'soms-course', 'course-gift'],
+  'area-jacksonville':      ['website-area', 'area-jacksonville'],
+  'area-orange-park':       ['website-area', 'area-orange-park'],
+  'area-st-augustine':      ['website-area', 'area-st-augustine'],
+  'area-ponte-vedra':       ['website-area', 'area-ponte-vedra'],
+  'area-fleming-island':    ['website-area', 'area-fleming-island'],
 };
 
 // CORS headers for browser requests
