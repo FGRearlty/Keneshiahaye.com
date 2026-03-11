@@ -39,15 +39,44 @@ const FORM_TAG_MAP = {
   'area-st-augustine':      ['website-area', 'area-st-augustine'],
   'area-ponte-vedra':       ['website-area', 'area-ponte-vedra'],
   'area-fleming-island':    ['website-area', 'area-fleming-island'],
+  'area-callahan':          ['website-area', 'area-callahan'],
+  'area-middleburg':        ['website-area', 'area-middleburg'],
+  'area-green-cove-springs':['website-area', 'area-green-cove-springs'],
+  'homepage-guide-download':['website-guide-download', 'buyers guide'],
 };
+
+// Rate limit: max submissions per IP per hour
+const RATE_LIMIT_MAX = 5;
+const RATE_LIMIT_WINDOW = 3600; // seconds
 
 // CORS headers for browser requests
 const CORS_HEADERS = {
-  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Origin': 'https://keneshiahaye.com',
   'Access-Control-Allow-Methods': 'POST, OPTIONS',
   'Access-Control-Allow-Headers': 'Content-Type',
   'Access-Control-Max-Age': '86400',
 };
+
+// Strip HTML/script tags from input strings
+function sanitize(value) {
+  if (typeof value !== 'string') return value;
+  return value.replace(/<[^>]*>/g, '').trim();
+}
+
+// Recursively sanitize all string values in an object
+function sanitizeData(obj) {
+  const clean = {};
+  for (const [key, value] of Object.entries(obj)) {
+    if (typeof value === 'string') {
+      clean[key] = sanitize(value);
+    } else if (Array.isArray(value)) {
+      clean[key] = value.map(v => typeof v === 'string' ? sanitize(v) : v);
+    } else {
+      clean[key] = value;
+    }
+  }
+  return clean;
+}
 
 export default {
   async fetch(request, env) {
@@ -60,8 +89,20 @@ export default {
       return jsonResponse({ error: 'Method not allowed' }, 405);
     }
 
+    // Rate limiting using Cloudflare KV (if bound) or in-memory fallback
+    const clientIP = request.headers.get('cf-connecting-ip') || 'unknown';
+    if (env.RATE_LIMIT_KV) {
+      const key = `rate:${clientIP}`;
+      const current = parseInt(await env.RATE_LIMIT_KV.get(key) || '0', 10);
+      if (current >= RATE_LIMIT_MAX) {
+        return jsonResponse({ error: 'Too many submissions. Please try again later.' }, 429);
+      }
+      await env.RATE_LIMIT_KV.put(key, String(current + 1), { expirationTtl: RATE_LIMIT_WINDOW });
+    }
+
     try {
-      const data = await request.json();
+      const rawData = await request.json();
+      const data = sanitizeData(rawData);
       const result = await handleFormSubmission(data, env);
       return jsonResponse(result, 200);
     } catch (err) {

@@ -144,7 +144,7 @@
   <!-- ===================== ARTICLE HERO ===================== -->
   <section class="relative pt-32 pb-16 lg:pt-40 lg:pb-20 overflow-hidden">
     <div class="absolute inset-0">
-      <img src="/images/stock/jacksonville-neighborhoods-hero.jpg" alt="" class="w-full h-full object-cover" aria-hidden="true" fetchpriority="high">
+      <img src="/images/stock/jacksonville-neighborhoods-hero.jpg" width="1920" height="1280" alt="" class="w-full h-full object-cover" aria-hidden="true" fetchpriority="high">
       <div class="absolute inset-0 hero-overlay"></div>
     </div>
     <div class="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -224,7 +224,7 @@
               </div>
               <div class="flex flex-col sm:flex-row gap-3">
                 <input type="email" name="email" placeholder="Email Address" required class="form-input flex-1 px-4 py-2.5 bg-white/5 border border-white/10 rounded-lg text-sm text-slate-800 dark:text-white placeholder:text-slate-400 outline-none">
-                <input type="tel" name="phone" required placeholder="Phone *" class="form-input flex-1 px-4 py-2.5 bg-white/5 border border-white/10 rounded-lg text-sm text-slate-800 dark:text-white placeholder:text-slate-400 outline-none">
+                <input type="tel" pattern="[0-9 ()+-.]{10,}" title="Please enter a valid phone number (at least 10 digits)" name="phone" required placeholder="Phone *" class="form-input flex-1 px-4 py-2.5 bg-white/5 border border-white/10 rounded-lg text-sm text-slate-800 dark:text-white placeholder:text-slate-400 outline-none">
               </div>
               <button type="submit" class="px-6 py-2.5 bg-gradient-to-r from-champagne-400 to-champagne-300 text-navy-500 text-sm font-bold rounded-lg hover:shadow-md transition-all whitespace-nowrap">Get the Guide</button>
             </form>

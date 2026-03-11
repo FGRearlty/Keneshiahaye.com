@@ -612,7 +612,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </div>
             <div class="reveal">
               <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Phone <span class="text-red-400">*</span></label>
-              <input type="tel" name="phone" required placeholder="(555) 123-4567" aria-label="Phone" class="form-input w-full px-4 py-3 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all">
+              <input type="tel" pattern="[0-9 ()+-.]{10,}" title="Please enter a valid phone number (at least 10 digits)" name="phone" required placeholder="(555) 123-4567" aria-label="Phone" class="form-input w-full px-4 py-3 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all">
             </div>
           </div>
 
@@ -1164,12 +1164,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       successMsg.classList.remove('hidden');
       form.reset();
       successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }).catch(function() {
-      // Still show success (GHL webhook is fire-and-forget)
+    }).then(function(response) {
+      if (!response.ok) throw new Error('Server error');
+      return response.json();
+    }).then(function() {
       btn.classList.add('hidden');
       successMsg.classList.remove('hidden');
       form.reset();
       successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }).catch(function() {
+      btn.disabled = false;
+      btn.innerHTML = 'Submit';
+      var errDiv = document.getElementById('formError');
+      if (!errDiv) {
+        errDiv = document.createElement('div');
+        errDiv.id = 'formError';
+        errDiv.className = 'mt-4 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl text-sm text-red-700 dark:text-red-300';
+        form.parentElement.appendChild(errDiv);
+      }
+      errDiv.innerHTML = 'Something went wrong. Please try again or call <a href="tel:+12544495299" class="underline font-semibold">(254) 449-5299</a>.';
+      errDiv.classList.remove('hidden');
     });
   }
   </script>

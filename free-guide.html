@@ -268,7 +268,7 @@
                   </div>
                   <div>
                     <label for="guide-phone" class="sr-only">Phone number</label>
-                    <input id="guide-phone" type="tel" name="phone" required placeholder="Phone number *" autocomplete="tel"
+                    <input id="guide-phone" type="tel" pattern="[0-9 ()+-.]{10,}" title="Please enter a valid phone number (at least 10 digits)" name="phone" required placeholder="Phone number *" autocomplete="tel"
                       class="guide-input w-full px-4 py-3.5 rounded-xl text-sm text-white placeholder-white/30 bg-white/[0.04] border border-white/10 focus:outline-none transition-all" />
                   </div>
                   <button type="submit" class="btn-gold w-full py-4 rounded-xl text-sm font-bold tracking-wide uppercase text-navy-500 cursor-pointer mt-1">
