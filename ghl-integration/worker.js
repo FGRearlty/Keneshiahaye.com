@@ -46,7 +46,7 @@ const FORM_TAG_MAP = {
 };
 
 // Rate limit: max submissions per IP per hour
-const RATE_LIMIT_MAX = 5;
+const RATE_LIMIT_MAX = 15;
 const RATE_LIMIT_WINDOW = 3600; // seconds
 
 // CORS headers for browser requests

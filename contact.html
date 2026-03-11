@@ -831,15 +831,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData)
-    }).then(function() {
-      // Show success state
-      form.style.display = 'none';
-      successMsg.classList.remove('hidden');
-      successMsg.classList.add('success-animate');
     }).then(function(response) {
-      if (!response.ok) throw new Error('Server error');
+      if (!response.ok) throw new Error('Server error: ' + response.status);
       return response.json();
     }).then(function() {
+      // Show success state only after confirmed OK
       form.style.display = 'none';
       successMsg.classList.remove('hidden');
       successMsg.classList.add('success-animate');
