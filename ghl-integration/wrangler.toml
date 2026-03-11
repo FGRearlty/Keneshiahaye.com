@@ -5,6 +5,11 @@ compatibility_date = "2024-01-01"
 [vars]
 GHL_LOCATION_ID = "BL54FprV9T5BTudmrsdB"
 
+# KV namespace for rate limiting (5 submissions per IP per hour)
+[[kv_namespaces]]
+binding = "RATE_LIMIT_KV"
+id = "b51171d8edd040749159d23409ffec3c"
+
 # IMPORTANT: GHL_API_KEY must be set as a Cloudflare secret, not a var!
 # Run: npx wrangler secret put GHL_API_KEY
 # Then paste your PIT key when prompted
