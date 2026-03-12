@@ -11,7 +11,7 @@
 const GHL_CHECKOUT_URL =
   'https://bl54fprv9t5btudmrsdb.app.clientclub.net/courses/offers/4a20df40-a216-4433-8111-fae9c47ba927';
 
-export async function onRequest(context) {
+export async function onRequest(_context) {
   const html = `<!DOCTYPE html>
 <html lang="en">
 <head>

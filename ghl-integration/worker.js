@@ -134,28 +134,7 @@ async function handleFormSubmission(data, env) {
     name,
     email,
     phone,
-    message,
     formSource,
-    // Buyer-specific fields
-    priceRange,
-    preApproved,
-    timeline,
-    areas,
-    propertyType,
-    // Seller-specific fields
-    address,
-    homeType,
-    bedrooms,
-    bathrooms,
-    condition,
-    sellTimeline,
-    // VA-specific fields
-    branch,
-    serviceStatus,
-    vaLoanUsed,
-    interests,
-    // Guide download
-    guideName,
   } = data;
 
   // Parse name if firstName/lastName not provided separately

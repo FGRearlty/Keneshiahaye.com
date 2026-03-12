@@ -7,7 +7,7 @@
     "test:e2e": "playwright test",
     "test:html": "html-validate '*.html' 'blog/*.html' 'areas/*.html'",
     "test:lint": "eslint 'ghl-integration/**/*.js' 'tests/**/*.js' 'server.js' 'functions/**/*.js'",
-    "test:all": "vitest run && html-validate '*.html' 'blog/*.html' 'areas/*.html' && eslint 'ghl-integration/**/*.js' 'tests/**/*.js' 'server.js' 'functions/**/*.js'"
+    "test:all": "vitest run && html-validate '*.html' 'blog/*.html' 'areas/*.html' && eslint 'ghl-integration/**/*.js' 'tests/**/*.js' 'server.js' 'functions/**/*.js' && playwright test --project=chromium"
   },
   "dependencies": {
     "mammoth": "^1.11.0",
