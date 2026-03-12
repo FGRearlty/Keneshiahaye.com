@@ -4,6 +4,8 @@ node_modules/
 _deploy/
 .wrangler/
 va-resources/extracted-zip*/
+test-results/
+playwright-report/
 *.log
 .DS_Store
 Thumbs.db
