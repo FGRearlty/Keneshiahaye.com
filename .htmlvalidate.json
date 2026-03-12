@@ -12,6 +12,7 @@
     "no-implicit-button-type": "warn",
     "element-required-attributes": "warn",
     "element-permitted-content": "warn",
-    "close-order": "error"
+    "close-order": "error",
+    "form-dup-name": ["error", { "shared": ["checkbox", "radio"] }]
   }
 }
