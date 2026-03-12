@@ -59,13 +59,13 @@ describe('SEO metadata', () => {
         expect(title.trim().length).toBeGreaterThan(0);
       });
 
-      it('title is reasonable length (under 90 characters)', () => {
+      it('title is under 60 characters', () => {
         const title = extractTag(content, /<title>([^<]+)<\/title>/i);
         if (title) {
           expect(
             title.trim().length,
             `Title too long in ${htmlFile}: "${title.trim()}" (${title.trim().length} chars)`,
-          ).toBeLessThanOrEqual(90);
+          ).toBeLessThanOrEqual(60);
         }
       });
 
@@ -74,19 +74,17 @@ describe('SEO metadata', () => {
         expect(desc, `Missing meta description in ${htmlFile}`).toBeTruthy();
       });
 
-      it('meta description length is reasonable', () => {
+      it('meta description is between 50 and 155 characters', () => {
         const desc = extractMetaContent(content, 'name', 'description');
         if (desc) {
           expect(
             desc.length,
             `Meta description too short in ${htmlFile}: "${desc}" (${desc.length} chars)`,
           ).toBeGreaterThanOrEqual(50);
-          // Google typically truncates at ~155-160 chars but longer is not harmful.
-          // Hard cap at 250 to catch clearly broken descriptions.
           expect(
             desc.length,
             `Meta description too long in ${htmlFile}: "${desc}" (${desc.length} chars)`,
-          ).toBeLessThanOrEqual(250);
+          ).toBeLessThanOrEqual(155);
         }
       });
 
