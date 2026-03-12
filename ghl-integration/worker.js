@@ -18,7 +18,7 @@ const LEAD_PIPELINE_ID = '9o7rqOk04PRzfZA44mfv';
 const LEAD_PIPELINE_NEW_LEAD_STAGE = 'd733ccd2-1de4-4d9c-b28f-5e35f526f71a';
 
 // Tag mapping: form source -> GHL tags
-const FORM_TAG_MAP = {
+export const FORM_TAG_MAP = {
   'contact-page':           ['website-contact'],
   'buyer-intake':           ['website-buyer', 'buyer'],
   'seller-valuation':       ['website-seller', 'seller'],
@@ -46,8 +46,8 @@ const FORM_TAG_MAP = {
 };
 
 // Rate limit: max submissions per IP per hour
-const RATE_LIMIT_MAX = 20;
-const RATE_LIMIT_WINDOW = 3600; // seconds
+export const RATE_LIMIT_MAX = 20;
+export const RATE_LIMIT_WINDOW = 3600; // seconds
 
 // In-memory fallback rate limiter (per isolate instance, resets on cold start)
 const memoryRateMap = new Map();
@@ -61,13 +61,13 @@ const CORS_HEADERS = {
 };
 
 // Strip HTML/script tags from input strings
-function sanitize(value) {
+export function sanitize(value) {
   if (typeof value !== 'string') return value;
   return value.replace(/<[^>]*>/g, '').trim();
 }
 
 // Recursively sanitize all string values in an object
-function sanitizeData(obj) {
+export function sanitizeData(obj) {
   const clean = {};
   for (const [key, value] of Object.entries(obj)) {
     if (typeof value === 'string') {
@@ -259,7 +259,7 @@ async function handleFormSubmission(data, env) {
   return { success: true, contactId, action: 'created' };
 }
 
-async function addContactNote(contactId, formSource, data, apiKey) {
+export async function addContactNote(contactId, formSource, data, apiKey) {
   try {
     // Build readable note from form data
     const noteLines = [`Website Form Submission: ${formSource}`];
@@ -305,7 +305,7 @@ async function ghlRequest(path, method, body, apiKey) {
   return response.json();
 }
 
-function jsonResponse(data, status = 200) {
+export function jsonResponse(data, status = 200) {
   return new Response(JSON.stringify(data), {
     status,
     headers: {

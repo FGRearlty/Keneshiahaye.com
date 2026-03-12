@@ -3,59 +3,20 @@
  *
  * Tests sanitization, name parsing, tag mapping, rate limiting, CORS,
  * and the full form submission flow with mocked GHL API responses.
+ *
+ * Pure functions are now imported directly from the worker module.
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest';
+import {
+  sanitize,
+  sanitizeData,
+  FORM_TAG_MAP,
+  RATE_LIMIT_MAX,
+  RATE_LIMIT_WINDOW,
+  jsonResponse,
+} from '../../ghl-integration/worker.js';
 
-// -- Extract pure functions for direct testing --
-// We re-implement the pure logic here to test it in isolation,
-// since the worker exports only the fetch handler.
-
-function sanitize(value) {
-  if (typeof value !== 'string') return value;
-  return value.replace(/<[^>]*>/g, '').trim();
-}
-
-function sanitizeData(obj) {
-  const clean = {};
-  for (const [key, value] of Object.entries(obj)) {
-    if (typeof value === 'string') {
-      clean[key] = sanitize(value);
-    } else if (Array.isArray(value)) {
-      clean[key] = value.map(v => typeof v === 'string' ? sanitize(v) : v);
-    } else {
-      clean[key] = value;
-    }
-  }
-  return clean;
-}
-
-const FORM_TAG_MAP = {
-  'contact-page':           ['website-contact'],
-  'buyer-intake':           ['website-buyer', 'buyer'],
-  'seller-valuation':       ['website-seller', 'seller'],
-  'va-intake':              ['website-veteran', 'veterans campaign'],
-  'va-benefits-resource-kit': ['website-va-benefits', 'veterans campaign'],
-  'resource-download':      ['website-guide-download'],
-  'footer-newsletter':      ['website-newsletter'],
-  'homepage-guide':         ['website-guide-download', 'buyers guide'],
-  'homepage-guide-popup':   ['website-guide-download', 'buyers guide', 'popup-lead'],
-  'landing-page-guide':     ['website-guide-download', 'buyers guide', 'landing-page-lead'],
-  'review-request':         ['review-requested'],
-  'blog-lead-capture':      ['website-blog', 'content-lead'],
-  'course-interest':        ['website-course', 'soms-course'],
-  'course-enrollment':      ['website-course', 'soms-course', 'enrolled'],
-  'course-gift':            ['website-course', 'soms-course', 'course-gift'],
-  'area-jacksonville':      ['website-area', 'area-jacksonville'],
-  'area-orange-park':       ['website-area', 'area-orange-park'],
-  'area-st-augustine':      ['website-area', 'area-st-augustine'],
-  'area-ponte-vedra':       ['website-area', 'area-ponte-vedra'],
-  'area-fleming-island':    ['website-area', 'area-fleming-island'],
-  'area-callahan':          ['website-area', 'area-callahan'],
-  'area-middleburg':        ['website-area', 'area-middleburg'],
-  'area-green-cove-springs':['website-area', 'area-green-cove-springs'],
-  'homepage-guide-download':['website-guide-download', 'buyers guide'],
-};
-
+// parseName is inlined in handleFormSubmission, so we re-implement for unit testing
 function parseName(firstName, lastName, name) {
   let fName = firstName || '';
   let lName = lastName || '';
@@ -68,7 +29,7 @@ function parseName(firstName, lastName, name) {
 }
 
 // ============================================================
-// sanitize()
+// sanitize() — imported from worker.js
 // ============================================================
 describe('sanitize()', () => {
   it('returns non-string values unchanged', () => {
@@ -113,10 +74,18 @@ describe('sanitize()', () => {
   it('handles string with only tags', () => {
     expect(sanitize('<br><hr>')).toBe('');
   });
+
+  it('strips iframe tags', () => {
+    expect(sanitize('<iframe src="evil.com"></iframe>')).toBe('');
+  });
+
+  it('strips tags with attributes containing angle brackets', () => {
+    expect(sanitize('<a href="test" onclick="alert(1)">link</a>')).toBe('link');
+  });
 });
 
 // ============================================================
-// sanitizeData()
+// sanitizeData() — imported from worker.js
 // ============================================================
 describe('sanitizeData()', () => {
   it('sanitizes all string values in an object', () => {
@@ -155,6 +124,20 @@ describe('sanitizeData()', () => {
 
   it('handles empty object', () => {
     expect(sanitizeData({})).toEqual({});
+  });
+
+  it('handles deeply mixed types', () => {
+    const input = {
+      str: '<b>bold</b>',
+      num: 42,
+      arr: ['<i>italic</i>', 99, false],
+      undef: undefined,
+    };
+    const result = sanitizeData(input);
+    expect(result.str).toBe('bold');
+    expect(result.num).toBe(42);
+    expect(result.arr).toEqual(['italic', 99, false]);
+    expect(result.undef).toBe(undefined);
   });
 });
 
@@ -218,7 +201,7 @@ describe('parseName()', () => {
 });
 
 // ============================================================
-// Tag mapping
+// Tag mapping — imported from worker.js
 // ============================================================
 describe('FORM_TAG_MAP', () => {
   it('maps all 24 form sources to tag arrays', () => {
@@ -268,6 +251,65 @@ describe('FORM_TAG_MAP', () => {
       expect(Array.isArray(tags), `${source} should map to an array`).toBe(true);
       expect(tags.length, `${source} should have at least one tag`).toBeGreaterThan(0);
     }
+  });
+
+  it('includes newsletter and blog form sources', () => {
+    expect(FORM_TAG_MAP['footer-newsletter']).toEqual(['website-newsletter']);
+    expect(FORM_TAG_MAP['blog-lead-capture']).toEqual(['website-blog', 'content-lead']);
+  });
+
+  it('includes all guide download variants', () => {
+    expect(FORM_TAG_MAP['resource-download']).toEqual(['website-guide-download']);
+    expect(FORM_TAG_MAP['homepage-guide']).toContain('website-guide-download');
+    expect(FORM_TAG_MAP['homepage-guide-popup']).toContain('popup-lead');
+    expect(FORM_TAG_MAP['landing-page-guide']).toContain('landing-page-lead');
+    expect(FORM_TAG_MAP['homepage-guide-download']).toContain('website-guide-download');
+  });
+});
+
+// ============================================================
+// jsonResponse() — imported from worker.js
+// ============================================================
+describe('jsonResponse()', () => {
+  it('returns a Response with JSON content type', () => {
+    const res = jsonResponse({ ok: true });
+    expect(res.headers.get('Content-Type')).toBe('application/json');
+  });
+
+  it('returns default 200 status', () => {
+    const res = jsonResponse({ ok: true });
+    expect(res.status).toBe(200);
+  });
+
+  it('returns custom status', () => {
+    const res = jsonResponse({ error: 'fail' }, 400);
+    expect(res.status).toBe(400);
+  });
+
+  it('includes CORS headers', () => {
+    const res = jsonResponse({});
+    expect(res.headers.get('Access-Control-Allow-Origin')).toBe('https://keneshiahaye.com');
+    expect(res.headers.get('Access-Control-Allow-Methods')).toContain('POST');
+  });
+
+  it('body is valid JSON', async () => {
+    const res = jsonResponse({ success: true, id: 123 });
+    const body = JSON.parse(await res.text());
+    expect(body.success).toBe(true);
+    expect(body.id).toBe(123);
+  });
+});
+
+// ============================================================
+// Constants — imported from worker.js
+// ============================================================
+describe('Rate limit constants', () => {
+  it('RATE_LIMIT_MAX is 20', () => {
+    expect(RATE_LIMIT_MAX).toBe(20);
+  });
+
+  it('RATE_LIMIT_WINDOW is 3600 seconds (1 hour)', () => {
+    expect(RATE_LIMIT_WINDOW).toBe(3600);
   });
 });
 
@@ -323,6 +365,12 @@ describe('Worker fetch handler', () => {
       const res = await worker.fetch(req, mockEnv);
       expect(res.headers.get('Access-Control-Allow-Origin')).toBe('https://keneshiahaye.com');
     });
+
+    it('includes Access-Control-Max-Age header on preflight', async () => {
+      const req = new Request('https://worker.example.com/', { method: 'OPTIONS' });
+      const res = await worker.fetch(req, mockEnv);
+      expect(res.headers.get('Access-Control-Max-Age')).toBe('86400');
+    });
   });
 
   describe('Method validation', () => {
@@ -336,6 +384,12 @@ describe('Worker fetch handler', () => {
 
     it('rejects PUT requests with 405', async () => {
       const req = new Request('https://worker.example.com/', { method: 'PUT' });
+      const res = await worker.fetch(req, mockEnv);
+      expect(res.status).toBe(405);
+    });
+
+    it('rejects DELETE requests with 405', async () => {
+      const req = new Request('https://worker.example.com/', { method: 'DELETE' });
       const res = await worker.fetch(req, mockEnv);
       expect(res.status).toBe(405);
     });
@@ -367,6 +421,39 @@ describe('Worker fetch handler', () => {
         '4',
         { expirationTtl: 3600 }
       );
+    });
+
+    it('allows request when KV returns null (first request)', async () => {
+      mockEnv.RATE_LIMIT_KV.get.mockResolvedValue(null);
+      const req = makeRequest({ email: 'a@b.com', name: 'Test', formSource: 'contact-page' });
+      const res = await worker.fetch(req, mockEnv);
+      expect(res.status).toBe(200);
+      expect(mockEnv.RATE_LIMIT_KV.put).toHaveBeenCalledWith(
+        'rate:1.2.3.4',
+        '1',
+        { expirationTtl: 3600 }
+      );
+    });
+
+    it('blocks at exactly the max (boundary test)', async () => {
+      mockEnv.RATE_LIMIT_KV.get.mockResolvedValue('19');
+      const req1 = makeRequest({ email: 'a@b.com', name: 'Test', formSource: 'contact-page' });
+      const res1 = await worker.fetch(req1, mockEnv);
+      expect(res1.status).toBe(200); // 19 < 20, allowed
+
+      mockEnv.RATE_LIMIT_KV.get.mockResolvedValue('20');
+      const req2 = makeRequest({ email: 'a@b.com', name: 'Test', formSource: 'contact-page' });
+      const res2 = await worker.fetch(req2, mockEnv);
+      expect(res2.status).toBe(429); // 20 >= 20, blocked
+    });
+  });
+
+  describe('Rate limiting (in-memory fallback)', () => {
+    it('allows requests when no KV binding exists', async () => {
+      delete mockEnv.RATE_LIMIT_KV;
+      const req = makeRequest({ email: 'a@b.com', name: 'Test', formSource: 'contact-page' });
+      const res = await worker.fetch(req, mockEnv);
+      expect(res.status).toBe(200);
     });
   });
 
@@ -505,6 +592,101 @@ describe('Worker fetch handler', () => {
         expect(body.firstName).toBe('alert(1)John');
       }
     });
+
+    it('handles submission with firstName/lastName instead of name', async () => {
+      const calls = [];
+      global.fetch = vi.fn().mockImplementation((url, opts) => {
+        calls.push({ url, opts });
+        return Promise.resolve({
+          json: () => Promise.resolve({ contact: { id: 'c1' } }),
+        });
+      });
+
+      const req = makeRequest({
+        email: 'test@test.com',
+        firstName: 'Jane',
+        lastName: 'Smith',
+        formSource: 'contact-page',
+      });
+      await worker.fetch(req, mockEnv);
+
+      const contactCall = calls.find(c => c.url.includes('/contacts/') && !c.url.includes('/tags') && !c.url.includes('/notes'));
+      if (contactCall && contactCall.opts.body) {
+        const body = JSON.parse(contactCall.opts.body);
+        expect(body.firstName).toBe('Jane');
+        expect(body.lastName).toBe('Smith');
+      }
+    });
+
+    it('creates pipeline opportunity for new contacts', async () => {
+      const calls = [];
+      global.fetch = vi.fn().mockImplementation((url, opts) => {
+        calls.push({ url, opts });
+        return Promise.resolve({
+          json: () => Promise.resolve({ contact: { id: 'new-1' } }),
+        });
+      });
+
+      const req = makeRequest({
+        email: 'new@test.com',
+        name: 'New Lead',
+        formSource: 'buyer-intake',
+      });
+      await worker.fetch(req, mockEnv);
+
+      const oppCall = calls.find(c => c.url.includes('/opportunities/'));
+      expect(oppCall).toBeDefined();
+      const oppBody = JSON.parse(oppCall.opts.body);
+      expect(oppBody.status).toBe('open');
+      expect(oppBody.contactId).toBe('new-1');
+      expect(oppBody.name).toContain('buyer-intake');
+    });
+
+    it('adds notes for both new and existing contacts', async () => {
+      const calls = [];
+      global.fetch = vi.fn().mockImplementation((url, opts) => {
+        calls.push({ url, opts });
+        return Promise.resolve({
+          json: () => Promise.resolve({ contact: { id: 'c1' } }),
+        });
+      });
+
+      const req = makeRequest({
+        email: 'note@test.com',
+        name: 'Note User',
+        formSource: 'contact-page',
+        message: 'Hello there',
+      });
+      await worker.fetch(req, mockEnv);
+
+      const noteCall = calls.find(c => c.url.includes('/notes'));
+      expect(noteCall).toBeDefined();
+      const noteBody = JSON.parse(noteCall.opts.body);
+      expect(noteBody.body).toContain('contact-page');
+    });
+
+    it('sends phone as empty string when not provided', async () => {
+      const calls = [];
+      global.fetch = vi.fn().mockImplementation((url, opts) => {
+        calls.push({ url, opts });
+        return Promise.resolve({
+          json: () => Promise.resolve({ contact: { id: 'c1' } }),
+        });
+      });
+
+      const req = makeRequest({
+        email: 'nophone@test.com',
+        name: 'No Phone',
+        formSource: 'contact-page',
+      });
+      await worker.fetch(req, mockEnv);
+
+      const contactCall = calls.find(c => c.url.includes('/contacts/') && !c.url.includes('/tags') && !c.url.includes('/notes'));
+      if (contactCall && contactCall.opts.body) {
+        const body = JSON.parse(contactCall.opts.body);
+        expect(body.phone).toBe('');
+      }
+    });
   });
 
   describe('GHL API authorization', () => {
@@ -545,6 +727,59 @@ describe('Worker fetch handler', () => {
       await worker.fetch(req, mockEnv);
 
       expect(calls[0].opts.headers['Version']).toBe('2021-07-28');
+    });
+
+    it('sets locationId from env', async () => {
+      const calls = [];
+      global.fetch = vi.fn().mockImplementation((url, opts) => {
+        calls.push({ url, opts });
+        return Promise.resolve({
+          json: () => Promise.resolve({ contact: { id: 'c1' } }),
+        });
+      });
+
+      const req = makeRequest({
+        email: 'test@test.com',
+        name: 'Test',
+        formSource: 'contact-page',
+      });
+      await worker.fetch(req, mockEnv);
+
+      const contactCall = calls.find(c => c.url.includes('/contacts/') && !c.url.includes('/tags') && !c.url.includes('/notes'));
+      if (contactCall && contactCall.opts.body) {
+        const body = JSON.parse(contactCall.opts.body);
+        expect(body.locationId).toBe('test-location-id');
+      }
+    });
+  });
+
+  describe('GHL API error handling', () => {
+    it('handles GHL API returning non-JSON gracefully', async () => {
+      global.fetch = vi.fn().mockResolvedValue({
+        json: () => Promise.reject(new Error('Unexpected token')),
+      });
+
+      const req = makeRequest({
+        email: 'test@test.com',
+        name: 'Test',
+        formSource: 'contact-page',
+      });
+      const res = await worker.fetch(req, mockEnv);
+      expect(res.status).toBe(500);
+    });
+
+    it('handles network error from GHL API', async () => {
+      global.fetch = vi.fn().mockRejectedValue(new Error('Network error'));
+
+      const req = makeRequest({
+        email: 'test@test.com',
+        name: 'Test',
+        formSource: 'contact-page',
+      });
+      const res = await worker.fetch(req, mockEnv);
+      expect(res.status).toBe(500);
+      const body = await res.json();
+      expect(body.error).toBe('Internal server error');
     });
   });
 });
