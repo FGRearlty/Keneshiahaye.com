@@ -30,6 +30,12 @@ jobs:
       - name: Run linting
         run: npm run test:lint
 
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Run E2E tests
+        run: npm run test:e2e -- --project=chromium
+
       - name: Build Tailwind CSS
         run: npx @tailwindcss/cli -i src/input.css -o css/styles.css --minify
 
