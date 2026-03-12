@@ -800,5 +800,69 @@ describe('Worker fetch handler', () => {
       const body = await res.json();
       expect(body.error).toBe('Internal server error');
     });
+
+    it('handles GHL API returning 401 Unauthorized', async () => {
+      global.fetch = vi.fn().mockResolvedValue({
+        json: () => Promise.resolve({ error: 'Unauthorized', statusCode: 401 }),
+      });
+
+      const req = makeRequest({
+        email: 'test@test.com',
+        name: 'Test',
+        formSource: 'contact-page',
+      });
+      const res = await worker.fetch(req, mockEnv);
+      const body = await res.json();
+      // Should not expose API key or internal details
+      expect(JSON.stringify(body)).not.toContain('test-api-key');
+    });
+
+    it('handles GHL API returning 429 rate limit', async () => {
+      global.fetch = vi.fn().mockResolvedValue({
+        json: () => Promise.resolve({ error: 'Rate limit exceeded', statusCode: 429 }),
+      });
+
+      const req = makeRequest({
+        email: 'test@test.com',
+        name: 'Test',
+        formSource: 'contact-page',
+      });
+      const res = await worker.fetch(req, mockEnv);
+      // Worker should still return a response (either success:false or 500)
+      expect([200, 500]).toContain(res.status);
+      const body = await res.json();
+      expect(JSON.stringify(body)).not.toContain('test-api-key');
+    });
+
+    it('handles GHL API returning 500 with valid JSON error body', async () => {
+      global.fetch = vi.fn().mockResolvedValue({
+        json: () => Promise.resolve({ error: 'Internal Server Error', message: 'Something went wrong' }),
+      });
+
+      const req = makeRequest({
+        email: 'test@test.com',
+        name: 'Test',
+        formSource: 'contact-page',
+      });
+      const res = await worker.fetch(req, mockEnv);
+      const body = await res.json();
+      // Should not leak internal GHL error details to the client
+      expect(JSON.stringify(body)).not.toContain('test-api-key');
+      expect(JSON.stringify(body)).not.toContain('test-location-id');
+    });
+
+    it('handles fetch timeout/abort gracefully', async () => {
+      global.fetch = vi.fn().mockRejectedValue(new DOMException('The operation was aborted', 'AbortError'));
+
+      const req = makeRequest({
+        email: 'test@test.com',
+        name: 'Test',
+        formSource: 'contact-page',
+      });
+      const res = await worker.fetch(req, mockEnv);
+      expect(res.status).toBe(500);
+      const body = await res.json();
+      expect(body.error).toBe('Internal server error');
+    });
   });
 });
