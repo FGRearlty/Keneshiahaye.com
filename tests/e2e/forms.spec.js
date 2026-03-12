@@ -73,8 +73,7 @@ test.describe('Sell page form', () => {
 
   test('has seller-specific fields (address)', async ({ page }) => {
     const addressField = page.locator('input[name*="address"], textarea[name*="address"], input[placeholder*="address" i]').first();
-    const count = await addressField.count();
-    expect(count).toBeGreaterThanOrEqual(0);
+    await expect(addressField).toBeVisible();
   });
 });
 

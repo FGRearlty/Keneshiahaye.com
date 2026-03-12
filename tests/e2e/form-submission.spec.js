@@ -207,6 +207,42 @@ test.describe('Veterans form submission', () => {
   });
 });
 
+test.describe('Area page form submissions', () => {
+  const areaPages = [
+    { path: '/areas/jacksonville', formSource: 'area-jacksonville' },
+    { path: '/areas/orange-park', formSource: 'area-orange-park' },
+    { path: '/areas/st-augustine', formSource: 'area-st-augustine' },
+    { path: '/areas/ponte-vedra', formSource: 'area-ponte-vedra' },
+    { path: '/areas/fleming-island', formSource: 'area-fleming-island' },
+    { path: '/areas/callahan', formSource: 'area-callahan' },
+    { path: '/areas/middleburg', formSource: 'area-middleburg' },
+    { path: '/areas/green-cove-springs', formSource: 'area-green-cove-springs' },
+  ];
+
+  for (const { path: pagePath, formSource } of areaPages) {
+    test(`${pagePath} submits with formSource "${formSource}"`, async ({ page }) => {
+      const captured = interceptFormPost(page);
+      await page.goto(pagePath);
+
+      const nameField = page.locator('input[name="name"], input[name="firstName"], input[placeholder*="name" i]').first();
+      if (await nameField.count() > 0) await nameField.fill('Area Test');
+
+      const emailField = page.locator('input[type="email"], input[name="email"]').first();
+      await emailField.fill('area@example.com');
+
+      const phoneField = page.locator('input[type="tel"], input[name="phone"]').first();
+      if (await phoneField.count() > 0) await phoneField.fill('9045554444');
+
+      await page.click('button[type="submit"]');
+      await page.waitForTimeout(500);
+
+      expect(captured.called).toBe(true);
+      expect(captured.payload.formSource).toBe(formSource);
+      expect(captured.payload.email).toBe('area@example.com');
+    });
+  }
+});
+
 test.describe('Newsletter footer form', () => {
   test('submits with footer-newsletter formSource', async ({ page }) => {
     const captured = interceptFormPost(page);
