@@ -23,7 +23,7 @@
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=Playfair+Display:wght@600;700;800&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/styles.css">
   <style>
     /* Scroll reveal */
@@ -273,11 +273,58 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   // Update this URL after deploying your Cloudflare Worker
   window.GHL_FORM_ENDPOINT = 'https://keneshia-haye-form-handler.jutsuxx.workers.dev';
 </script>
+<style>
+  /* Popup animations */
+  @keyframes popupFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes popupScaleIn {
+    from { opacity: 0; transform: scale(0.9) translateY(20px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  @keyframes popupFadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+  }
+  @keyframes popupScaleOut {
+    from { opacity: 1; transform: scale(1) translateY(0); }
+    to { opacity: 0; transform: scale(0.9) translateY(20px); }
+  }
+  #kh-popup-overlay {
+    animation: popupFadeIn 0.3s ease-out forwards;
+  }
+  #kh-popup-overlay.closing {
+    animation: popupFadeOut 0.25s ease-in forwards;
+  }
+  #kh-popup-card {
+    animation: popupScaleIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  #kh-popup-overlay.closing #kh-popup-card {
+    animation: popupScaleOut 0.25s ease-in forwards;
+  }
+  /* Gold shimmer on button hover */
+  #kh-popup-card .popup-btn {
+    background: linear-gradient(135deg, #c9a96e 0%, #d4bd82 50%, #c9a96e 100%);
+    background-size: 200% auto;
+    transition: background-position 0.5s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  #kh-popup-card .popup-btn:hover {
+    background-position: right center;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 30px rgba(201, 169, 110, 0.35);
+  }
+  /* Input focus glow */
+  #kh-popup-card input:focus {
+    border-color: rgba(201,169,110,0.5);
+    box-shadow: 0 0 0 3px rgba(201,169,110,0.12);
+  }
+</style>
 </head>
 
 <body class="font-sans antialiased bg-white dark:bg-navy-500 text-slate-700 dark:text-slate-300">
 <!-- Google Tag Manager (noscript) - Replace GTM-NSFSZWX4 with your GTM container ID -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NSFSZWX4" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<noscript><iframe title="Google Tag Manager" src="https://www.googletagmanager.com/ns.html?id=GTM-NSFSZWX4" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
   <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-6 focus:py-3 focus:bg-champagne-400 focus:text-navy-500 focus:rounded-full focus:font-bold focus:shadow-lg">Skip to main content</a>
 
@@ -309,7 +356,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <!-- Right Actions -->
         <div class="flex items-center gap-3">
           <!-- Dark Mode Toggle -->
-          <button id="themeToggle" class="relative w-10 h-10 flex items-center justify-center rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:border-champagne-400/30 transition-all" aria-label="Toggle dark mode">
+          <button type="button" id="themeToggle" class="relative w-10 h-10 flex items-center justify-center rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:border-champagne-400/30 transition-all" aria-label="Toggle dark mode">
             <!-- Sun icon (shown in dark mode) -->
             <svg class="w-5 h-5 text-champagne-400 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
             <!-- Moon icon (shown in light mode) -->
@@ -322,7 +369,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           </a>
 
           <!-- Mobile Menu Toggle -->
-          <button id="mobileMenuBtn" class="md:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5 rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10" aria-label="Toggle menu">
+          <button type="button" id="mobileMenuBtn" class="md:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5 rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10" aria-label="Toggle menu">
             <span class="block w-5 h-0.5 bg-slate-600 dark:bg-slate-300 transition-all origin-center" id="bar1"></span>
             <span class="block w-5 h-0.5 bg-slate-600 dark:bg-slate-300 transition-all" id="bar2"></span>
             <span class="block w-3.5 h-0.5 bg-slate-600 dark:bg-slate-300 transition-all origin-center" id="bar3"></span>
@@ -456,7 +503,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <span class="inline-flex items-center px-2.5 py-1 bg-champagne-400/15 text-champagne-400 text-[10px] font-bold tracking-wider uppercase rounded-full">Specialty</span>
           </div>
           <div class="w-14 h-14 flex items-center justify-center rounded-2xl bg-champagne-400/15 text-2xl mb-6 group-hover:scale-110 transition-transform duration-500">&#127894;</div>
-          <h3 class="font-serif text-xl font-bold text-slate-900 dark:text-white mb-3">Veteran & VA Loan Experts</h3>
+          <h3 class="font-serif text-xl font-bold text-slate-900 dark:text-white mb-3">Veteran &amp; VA Loan Experts</h3>
           <p class="text-slate-500 dark:text-slate-400 leading-relaxed mb-6">Maximize your VA benefits with an agent who understands military life, PCS moves, and the unique needs of service members.</p>
           <a href="veterans.html" class="inline-flex items-center gap-2 text-champagne-400 font-semibold text-sm group-hover:gap-3 transition-all">
             Learn More <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -486,7 +533,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <img src="/images/stock/neighborhood-ponte-vedra.jpg" alt="Modern home in Ponte Vedra" class="prop-img w-full h-full object-cover transition-transform duration-700" loading="lazy">
             <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent"></div>
             <span class="absolute top-3 left-3 px-3 py-1 bg-champagne-400/90 text-navy-500 text-[11px] font-bold tracking-wide uppercase rounded-full backdrop-blur-sm">New Listing</span>
-            <button class="absolute top-3 right-3 w-9 h-9 flex items-center justify-center bg-navy-500/40 backdrop-blur-md border border-white/10 rounded-full text-white/70 hover:text-red-400 hover:bg-red-400/15 hover:border-red-400/30 transition-all text-sm" aria-label="Save">&#9825;</button>
+            <button type="button" class="absolute top-3 right-3 w-9 h-9 flex items-center justify-center bg-navy-500/40 backdrop-blur-md border border-white/10 rounded-full text-white/70 hover:text-red-400 hover:bg-red-400/15 hover:border-red-400/30 transition-all text-sm" aria-label="Save">&#9825;</button>
             <div class="absolute bottom-3 left-3 font-serif text-2xl font-bold text-white drop-shadow-lg">$425,000</div>
           </div>
           <div class="p-5">
@@ -507,7 +554,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <img src="/images/stock/neighborhood-riverside.jpg" alt="Beautiful home in Orange Park" class="prop-img w-full h-full object-cover transition-transform duration-700" loading="lazy">
             <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent"></div>
             <span class="absolute top-3 left-3 px-3 py-1 bg-emerald-500/90 text-white text-[11px] font-bold tracking-wide uppercase rounded-full backdrop-blur-sm">VA Eligible</span>
-            <button class="absolute top-3 right-3 w-9 h-9 flex items-center justify-center bg-navy-500/40 backdrop-blur-md border border-white/10 rounded-full text-white/70 hover:text-red-400 hover:bg-red-400/15 hover:border-red-400/30 transition-all text-sm" aria-label="Save">&#9825;</button>
+            <button type="button" class="absolute top-3 right-3 w-9 h-9 flex items-center justify-center bg-navy-500/40 backdrop-blur-md border border-white/10 rounded-full text-white/70 hover:text-red-400 hover:bg-red-400/15 hover:border-red-400/30 transition-all text-sm" aria-label="Save">&#9825;</button>
             <div class="absolute bottom-3 left-3 font-serif text-2xl font-bold text-white drop-shadow-lg">$335,000</div>
           </div>
           <div class="p-5">
@@ -528,7 +575,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <img src="/images/stock/neighborhood-orange-park.jpg" alt="Luxury home in Jacksonville" class="prop-img w-full h-full object-cover transition-transform duration-700" loading="lazy">
             <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent"></div>
             <span class="absolute top-3 left-3 px-3 py-1 bg-rose-500/90 text-white text-[11px] font-bold tracking-wide uppercase rounded-full backdrop-blur-sm">Price Reduced</span>
-            <button class="absolute top-3 right-3 w-9 h-9 flex items-center justify-center bg-navy-500/40 backdrop-blur-md border border-white/10 rounded-full text-white/70 hover:text-red-400 hover:bg-red-400/15 hover:border-red-400/30 transition-all text-sm" aria-label="Save">&#9825;</button>
+            <button type="button" class="absolute top-3 right-3 w-9 h-9 flex items-center justify-center bg-navy-500/40 backdrop-blur-md border border-white/10 rounded-full text-white/70 hover:text-red-400 hover:bg-red-400/15 hover:border-red-400/30 transition-all text-sm" aria-label="Save">&#9825;</button>
             <div class="absolute bottom-3 left-3 font-serif text-2xl font-bold text-white drop-shadow-lg">$589,000</div>
           </div>
           <div class="p-5">
@@ -795,7 +842,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           View All Free Resources
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
         </a>
-        <p class="text-sm text-slate-500 dark:text-slate-400 mt-3">7 downloadable guides, checklists, webinars & more</p>
+        <p class="text-sm text-slate-500 dark:text-slate-400 mt-3">7 downloadable guides, checklists, webinars &amp; more</p>
       </div>
     </div>
   </section>
@@ -811,7 +858,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="space-y-4">
 
         <div class="reveal glass rounded-2xl overflow-hidden">
-          <button aria-expanded="false" onclick="this.parentElement.classList.toggle('faq-open'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true')" class="w-full flex items-center justify-between p-6 text-left">
+          <button type="button" aria-expanded="false" onclick="this.parentElement.classList.toggle('faq-open'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true')" class="w-full flex items-center justify-between p-6 text-left">
             <span class="font-semibold text-slate-900 dark:text-white pr-4">Why should I choose a veteran real estate agent in Jacksonville?</span>
             <span class="faq-toggle text-champagne-400 text-2xl font-light transition-transform duration-300 flex-shrink-0">+</span>
           </button>
@@ -821,7 +868,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
 
         <div class="reveal glass rounded-2xl overflow-hidden">
-          <button aria-expanded="false" onclick="this.parentElement.classList.toggle('faq-open'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true')" class="w-full flex items-center justify-between p-6 text-left">
+          <button type="button" aria-expanded="false" onclick="this.parentElement.classList.toggle('faq-open'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true')" class="w-full flex items-center justify-between p-6 text-left">
             <span class="font-semibold text-slate-900 dark:text-white pr-4">What areas does Keneshia Haye serve in Jacksonville, FL?</span>
             <span class="faq-toggle text-champagne-400 text-2xl font-light transition-transform duration-300 flex-shrink-0">+</span>
           </button>
@@ -831,7 +878,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
 
         <div class="reveal glass rounded-2xl overflow-hidden">
-          <button aria-expanded="false" onclick="this.parentElement.classList.toggle('faq-open'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true')" class="w-full flex items-center justify-between p-6 text-left">
+          <button type="button" aria-expanded="false" onclick="this.parentElement.classList.toggle('faq-open'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true')" class="w-full flex items-center justify-between p-6 text-left">
             <span class="font-semibold text-slate-900 dark:text-white pr-4">How do I get started buying or selling a home in Jacksonville?</span>
             <span class="faq-toggle text-champagne-400 text-2xl font-light transition-transform duration-300 flex-shrink-0">+</span>
           </button>
@@ -841,7 +888,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
 
         <div class="reveal glass rounded-2xl overflow-hidden">
-          <button aria-expanded="false" onclick="this.parentElement.classList.toggle('faq-open'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true')" class="w-full flex items-center justify-between p-6 text-left">
+          <button type="button" aria-expanded="false" onclick="this.parentElement.classList.toggle('faq-open'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true')" class="w-full flex items-center justify-between p-6 text-left">
             <span class="font-semibold text-slate-900 dark:text-white pr-4">Does Keneshia Haye help with VA home loans?</span>
             <span class="faq-toggle text-champagne-400 text-2xl font-light transition-transform duration-300 flex-shrink-0">+</span>
           </button>
@@ -851,7 +898,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
 
         <div class="reveal glass rounded-2xl overflow-hidden">
-          <button aria-expanded="false" onclick="this.parentElement.classList.toggle('faq-open'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true')" class="w-full flex items-center justify-between p-6 text-left">
+          <button type="button" aria-expanded="false" onclick="this.parentElement.classList.toggle('faq-open'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true')" class="w-full flex items-center justify-between p-6 text-left">
             <span class="font-semibold text-slate-900 dark:text-white pr-4">How much does it cost to hire a real estate agent in Jacksonville?</span>
             <span class="faq-toggle text-champagne-400 text-2xl font-light transition-transform duration-300 flex-shrink-0">+</span>
           </button>
@@ -861,7 +908,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
 
         <div class="reveal glass rounded-2xl overflow-hidden">
-          <button aria-expanded="false" onclick="this.parentElement.classList.toggle('faq-open'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true')" class="w-full flex items-center justify-between p-6 text-left">
+          <button type="button" aria-expanded="false" onclick="this.parentElement.classList.toggle('faq-open'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true')" class="w-full flex items-center justify-between p-6 text-left">
             <span class="font-semibold text-slate-900 dark:text-white pr-4">What makes Keneshia Haye different from other Jacksonville agents?</span>
             <span class="faq-toggle text-champagne-400 text-2xl font-light transition-transform duration-300 flex-shrink-0">+</span>
           </button>
@@ -926,7 +973,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <ul class="space-y-2.5">
             <li><a href="buy.html" class="text-sm text-slate-500 dark:text-slate-400 hover:text-champagne-400 transition-colors">Buy a Home</a></li>
             <li><a href="sell.html" class="text-sm text-slate-500 dark:text-slate-400 hover:text-champagne-400 transition-colors">Sell Your Home</a></li>
-            <li><a href="veterans.html" class="text-sm text-slate-500 dark:text-slate-400 hover:text-champagne-400 transition-colors">Veterans & VA</a></li>
+            <li><a href="veterans.html" class="text-sm text-slate-500 dark:text-slate-400 hover:text-champagne-400 transition-colors">Veterans &amp; VA</a></li>
             <li><a href="course.html" class="text-sm text-slate-500 dark:text-slate-400 hover:text-champagne-400 transition-colors">Course</a></li>
             <li><a href="resources.html" class="text-sm text-slate-500 dark:text-slate-400 hover:text-champagne-400 transition-colors">Free Resources</a></li>
             <li><a href="va-benefits.html" class="text-sm text-slate-500 dark:text-slate-400 hover:text-champagne-400 transition-colors">VA Benefits Center</a></li>
@@ -951,7 +998,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           </ul>
         </div>
 
-        <!-- Contact & Newsletter -->
+        <!-- Contact &amp; Newsletter -->
         <div>
           <h4 class="text-sm font-semibold text-slate-900 dark:text-white mb-4">Get In Touch</h4>
           <div class="space-y-3 mb-6">
@@ -1176,53 +1223,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- =====================================================
      LEAD MAGNET POPUP — First-Time Homebuyer Guide
      ===================================================== -->
-<style>
-  /* Popup animations */
-  @keyframes popupFadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-  @keyframes popupScaleIn {
-    from { opacity: 0; transform: scale(0.9) translateY(20px); }
-    to { opacity: 1; transform: scale(1) translateY(0); }
-  }
-  @keyframes popupFadeOut {
-    from { opacity: 1; }
-    to { opacity: 0; }
-  }
-  @keyframes popupScaleOut {
-    from { opacity: 1; transform: scale(1) translateY(0); }
-    to { opacity: 0; transform: scale(0.9) translateY(20px); }
-  }
-  #kh-popup-overlay {
-    animation: popupFadeIn 0.3s ease-out forwards;
-  }
-  #kh-popup-overlay.closing {
-    animation: popupFadeOut 0.25s ease-in forwards;
-  }
-  #kh-popup-card {
-    animation: popupScaleIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  }
-  #kh-popup-overlay.closing #kh-popup-card {
-    animation: popupScaleOut 0.25s ease-in forwards;
-  }
-  /* Gold shimmer on button hover */
-  #kh-popup-card .popup-btn {
-    background: linear-gradient(135deg, #c9a96e 0%, #d4bd82 50%, #c9a96e 100%);
-    background-size: 200% auto;
-    transition: background-position 0.5s ease, transform 0.2s ease, box-shadow 0.2s ease;
-  }
-  #kh-popup-card .popup-btn:hover {
-    background-position: right center;
-    transform: translateY(-1px);
-    box-shadow: 0 8px 30px rgba(201, 169, 110, 0.35);
-  }
-  /* Input focus glow */
-  #kh-popup-card input:focus {
-    border-color: rgba(201,169,110,0.5);
-    box-shadow: 0 0 0 3px rgba(201,169,110,0.12);
-  }
-</style>
 
 <!-- Popup Overlay -->
 <div id="kh-popup-overlay" class="fixed inset-0 z-[9999] flex items-center justify-center p-4" style="display:none; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);">
@@ -1234,7 +1234,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="h-1 w-full" style="background: linear-gradient(90deg, transparent, #c9a96e 20%, #e3d4ab 50%, #c9a96e 80%, transparent);"></div>
 
     <!-- Close button -->
-    <button id="kh-popup-close" aria-label="Close popup" class="absolute top-4 right-4 z-10 w-8 h-8 flex items-center justify-center rounded-full text-white/50 hover:text-white hover:bg-white/10 transition-colors">
+    <button type="button" id="kh-popup-close" aria-label="Close popup" class="absolute top-4 right-4 z-10 w-8 h-8 flex items-center justify-center rounded-full text-white/50 hover:text-white hover:bg-white/10 transition-colors">
       <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
     </button>
 

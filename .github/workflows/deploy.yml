@@ -25,7 +25,7 @@ jobs:
         run: npm test
 
       - name: Run HTML validation
-        run: npx html-validate '*.html' 'blog/*.html' 'areas/*.html' || echo "::warning::HTML validation found issues — see output above"
+        run: npx html-validate '*.html' 'blog/*.html' 'areas/*.html'
 
       - name: Build Tailwind CSS
         run: npx @tailwindcss/cli -i src/input.css -o css/styles.css --minify
