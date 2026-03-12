@@ -49,6 +49,9 @@ const FORM_TAG_MAP = {
 const RATE_LIMIT_MAX = 20;
 const RATE_LIMIT_WINDOW = 3600; // seconds
 
+// In-memory fallback rate limiter (per isolate instance, resets on cold start)
+const memoryRateMap = new Map();
+
 // CORS headers for browser requests
 const CORS_HEADERS = {
   'Access-Control-Allow-Origin': 'https://keneshiahaye.com',
@@ -89,7 +92,7 @@ export default {
       return jsonResponse({ error: 'Method not allowed' }, 405);
     }
 
-    // Rate limiting using Cloudflare KV (if bound) or in-memory fallback
+    // Rate limiting: KV-backed (persistent) or in-memory fallback
     const clientIP = request.headers.get('cf-connecting-ip') || 'unknown';
     if (env.RATE_LIMIT_KV) {
       const key = `rate:${clientIP}`;
@@ -98,6 +101,18 @@ export default {
         return jsonResponse({ error: 'Too many submissions. Please try again later.' }, 429);
       }
       await env.RATE_LIMIT_KV.put(key, String(current + 1), { expirationTtl: RATE_LIMIT_WINDOW });
+    } else {
+      // In-memory fallback — resets on cold start but prevents burst abuse within an isolate
+      const now = Date.now();
+      const entry = memoryRateMap.get(clientIP);
+      if (entry && now - entry.ts < RATE_LIMIT_WINDOW * 1000) {
+        if (entry.count >= RATE_LIMIT_MAX) {
+          return jsonResponse({ error: 'Too many submissions. Please try again later.' }, 429);
+        }
+        entry.count++;
+      } else {
+        memoryRateMap.set(clientIP, { count: 1, ts: now });
+      }
     }
 
     try {

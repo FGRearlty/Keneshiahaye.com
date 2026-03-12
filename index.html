@@ -379,37 +379,37 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
         <!-- Conversational Search Bar -->
         <div class="reveal max-w-xl mb-6">
-          <div class="search-wrap relative flex items-center bg-white/10 border border-white/15 rounded-full pl-5 pr-1.5 py-1.5 transition-all duration-300 backdrop-blur-md">
-            <svg class="w-5 h-5 text-slate-400 mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-            <input type="text" placeholder="Tell me what you're looking for..." aria-label="What are you looking for" class="flex-1 bg-transparent border-none outline-none text-white text-sm sm:text-base placeholder:text-slate-400 py-2.5 min-w-0">
-            <button class="flex-shrink-0 flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-champagne-400 to-champagne-300 text-navy-500 text-sm font-bold rounded-full hover:shadow-lg hover:shadow-champagne-400/25 hover:scale-[1.03] active:scale-[0.98] transition-all">
+          <form id="heroSearchForm" role="search" action="/buy" method="get" class="search-wrap relative flex items-center bg-white/10 border border-white/15 rounded-full pl-5 pr-1.5 py-1.5 transition-all duration-300 backdrop-blur-md">
+            <svg class="w-5 h-5 text-slate-400 mr-3 flex-shrink-0" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <input type="text" name="q" id="heroSearchInput" placeholder="Tell me what you're looking for..." aria-label="What are you looking for" class="flex-1 bg-transparent border-none outline-none text-white text-sm sm:text-base placeholder:text-slate-400 py-2.5 min-w-0">
+            <button type="submit" aria-label="Search properties" class="flex-shrink-0 flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-champagne-400 to-champagne-300 text-navy-500 text-sm font-bold rounded-full hover:shadow-lg hover:shadow-champagne-400/25 hover:scale-[1.03] active:scale-[0.98] transition-all">
               <span class="hidden sm:inline">Search</span>
-              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              <svg class="w-4 h-4" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </button>
-          </div>
+          </form>
         </div>
 
         <!-- Suggestion Chips -->
         <div class="reveal flex flex-wrap gap-2">
-          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/5 border border-white/10 rounded-full text-xs font-medium text-slate-300 cursor-pointer hover:bg-champagne-400/10 hover:border-champagne-400/20 hover:text-champagne-400 transition-all">&#127894; VA Homes</span>
-          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/5 border border-white/10 rounded-full text-xs font-medium text-slate-300 cursor-pointer hover:bg-champagne-400/10 hover:border-champagne-400/20 hover:text-champagne-400 transition-all">&#127968; Under $350k</span>
-          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/5 border border-white/10 rounded-full text-xs font-medium text-slate-300 cursor-pointer hover:bg-champagne-400/10 hover:border-champagne-400/20 hover:text-champagne-400 transition-all">&#127754; Waterfront</span>
-          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/5 border border-white/10 rounded-full text-xs font-medium text-slate-300 cursor-pointer hover:bg-champagne-400/10 hover:border-champagne-400/20 hover:text-champagne-400 transition-all">&#128296; New Build</span>
+          <button type="button" onclick="document.getElementById('heroSearchInput').value=this.dataset.q;document.getElementById('heroSearchForm').submit()" data-q="VA homes Jacksonville" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/5 border border-white/10 rounded-full text-xs font-medium text-slate-300 cursor-pointer hover:bg-champagne-400/10 hover:border-champagne-400/20 hover:text-champagne-400 transition-all">&#127894; VA Homes</button>
+          <button type="button" onclick="document.getElementById('heroSearchInput').value=this.dataset.q;document.getElementById('heroSearchForm').submit()" data-q="homes under $350k Jacksonville" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/5 border border-white/10 rounded-full text-xs font-medium text-slate-300 cursor-pointer hover:bg-champagne-400/10 hover:border-champagne-400/20 hover:text-champagne-400 transition-all">&#127968; Under $350k</button>
+          <button type="button" onclick="document.getElementById('heroSearchInput').value=this.dataset.q;document.getElementById('heroSearchForm').submit()" data-q="waterfront homes Jacksonville" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/5 border border-white/10 rounded-full text-xs font-medium text-slate-300 cursor-pointer hover:bg-champagne-400/10 hover:border-champagne-400/20 hover:text-champagne-400 transition-all">&#127754; Waterfront</button>
+          <button type="button" onclick="document.getElementById('heroSearchInput').value=this.dataset.q;document.getElementById('heroSearchForm').submit()" data-q="new construction homes Jacksonville" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/5 border border-white/10 rounded-full text-xs font-medium text-slate-300 cursor-pointer hover:bg-champagne-400/10 hover:border-champagne-400/20 hover:text-champagne-400 transition-all">&#128296; New Build</button>
         </div>
       </div>
 
       <!-- Stats Row -->
       <div class="mt-16 lg:mt-24 grid grid-cols-3 gap-4 sm:gap-8 max-w-lg reveal">
         <div class="text-center sm:text-left">
-          <div class="font-serif text-2xl sm:text-4xl font-bold stat-shimmer dark:stat-shimmer text-champagne-500" data-count="100" data-suffix="+">0</div>
+          <div class="font-serif text-2xl sm:text-4xl font-bold stat-shimmer text-champagne-500" data-count="100" data-suffix="+">0</div>
           <div class="text-xs sm:text-sm text-slate-400 mt-1 font-medium">Families Served</div>
         </div>
         <div class="text-center sm:text-left">
-          <div class="font-serif text-2xl sm:text-4xl font-bold stat-shimmer dark:stat-shimmer text-champagne-500" data-count="15" data-suffix="+">0</div>
+          <div class="font-serif text-2xl sm:text-4xl font-bold stat-shimmer text-champagne-500" data-count="15" data-suffix="+">0</div>
           <div class="text-xs sm:text-sm text-slate-400 mt-1 font-medium">Years Experience</div>
         </div>
         <div class="text-center sm:text-left">
-          <div class="font-serif text-2xl sm:text-4xl font-bold stat-shimmer dark:stat-shimmer text-champagne-500" data-count="50" data-prefix="$" data-suffix="M+">0</div>
+          <div class="font-serif text-2xl sm:text-4xl font-bold stat-shimmer text-champagne-500" data-count="50" data-prefix="$" data-suffix="M+">0</div>
           <div class="text-xs sm:text-sm text-slate-400 mt-1 font-medium">Sales Volume</div>
         </div>
       </div>
@@ -1281,7 +1281,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       </div>
 
       <!-- Success State (hidden by default) -->
-      <div id="kh-popup-success-state" style="display: none;" class="text-center py-4">
+      <div id="kh-popup-success-state" style="display: none;" role="alert" aria-live="polite" class="text-center py-4">
         <div class="w-16 h-16 mx-auto mb-5 rounded-full flex items-center justify-center" style="background: rgba(201,169,110,0.12); border: 1px solid rgba(201,169,110,0.2);">
           <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" style="color: #c9a96e;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
         </div>
@@ -1369,7 +1369,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     btn.disabled = true;
     btn.textContent = 'Sending...';
 
-    fetch('https://keneshia-haye-form-handler.jutsuxx.workers.dev', {
+    fetch(window.GHL_FORM_ENDPOINT || 'https://keneshia-haye-form-handler.jutsuxx.workers.dev', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
