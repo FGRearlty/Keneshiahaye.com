@@ -10,7 +10,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('404 error page', () => {
   test('serves 404 page for nonexistent URLs', async ({ page }) => {
-    const res = await page.goto('/this-page-does-not-exist-12345');
+    await page.goto('/this-page-does-not-exist-12345');
     // The dev server may return 404 or serve the 404.html content
     // Check that the page has 404-related content
     const content = await page.content();

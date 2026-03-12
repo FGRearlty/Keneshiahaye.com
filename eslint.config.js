@@ -95,6 +95,8 @@ export default [
         localStorage: 'readonly',
         require: 'readonly',
         module: 'readonly',
+        Buffer: 'readonly',
+        DOMException: 'readonly',
       },
     },
   },
