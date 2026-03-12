@@ -47,6 +47,21 @@ export default [
     },
   },
   {
+    files: ['js/**/*.js'],
+    languageOptions: {
+      globals: {
+        module: 'readonly',
+        window: 'readonly',
+        document: 'readonly',
+        localStorage: 'readonly',
+        fetch: 'readonly',
+        setTimeout: 'readonly',
+        clearTimeout: 'readonly',
+        Object: 'readonly',
+      },
+    },
+  },
+  {
     files: ['server.js'],
     languageOptions: {
       sourceType: 'commonjs',
@@ -78,6 +93,8 @@ export default [
         document: 'readonly',
         window: 'readonly',
         localStorage: 'readonly',
+        require: 'readonly',
+        module: 'readonly',
       },
     },
   },
