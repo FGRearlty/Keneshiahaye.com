@@ -455,6 +455,25 @@ describe('Worker fetch handler', () => {
       const res = await worker.fetch(req, mockEnv);
       expect(res.status).toBe(200);
     });
+
+    it('blocks requests after exceeding the limit without KV', async () => {
+      delete mockEnv.RATE_LIMIT_KV;
+      const noKvEnv = { ...mockEnv };
+
+      // Send RATE_LIMIT_MAX requests — all should succeed
+      for (let i = 0; i < RATE_LIMIT_MAX; i++) {
+        const req = makeRequest({ email: `user${i}@b.com`, name: 'Test', formSource: 'contact-page' });
+        const res = await worker.fetch(req, noKvEnv);
+        expect(res.status, `Request ${i + 1} should succeed`).toBe(200);
+      }
+
+      // The next request (21st) from the same IP should be blocked
+      const blockedReq = makeRequest({ email: 'blocked@b.com', name: 'Test', formSource: 'contact-page' });
+      const blockedRes = await worker.fetch(blockedReq, noKvEnv);
+      expect(blockedRes.status).toBe(429);
+      const body = await blockedRes.json();
+      expect(body.error).toContain('Too many submissions');
+    });
   });
 
   describe('Form submission', () => {
