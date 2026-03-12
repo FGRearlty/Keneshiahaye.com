@@ -1,7 +1,10 @@
 {
   "scripts": {
     "build:css": "tailwindcss -i src/input.css -o css/styles.css --minify",
-    "dev:css": "tailwindcss -i src/input.css -o css/styles.css --watch"
+    "dev:css": "tailwindcss -i src/input.css -o css/styles.css --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint ."
   },
   "dependencies": {
     "mammoth": "^1.11.0",
@@ -10,7 +13,10 @@
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.2.1",
+    "cheerio": "^1.2.0",
+    "eslint": "^10.0.3",
     "sharp": "^0.34.5",
-    "tailwindcss": "^4.2.1"
+    "tailwindcss": "^4.2.1",
+    "vitest": "^4.0.18"
   }
 }
