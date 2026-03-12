@@ -97,6 +97,20 @@ describe('JSON-LD structured data — main pages', () => {
     });
     expect(types).toContain('FAQPage');
   });
+
+  const pagesWithFaq = ['buy.html', 'sell.html', 'veterans.html', 'course.html', 'contact.html'];
+  for (const htmlFile of pagesWithFaq) {
+    it(`${htmlFile} has FAQPage schema`, () => {
+      const filePath = path.join(ROOT, htmlFile);
+      if (!fs.existsSync(filePath)) return;
+      const content = fs.readFileSync(filePath, 'utf-8');
+      const blocks = extractJsonLd(content);
+      const types = blocks.map(b => {
+        try { return JSON.parse(b)['@type']; } catch { return null; }
+      });
+      expect(types, `${htmlFile} should have FAQPage schema`).toContain('FAQPage');
+    });
+  }
 });
 
 describe('JSON-LD structured data — blog posts', () => {
