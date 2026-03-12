@@ -78,12 +78,9 @@ const FUNCTION_ROUTES = new Set(['/checkout']);
 
 /**
  * Known missing assets that should be fixed separately.
- * Each entry is { file, ref } where file is the HTML and ref is the broken reference.
+ * Each entry is "htmlFile:ref" where htmlFile is the page and ref is the broken reference.
  */
-const KNOWN_MISSING = new Set([
-  'areas/callahan.html:/images/stock/neighborhood-callahan.jpg',
-  'areas/middleburg.html:/images/stock/neighborhood-middleburg.jpg',
-]);
+const KNOWN_MISSING = new Set([]);
 
 describe('Link and asset integrity', () => {
   for (const htmlFile of htmlFiles) {
