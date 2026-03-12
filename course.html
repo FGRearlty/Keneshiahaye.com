@@ -808,7 +808,8 @@ document.addEventListener('DOMContentLoaded', function() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
       })
-      .then(function() {
+      .then(function(response) {
+        if (!response.ok) throw new Error('Server error: ' + response.status);
         giftForm.classList.add('hidden');
         var successEl = document.getElementById('giftSuccess');
         successEl.classList.remove('hidden');

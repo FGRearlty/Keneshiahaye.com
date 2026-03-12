@@ -1159,16 +1159,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData)
-    }).then(function() {
-      // Show success state
-      btn.classList.add('hidden');
-      successMsg.classList.remove('hidden');
-      form.reset();
-      successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }).then(function(response) {
-      if (!response.ok) throw new Error('Server error');
+      if (!response.ok) throw new Error('Server error: ' + response.status);
       return response.json();
     }).then(function() {
+      // Show success state only after confirmed OK
       btn.classList.add('hidden');
       successMsg.classList.remove('hidden');
       form.reset();

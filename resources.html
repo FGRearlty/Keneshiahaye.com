@@ -852,8 +852,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData)
-    }).then(function() {
-      // Show success state
+    }).then(function(response) {
+      if (!response.ok) throw new Error('Server error: ' + response.status);
+      // Show success state only after confirmed OK
       btn.textContent = 'Sent! \u2713';
       btn.classList.remove('from-champagne-400', 'to-champagne-300');
       btn.classList.add('bg-emerald-500', 'text-white');
@@ -867,19 +868,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         form.reset();
       }, 3000);
     }).catch(function() {
-      // Still show success (GHL webhook is fire-and-forget)
-      btn.textContent = 'Sent! \u2713';
-      btn.classList.remove('from-champagne-400', 'to-champagne-300');
-      btn.classList.add('bg-emerald-500', 'text-white');
-
-      // Reset after 3 seconds
-      setTimeout(function() {
-        btn.disabled = false;
-        btn.textContent = originalText;
-        btn.classList.add('from-champagne-400', 'to-champagne-300');
-        btn.classList.remove('bg-emerald-500', 'text-white');
-        form.reset();
-      }, 3000);
+      // Show error state
+      btn.disabled = false;
+      btn.textContent = originalText;
+      alert('Something went wrong. Please try again or call (254) 449-5299.');
     });
   }
   </script>
