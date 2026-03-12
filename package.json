@@ -6,7 +6,8 @@
     "test:watch": "vitest",
     "test:e2e": "playwright test",
     "test:html": "html-validate '*.html' 'blog/*.html' 'areas/*.html'",
-    "test:all": "vitest run && html-validate '*.html' 'blog/*.html' 'areas/*.html'"
+    "test:lint": "eslint 'ghl-integration/**/*.js' 'tests/**/*.js' 'server.js' 'functions/**/*.js'",
+    "test:all": "vitest run && html-validate '*.html' 'blog/*.html' 'areas/*.html' && eslint 'ghl-integration/**/*.js' 'tests/**/*.js' 'server.js' 'functions/**/*.js'"
   },
   "dependencies": {
     "mammoth": "^1.11.0",
@@ -17,6 +18,7 @@
     "@axe-core/playwright": "^4.11.1",
     "@playwright/test": "^1.58.2",
     "@tailwindcss/cli": "^4.2.1",
+    "eslint": "^10.0.3",
     "html-validate": "^10.11.1",
     "sharp": "^0.34.5",
     "tailwindcss": "^4.2.1",
