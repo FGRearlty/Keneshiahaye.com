@@ -67,6 +67,23 @@ describe('_headers file', () => {
   it('applies headers to all routes (/*)', () => {
     expect(headersContent).toContain('/*');
   });
+
+  it('sets long cache for images', () => {
+    expect(headersContent).toContain('/images/*');
+    expect(headersContent).toContain('/images/stock/*');
+    // Should have immutable + long max-age for images
+    const imageSection = headersContent.split('/images/*')[1];
+    expect(imageSection).toContain('max-age=31536000');
+    expect(imageSection).toContain('immutable');
+  });
+
+  it('sets cache for CSS', () => {
+    expect(headersContent).toContain('/css/styles.css');
+  });
+
+  it('sets cache for guides/PDFs', () => {
+    expect(headersContent).toContain('/guides/*');
+  });
 });
 
 describe('_redirects file', () => {
