@@ -286,6 +286,20 @@
                 <textarea id="feedback-message" name="message" rows="4" placeholder="Your feedback..." required
                   class="review-input w-full px-4 py-3 rounded-xl text-sm text-white placeholder-white/30 bg-white/[0.04] border border-white/10 focus:outline-none transition-all resize-none"></textarea>
               </div>
+              <!-- SMS Consent Checkboxes -->
+              <div class="space-y-3">
+                <label class="flex items-start gap-3 cursor-pointer group">
+                  <input type="checkbox" name="smsConsentTransactional" class="mt-0.5 w-5 h-5 rounded border-slate-300 dark:border-white/20 text-champagne-400 focus:ring-champagne-400/30 bg-white dark:bg-white/5 cursor-pointer flex-shrink-0">
+                  <span class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">I consent to receive transactional messages (appointment reminders, consultation follow-ups) from <strong class="text-slate-700 dark:text-slate-300">Keneshia Haye, Florida Gateway Realty</strong> at the phone number provided. Message frequency may vary. Msg &amp; data rates may apply. Reply HELP for help or STOP to opt out.</span>
+                </label>
+                <label class="flex items-start gap-3 cursor-pointer group">
+                  <input type="checkbox" name="smsConsentMarketing" class="mt-0.5 w-5 h-5 rounded border-slate-300 dark:border-white/20 text-champagne-400 focus:ring-champagne-400/30 bg-white dark:bg-white/5 cursor-pointer flex-shrink-0">
+                  <span class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">I consent to receive marketing and promotional messages (new listings, market updates, real estate tips) from <strong class="text-slate-700 dark:text-slate-300">Keneshia Haye, Florida Gateway Realty</strong> at the phone number provided. Message frequency may vary. Msg &amp; data rates may apply. Reply HELP for help or STOP to opt out.</span>
+                </label>
+                <p class="text-xs text-slate-400 dark:text-slate-500">
+                  <a href="/privacy-policy" class="text-champagne-400 hover:underline">Privacy Policy</a> · <a href="/terms" class="text-champagne-400 hover:underline">Terms of Service</a>
+                </p>
+              </div>
               <button type="submit"
                 class="w-full py-3.5 rounded-xl text-sm font-bold tracking-wide uppercase cursor-pointer transition-all"
                 style="background: rgba(201,169,110,0.12); color: #c9a96e; border: 1px solid rgba(201,169,110,0.25);"

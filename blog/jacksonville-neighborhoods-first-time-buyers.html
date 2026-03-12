@@ -226,6 +226,20 @@
                 <input type="email" name="email" placeholder="Email Address" required class="form-input flex-1 px-4 py-2.5 bg-white/5 border border-white/10 rounded-lg text-sm text-slate-800 dark:text-white placeholder:text-slate-400 outline-none">
                 <input type="tel" pattern="[0-9 ()+-.]{10,}" title="Please enter a valid phone number (at least 10 digits)" name="phone" required placeholder="Phone *" class="form-input flex-1 px-4 py-2.5 bg-white/5 border border-white/10 rounded-lg text-sm text-slate-800 dark:text-white placeholder:text-slate-400 outline-none">
               </div>
+              <!-- SMS Consent Checkboxes -->
+              <div class="space-y-3">
+                <label class="flex items-start gap-3 cursor-pointer group">
+                  <input type="checkbox" name="smsConsentTransactional" class="mt-0.5 w-5 h-5 rounded border-slate-300 dark:border-white/20 text-champagne-400 focus:ring-champagne-400/30 bg-white dark:bg-white/5 cursor-pointer flex-shrink-0">
+                  <span class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">I consent to receive transactional messages (appointment reminders, consultation follow-ups) from <strong class="text-slate-700 dark:text-slate-300">Keneshia Haye, Florida Gateway Realty</strong> at the phone number provided. Message frequency may vary. Msg &amp; data rates may apply. Reply HELP for help or STOP to opt out.</span>
+                </label>
+                <label class="flex items-start gap-3 cursor-pointer group">
+                  <input type="checkbox" name="smsConsentMarketing" class="mt-0.5 w-5 h-5 rounded border-slate-300 dark:border-white/20 text-champagne-400 focus:ring-champagne-400/30 bg-white dark:bg-white/5 cursor-pointer flex-shrink-0">
+                  <span class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">I consent to receive marketing and promotional messages (new listings, market updates, real estate tips) from <strong class="text-slate-700 dark:text-slate-300">Keneshia Haye, Florida Gateway Realty</strong> at the phone number provided. Message frequency may vary. Msg &amp; data rates may apply. Reply HELP for help or STOP to opt out.</span>
+                </label>
+                <p class="text-xs text-slate-400 dark:text-slate-500">
+                  <a href="../privacy-policy" class="text-champagne-400 hover:underline">Privacy Policy</a> · <a href="../terms" class="text-champagne-400 hover:underline">Terms of Service</a>
+                </p>
+              </div>
               <button type="submit" class="px-6 py-2.5 bg-gradient-to-r from-champagne-400 to-champagne-300 text-navy-500 text-sm font-bold rounded-lg hover:shadow-md transition-all whitespace-nowrap">Get the Guide</button>
             </form>
           </div>
