@@ -46,7 +46,7 @@ const FORM_TAG_MAP = {
 };
 
 // Rate limit: max submissions per IP per hour
-const RATE_LIMIT_MAX = 15;
+const RATE_LIMIT_MAX = 20;
 const RATE_LIMIT_WINDOW = 3600; // seconds
 
 // CORS headers for browser requests
@@ -245,21 +245,21 @@ async function handleFormSubmission(data, env) {
 }
 
 async function addContactNote(contactId, formSource, data, apiKey) {
-  // Build readable note from form data
-  const noteLines = [`Website Form Submission: ${formSource}`];
-  noteLines.push(`Date: ${new Date().toLocaleString('en-US', { timeZone: 'America/New_York' })}`);
-  noteLines.push('---');
-
-  const skipFields = ['firstName', 'lastName', 'name', 'email', 'phone', 'formSource'];
-
-  for (const [key, value] of Object.entries(data)) {
-    if (skipFields.includes(key) || !value) continue;
-    const label = key.replace(/([A-Z])/g, ' $1').replace(/^./, s => s.toUpperCase());
-    const displayValue = Array.isArray(value) ? value.join(', ') : value;
-    noteLines.push(`${label}: ${displayValue}`);
-  }
-
   try {
+    // Build readable note from form data
+    const noteLines = [`Website Form Submission: ${formSource}`];
+    noteLines.push(`Date: ${new Date().toLocaleString('en-US', { timeZone: 'America/New_York' })}`);
+    noteLines.push('---');
+
+    const skipFields = ['firstName', 'lastName', 'name', 'email', 'phone', 'formSource'];
+
+    for (const [key, value] of Object.entries(data)) {
+      if (skipFields.includes(key) || !value) continue;
+      const label = key.replace(/([A-Z])/g, ' $1').replace(/^./, s => s.toUpperCase());
+      const displayValue = Array.isArray(value) ? value.join(', ') : String(value);
+      noteLines.push(`${label}: ${displayValue}`);
+    }
+
     await ghlRequest(
       `/contacts/${contactId}/notes`,
       'POST',
