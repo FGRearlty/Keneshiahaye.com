@@ -1,0 +1,19 @@
+{
+  "extends": ["html-validate:recommended"],
+  "rules": {
+    "no-inline-style": "off",
+    "tel-non-breaking": "off",
+    "no-trailing-whitespace": "off",
+    "attribute-boolean-style": "off",
+    "script-type": "off",
+    "long-title": "off",
+    "wcag/h71": "off",
+    "no-raw-characters": "error",
+    "no-implicit-button-type": "error",
+    "element-required-attributes": "error",
+    "element-permitted-content": "off",
+    "close-order": "error",
+    "form-dup-name": ["error", { "shared": ["checkbox", "radio"] }],
+    "prefer-native-element": "error"
+  }
+}
