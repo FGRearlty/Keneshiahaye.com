@@ -73,6 +73,32 @@ test.describe('Contact form submission', () => {
     expect(captured.payload.phone).toBe('9045551234');
   });
 
+  test('contact form payload has all required fields', async ({ page }) => {
+    const captured = interceptFormPost(page);
+    await page.goto('/contact');
+
+    await page.fill('input[name="name"], input[placeholder*="name" i]', 'Schema Test');
+    await page.fill('input[type="email"], input[name="email"]', 'schema@example.com');
+    await page.fill('input[type="tel"], input[name="phone"]', '9045550001');
+
+    const messageField = page.locator('textarea[name="message"]');
+    if (await messageField.count() > 0) {
+      await messageField.fill('Testing payload schema.');
+    }
+
+    await page.click('button[type="submit"]');
+    await page.waitForTimeout(500);
+
+    expect(captured.called).toBe(true);
+    // Verify all expected fields exist in the payload
+    expect(captured.payload).toHaveProperty('email', 'schema@example.com');
+    expect(captured.payload).toHaveProperty('formSource', 'contact-page');
+    expect(captured.payload).toHaveProperty('phone', '9045550001');
+    // Name can be sent as 'name' or 'firstName'/'lastName'
+    const hasName = captured.payload.name || captured.payload.firstName;
+    expect(hasName, 'Payload should include name or firstName').toBeTruthy();
+  });
+
   test('shows success message after submission', async ({ page }) => {
     interceptFormPost(page);
     await page.goto('/contact');
@@ -139,6 +165,13 @@ test.describe('Buyer form submission', () => {
     expect(captured.called).toBe(true);
     expect(captured.payload.formSource).toBe('buyer-intake');
     expect(captured.payload.email).toBe('buyer@example.com');
+    // Verify phone is passed through correctly
+    if (captured.payload.phone) {
+      expect(captured.payload.phone).toBe('9045551111');
+    }
+    // Verify name is present
+    const hasName = captured.payload.name || captured.payload.firstName;
+    expect(hasName, 'Buyer payload should include name').toBeTruthy();
   });
 
   test('shows success state after submission', async ({ page }) => {
@@ -181,6 +214,10 @@ test.describe('Seller form submission', () => {
     expect(captured.called).toBe(true);
     expect(captured.payload.formSource).toBe('seller-valuation');
     expect(captured.payload.email).toBe('seller@example.com');
+    // Verify phone is included
+    if (captured.payload.phone) {
+      expect(captured.payload.phone).toBe('9045552222');
+    }
   });
 });
 

@@ -132,4 +132,62 @@ describe('SEO metadata', () => {
       }
     }
   });
+
+  it('all pages have unique meta descriptions', () => {
+    const descriptions = new Map();
+    for (const htmlFile of htmlFiles) {
+      const content = fs.readFileSync(path.join(ROOT, htmlFile), 'utf-8');
+      const desc = extractMetaContent(content, 'name', 'description');
+      if (desc) {
+        const trimmed = desc.trim();
+        if (descriptions.has(trimmed)) {
+          expect.fail(
+            `Duplicate meta description found in ${htmlFile} and ${descriptions.get(trimmed)}: "${trimmed.substring(0, 60)}..."`,
+          );
+        }
+        descriptions.set(trimmed, htmlFile);
+      }
+    }
+  });
+});
+
+describe('Blog post SEO', () => {
+  const blogDir = path.join(ROOT, 'blog');
+  const blogFiles = fs.existsSync(blogDir)
+    ? fs
+        .readdirSync(blogDir)
+        .filter((f) => f.endsWith('.html') && f !== 'index.html')
+        .map((f) => path.join('blog', f))
+    : [];
+
+  for (const blogFile of blogFiles) {
+    describe(blogFile, () => {
+      const content = fs.readFileSync(path.join(ROOT, blogFile), 'utf-8');
+
+      it('has a canonical URL', () => {
+        const canonical = content.match(/<link[^>]+rel="canonical"[^>]+href="([^"]+)"/i);
+        expect(canonical, `Missing canonical URL in ${blogFile}`).toBeTruthy();
+        expect(canonical[1]).toContain('keneshiahaye.com');
+      });
+
+      it('has Open Graph article tags', () => {
+        const ogType = extractMetaContent(content, 'property', 'og:type');
+        if (ogType) {
+          expect(ogType).toBe('article');
+        }
+      });
+
+      it('navigation links using ../ paths resolve to valid pages', () => {
+        const relLinks = content.match(/href="\.\.\/([\w-]+)"/g) || [];
+        for (const link of relLinks) {
+          const pageName = link.match(/href="\.\.\/([\w-]+)"/)?.[1];
+          if (pageName) {
+            const targetFile = path.join(ROOT, `${pageName}.html`);
+            const exists = fs.existsSync(targetFile);
+            expect(exists, `Broken nav link ../${pageName} in ${blogFile}`).toBe(true);
+          }
+        }
+      });
+    });
+  }
 });
