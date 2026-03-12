@@ -1,5 +1,6 @@
 node_modules/
-.claude/
+.claude/*
+!.claude/skills/
 _deploy/
 .wrangler/
 va-resources/extracted-zip*/
