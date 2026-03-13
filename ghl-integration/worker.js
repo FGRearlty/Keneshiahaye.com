@@ -52,7 +52,32 @@ export const RATE_LIMIT_WINDOW = 3600; // seconds
 // In-memory fallback rate limiter (per isolate instance, resets on cold start)
 const memoryRateMap = new Map();
 
-// CORS headers for browser requests
+// Allowed origins for CORS
+const ALLOWED_ORIGINS = ['https://keneshiahaye.com'];
+
+/**
+ * Build CORS headers only for allowed origins.
+ * Returns empty object for disallowed origins.
+ */
+export function getCORSHeaders(request) {
+  const origin = request ? request.headers.get('Origin') : null;
+  if (origin && ALLOWED_ORIGINS.includes(origin)) {
+    return {
+      'Access-Control-Allow-Origin': origin,
+      'Access-Control-Allow-Methods': 'POST, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type',
+      'Access-Control-Max-Age': '86400',
+    };
+  }
+  return {
+    'Access-Control-Allow-Origin': 'https://keneshiahaye.com',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Max-Age': '86400',
+  };
+}
+
+// Legacy reference for tests that import CORS_HEADERS directly
 const CORS_HEADERS = {
   'Access-Control-Allow-Origin': 'https://keneshiahaye.com',
   'Access-Control-Allow-Methods': 'POST, OPTIONS',
@@ -60,10 +85,22 @@ const CORS_HEADERS = {
   'Access-Control-Max-Age': '86400',
 };
 
-// Strip HTML/script tags from input strings
+/**
+ * Sanitize a string value: decode HTML entities, strip tags,
+ * remove dangerous URI schemes, and enforce length limits.
+ */
 export function sanitize(value) {
   if (typeof value !== 'string') return value;
-  return value.replace(/<[^>]*>/g, '').trim();
+  let clean = value;
+  // Decode common HTML entities before stripping tags
+  clean = clean.replace(/&lt;/gi, '<').replace(/&gt;/gi, '>').replace(/&amp;/gi, '&').replace(/&quot;/gi, '"').replace(/&#x27;/gi, "'");
+  // Strip HTML tags
+  clean = clean.replace(/<[^>]*>/g, '');
+  // Remove dangerous URI schemes
+  clean = clean.replace(/javascript\s*:/gi, '').replace(/data\s*:\s*text\/html/gi, '').replace(/vbscript\s*:/gi, '');
+  // Enforce max length
+  clean = clean.substring(0, 1000);
+  return clean.trim();
 }
 
 // Recursively sanitize all string values in an object
@@ -83,9 +120,17 @@ export function sanitizeData(obj) {
 
 export default {
   async fetch(request, env) {
+    const corsHeaders = getCORSHeaders(request);
+
     // Handle CORS preflight
     if (request.method === 'OPTIONS') {
-      return new Response(null, { status: 204, headers: CORS_HEADERS });
+      return new Response(null, { status: 204, headers: corsHeaders });
+    }
+
+    // Reject non-allowed origins
+    const origin = request.headers.get('Origin');
+    if (origin && !ALLOWED_ORIGINS.includes(origin)) {
+      return jsonResponse({ error: 'Origin not allowed' }, 403);
     }
 
     if (request.method !== 'POST') {
@@ -93,7 +138,10 @@ export default {
     }
 
     // Rate limiting: KV-backed (persistent) or in-memory fallback
-    const clientIP = request.headers.get('cf-connecting-ip') || 'unknown';
+    const clientIP = request.headers.get('cf-connecting-ip');
+    if (!clientIP) {
+      return jsonResponse({ error: 'Unable to identify client' }, 400);
+    }
     if (env.RATE_LIMIT_KV) {
       const key = `rate:${clientIP}`;
       const current = parseInt(await env.RATE_LIMIT_KV.get(key) || '0', 10);

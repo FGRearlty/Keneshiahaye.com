@@ -43,8 +43,10 @@ function validatePhone(phone) {
 
 /**
  * Create or show an error div inside a container element.
+ * Uses textContent for plain messages or builds safe DOM nodes
+ * for the default error (avoids innerHTML to prevent XSS).
  * @param {HTMLElement} container
- * @param {string} message - HTML string for the error content
+ * @param {string} message - Plain text error message
  * @returns {HTMLElement}
  */
 function showFormError(container, message) {
@@ -58,16 +60,32 @@ function showFormError(container, message) {
       'mt-4 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl text-sm text-red-700 dark:text-red-300';
     container.appendChild(errDiv);
   }
-  errDiv.innerHTML = message;
+  errDiv.innerHTML = '';
+  if (message === DEFAULT_ERROR_MESSAGE) {
+    errDiv.appendChild(document.createTextNode('Something went wrong. Please try again or call '));
+    var link = document.createElement('a');
+    link.href = 'tel:+12544495299';
+    link.className = 'underline font-semibold';
+    link.textContent = '(254) 449-5299';
+    errDiv.appendChild(link);
+    errDiv.appendChild(document.createTextNode('.'));
+  } else {
+    errDiv.textContent = message;
+  }
   errDiv.classList.remove('hidden');
   return errDiv;
 }
 
 /**
- * Default error message HTML with phone fallback.
+ * Default error message sentinel — used to trigger the safe DOM-built
+ * phone fallback in showFormError. Not rendered directly.
  */
-var DEFAULT_ERROR_HTML =
-  'Something went wrong. Please try again or call <a href="tel:+12544495299" class="underline font-semibold">(254) 449-5299</a>.';
+var DEFAULT_ERROR_MESSAGE = '__DEFAULT_ERROR__';
+
+/**
+ * @deprecated Use DEFAULT_ERROR_MESSAGE instead. Kept for backward compatibility.
+ */
+var DEFAULT_ERROR_HTML = DEFAULT_ERROR_MESSAGE;
 
 /**
  * Submit form data to the GHL Cloudflare Worker.
