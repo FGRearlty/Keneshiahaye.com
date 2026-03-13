@@ -42,6 +42,17 @@ function validatePhone(phone) {
 }
 
 /**
+ * Validate an email address format.
+ * @param {string} email
+ * @returns {boolean}
+ */
+function validateEmail(email) {
+  if (!email) return false;
+  var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return re.test(email);
+}
+
+/**
  * Create or show an error div inside a container element.
  * Uses textContent for plain messages or builds safe DOM nodes
  * for the default error (avoids innerHTML to prevent XSS).
@@ -60,7 +71,7 @@ function showFormError(container, message) {
       'mt-4 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl text-sm text-red-700 dark:text-red-300';
     container.appendChild(errDiv);
   }
-  errDiv.innerHTML = '';
+  errDiv.textContent = '';
   if (message === DEFAULT_ERROR_MESSAGE) {
     errDiv.appendChild(document.createTextNode('Something went wrong. Please try again or call '));
     var link = document.createElement('a');
@@ -82,9 +93,6 @@ function showFormError(container, message) {
  */
 var DEFAULT_ERROR_MESSAGE = '__DEFAULT_ERROR__';
 
-/**
- * @deprecated Use DEFAULT_ERROR_MESSAGE instead. Kept for backward compatibility.
- */
 var DEFAULT_ERROR_HTML = DEFAULT_ERROR_MESSAGE;
 
 /**
@@ -118,6 +126,12 @@ function submitForm(form, options) {
     return Promise.reject(new Error('Invalid phone number'));
   }
 
+  // Enforce email validation if an email field exists and has a value
+  if (formData.email && !validateEmail(formData.email)) {
+    showFormError(form, 'Please enter a valid email address.');
+    return Promise.reject(new Error('Invalid email'));
+  }
+
   if (options.extraData) {
     Object.keys(options.extraData).forEach(function (key) {
       formData[key] = options.extraData[key];
@@ -128,7 +142,7 @@ function submitForm(form, options) {
   if (options.submitBtn) {
     options.submitBtn.disabled = true;
     if (options.loadingLabel) {
-      options.submitBtn.innerHTML = options.loadingLabel;
+      options.submitBtn.textContent = options.loadingLabel;
     }
   }
 
@@ -160,7 +174,7 @@ function submitForm(form, options) {
       if (options.submitBtn) {
         options.submitBtn.disabled = false;
         if (options.submitLabel) {
-          options.submitBtn.innerHTML = options.submitLabel;
+          options.submitBtn.textContent = options.submitLabel;
         }
       }
       showFormError(form, DEFAULT_ERROR_HTML);
@@ -173,6 +187,7 @@ if (typeof module !== 'undefined' && module.exports) {
   module.exports = {
     collectFormData,
     validatePhone,
+    validateEmail,
     showFormError,
     submitForm,
     DEFAULT_ENDPOINT,

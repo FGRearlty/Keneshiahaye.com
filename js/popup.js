@@ -55,21 +55,40 @@ function getScrollPercent() {
 }
 
 /**
- * Show the popup overlay element.
+ * Get all focusable elements inside a container.
+ * @param {HTMLElement} container
+ * @returns {HTMLElement[]}
+ */
+function getFocusableElements(container) {
+  var selectors = 'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+  return Array.prototype.slice.call(container.querySelectorAll(selectors));
+}
+
+/**
+ * Show the popup overlay element with focus management.
  * @param {HTMLElement} overlay
  */
 function showOverlay(overlay) {
   if (!overlay) return;
   overlay.style.display = 'flex';
+  // Move focus into the dialog
+  var focusable = getFocusableElements(overlay);
+  if (focusable.length > 0) {
+    focusable[0].focus();
+  }
 }
 
 /**
- * Hide the popup overlay element.
+ * Hide the popup overlay element and restore focus.
  * @param {HTMLElement} overlay
+ * @param {HTMLElement|null} previousFocus - Element to restore focus to
  */
-function hideOverlay(overlay) {
+function hideOverlay(overlay, previousFocus) {
   if (!overlay) return;
   overlay.style.display = 'none';
+  if (previousFocus && previousFocus.focus) {
+    previousFocus.focus();
+  }
 }
 
 /**
@@ -98,16 +117,57 @@ function initPopup(options) {
   if (!overlay) return;
 
   var shown = false;
+  var previousFocus = null;
 
   function show() {
     if (shown) return;
     shown = true;
+    previousFocus = document.activeElement;
     showOverlay(overlay);
   }
 
   function close() {
-    hideOverlay(overlay);
+    hideOverlay(overlay, previousFocus);
     markPopupShown(storageKey);
+    // Clean up listeners
+    document.removeEventListener('keydown', onKeydown);
+    overlay.removeEventListener('click', onOverlayClick);
+    if (closeBtn) {
+      closeBtn.removeEventListener('click', close);
+    }
+  }
+
+  function onOverlayClick(e) {
+    if (e.target === overlay) close();
+  }
+
+  function onKeydown(e) {
+    if (overlay.style.display !== 'flex') return;
+
+    // Close on Escape
+    if (e.key === 'Escape') {
+      close();
+      return;
+    }
+
+    // Trap focus inside the dialog
+    if (e.key === 'Tab') {
+      var focusable = getFocusableElements(overlay);
+      if (focusable.length === 0) return;
+      var first = focusable[0];
+      var last = focusable[focusable.length - 1];
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        }
+      } else {
+        if (document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    }
   }
 
   // Timer trigger
@@ -123,16 +183,12 @@ function initPopup(options) {
   }
   window.addEventListener('scroll', onScroll, { passive: true });
 
-  // Close handlers
+  // Close handlers (named functions for cleanup)
   if (closeBtn) {
     closeBtn.addEventListener('click', close);
   }
-  overlay.addEventListener('click', function (e) {
-    if (e.target === overlay) close();
-  });
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && overlay.style.display === 'flex') close();
-  });
+  overlay.addEventListener('click', onOverlayClick);
+  document.addEventListener('keydown', onKeydown);
 }
 
 // Export for both module and test environments
@@ -142,6 +198,7 @@ if (typeof module !== 'undefined' && module.exports) {
     shouldShowPopup,
     markPopupShown,
     getScrollPercent,
+    getFocusableElements,
     showOverlay,
     hideOverlay,
     initPopup,

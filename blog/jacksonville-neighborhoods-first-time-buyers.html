@@ -27,6 +27,7 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=Playfair+Display:wght@600;700;800&amp;display=swap" rel="stylesheet">
+  <link rel="preload" href="/css/styles.css" as="style">
   <link rel="stylesheet" href="/css/styles.css">
   <style>
     .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1); }
@@ -55,16 +56,27 @@
     "name": "Keneshia Haye",
     "jobTitle": "Real Estate Agent",
     "url": "https://keneshiahaye.com",
-    "worksFor": { "@type": "Organization", "name": "Florida Gateway Realty" }
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Florida Gateway Realty"
+    },
+    "image": "https://keneshiahaye.com/images/keneshia-blue-dress.png"
   },
   "publisher": {
     "@type": "Organization",
     "name": "Keneshia Haye Real Estate",
     "url": "https://keneshiahaye.com",
-    "logo": { "@type": "ImageObject", "url": "https://keneshiahaye.com/images/keneshia-blue-dress.png" }
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://keneshiahaye.com/images/keneshia-blue-dress.png"
+    }
   },
-  "image": "/images/stock/jacksonville-neighborhoods.jpg",
-  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://keneshiahaye.com/blog/jacksonville-neighborhoods-first-time-buyers.html" }
+  "image": "https://keneshiahaye.com/images/stock/jacksonville-neighborhoods.jpg",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://keneshiahaye.com/blog/jacksonville-neighborhoods-first-time-buyers.html"
+  },
+  "articleSection": "Jacksonville Neighborhoods"
 }
 </script>
 <script type="application/ld+json">
@@ -72,9 +84,23 @@
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://keneshiahaye.com/"},
-    {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://keneshiahaye.com/blog/"},
-    {"@type": "ListItem", "position": 3, "name": "Best Jacksonville Neighborhoods for First-Time Homebuyers"}
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://keneshiahaye.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://keneshiahaye.com/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Best Jacksonville Neighborhoods for First-Time Homebuyers"
+    }
   ]
 }
 </script>
@@ -217,14 +243,14 @@
           <div class="my-12 p-8 rounded-2xl glass border border-champagne-400/20 bg-gradient-to-br from-champagne-400/5 to-transparent">
             <h3 class="font-serif text-xl font-bold text-slate-900 dark:text-white mb-3">Download Our Free Homebuyer Guide</h3>
             <p class="text-sm text-slate-500 dark:text-slate-400 mb-5">Get our step-by-step guide to buying your first home in Jacksonville, including a neighborhood comparison checklist, budget worksheet, and timeline planner.</p>
-            <form class="flex flex-col gap-3" onsubmit="event.preventDefault(); var btn=this.querySelector('button'); var firstName=this.querySelector('input[name=firstName]').value; var lastName=this.querySelector('input[name=lastName]').value; var email=this.querySelector('input[name=email]').value; var phone=this.querySelector('input[name=phone]')?.value||''; fetch('https://keneshia-haye-form-handler.jutsuxx.workers.dev',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({firstName:firstName,lastName:lastName,email:email,phone:phone,formSource:'blog-lead-capture'})}).then(function(){btn.textContent='Sent! Check your email';btn.classList.remove('from-champagne-400','to-champagne-300');btn.classList.add('bg-emerald-500');}).catch(function(){btn.textContent='Sent! Check your email';btn.classList.remove('from-champagne-400','to-champagne-300');btn.classList.add('bg-emerald-500');});">
+            <form class="flex flex-col gap-3" data-form-source="blog-lead-capture" data-newsletter>
               <div class="grid grid-cols-2 gap-3">
-                <input type="text" name="firstName" placeholder="First Name" required class="form-input px-4 py-2.5 bg-white/5 border border-white/10 rounded-lg text-sm text-slate-800 dark:text-white placeholder:text-slate-400 outline-none">
-                <input type="text" name="lastName" placeholder="Last Name" required class="form-input px-4 py-2.5 bg-white/5 border border-white/10 rounded-lg text-sm text-slate-800 dark:text-white placeholder:text-slate-400 outline-none">
+                <input type="text" name="firstName" placeholder="First Name" aria-required="true" required class="form-input px-4 py-2.5 bg-white/5 border border-white/10 rounded-lg text-sm text-slate-800 dark:text-white placeholder:text-slate-400 outline-none">
+                <input type="text" name="lastName" placeholder="Last Name" aria-required="true" required class="form-input px-4 py-2.5 bg-white/5 border border-white/10 rounded-lg text-sm text-slate-800 dark:text-white placeholder:text-slate-400 outline-none">
               </div>
               <div class="flex flex-col sm:flex-row gap-3">
-                <input type="email" name="email" placeholder="Email Address" required class="form-input flex-1 px-4 py-2.5 bg-white/5 border border-white/10 rounded-lg text-sm text-slate-800 dark:text-white placeholder:text-slate-400 outline-none">
-                <input type="tel" pattern="[0-9 ()+-.]{10,}" title="Please enter a valid phone number (at least 10 digits)" name="phone" required placeholder="Phone *" class="form-input flex-1 px-4 py-2.5 bg-white/5 border border-white/10 rounded-lg text-sm text-slate-800 dark:text-white placeholder:text-slate-400 outline-none">
+                <input type="email" name="email" placeholder="Email Address" aria-required="true" required class="form-input flex-1 px-4 py-2.5 bg-white/5 border border-white/10 rounded-lg text-sm text-slate-800 dark:text-white placeholder:text-slate-400 outline-none">
+                <input type="tel" pattern="[0-9 ()+-.]{10,}" title="Please enter a valid phone number (at least 10 digits)" name="phone" aria-required="true" required placeholder="Phone *" class="form-input flex-1 px-4 py-2.5 bg-white/5 border border-white/10 rounded-lg text-sm text-slate-800 dark:text-white placeholder:text-slate-400 outline-none">
               </div>
               <!-- SMS Consent Checkboxes -->
               <div class="space-y-3">
@@ -416,9 +442,9 @@
             </div>
           </div>
           <p class="text-xs font-semibold text-slate-700 dark:text-slate-300 mb-2">Join Our Newsletter</p>
-          <form class="flex gap-2" onsubmit="event.preventDefault(); var btn=this.querySelector('button'); var email=this.querySelector('input[type=email]').value; fetch('https://keneshia-haye-form-handler.jutsuxx.workers.dev',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,formSource:'footer-newsletter'})}).then(function(){btn.textContent='Subscribed!';btn.classList.remove('from-champagne-400','to-champagne-300');btn.classList.add('bg-emerald-500');}).catch(function(){btn.textContent='Subscribed!';btn.classList.remove('from-champagne-400','to-champagne-300');btn.classList.add('bg-emerald-500');});">
-            <label for="newsletter-email" class="sr-only">Email address for newsletter</label>
-            <input type="email" id="newsletter-email" placeholder="Enter your email" required class="flex-1 px-3 py-2 bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-lg text-sm text-slate-800 dark:text-white placeholder:text-slate-400 outline-none focus:border-champagne-400 transition-all min-w-0">
+          <form class="flex gap-2" data-form-source="footer-newsletter" data-newsletter>
+            <label for="newsletter-email-blog-neighborhoods" class="sr-only">Email address for newsletter</label>
+            <input type="email" id="newsletter-email-blog-neighborhoods" placeholder="Enter your email" aria-required="true" required class="flex-1 px-3 py-2 bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-lg text-sm text-slate-800 dark:text-white placeholder:text-slate-400 outline-none focus:border-champagne-400 transition-all min-w-0">
             <button type="submit" class="px-4 py-2 bg-gradient-to-r from-champagne-400 to-champagne-300 text-navy-500 text-sm font-bold rounded-lg hover:shadow-md transition-all whitespace-nowrap">Join Newsletter</button>
           </form>
         </div>
@@ -482,5 +508,6 @@
     revealEls.forEach(function(el) { revealObserver.observe(el); });
   });
   </script>
+<script src="../js/inline-handlers.js" defer></script>
 </body>
 </html>

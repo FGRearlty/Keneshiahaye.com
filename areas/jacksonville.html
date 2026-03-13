@@ -25,6 +25,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=Playfair+Display:wght@600;700;800&amp;display=swap" rel="stylesheet">
+  <link rel="preload" href="/css/styles.css" as="style">
   <link rel="stylesheet" href="/css/styles.css">
   <style>
     .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1); }
@@ -596,21 +597,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div class="grid sm:grid-cols-2 gap-5">
             <div>
               <label for="jax-firstName" class="block text-sm font-medium text-slate-300 mb-2">First Name</label>
-              <input type="text" id="jax-firstName" name="firstName" required class="w-full px-4 py-3 bg-white/10 border border-white/15 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-champagne-400/50 focus:border-champagne-400/50 transition-all" placeholder="First name">
+              <input type="text" id="jax-firstName" name="firstName" required aria-required="true" class="w-full px-4 py-3 bg-white/10 border border-white/15 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-champagne-400/50 focus:border-champagne-400/50 transition-all" placeholder="First name">
             </div>
             <div>
               <label for="jax-lastName" class="block text-sm font-medium text-slate-300 mb-2">Last Name</label>
-              <input type="text" id="jax-lastName" name="lastName" required class="w-full px-4 py-3 bg-white/10 border border-white/15 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-champagne-400/50 focus:border-champagne-400/50 transition-all" placeholder="Last name">
+              <input type="text" id="jax-lastName" name="lastName" required aria-required="true" class="w-full px-4 py-3 bg-white/10 border border-white/15 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-champagne-400/50 focus:border-champagne-400/50 transition-all" placeholder="Last name">
             </div>
           </div>
           <div class="grid sm:grid-cols-2 gap-5">
             <div>
               <label for="jax-email" class="block text-sm font-medium text-slate-300 mb-2">Email</label>
-              <input type="email" id="jax-email" name="email" required class="w-full px-4 py-3 bg-white/10 border border-white/15 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-champagne-400/50 focus:border-champagne-400/50 transition-all" placeholder="you@example.com">
+              <input type="email" id="jax-email" name="email" required aria-required="true" class="w-full px-4 py-3 bg-white/10 border border-white/15 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-champagne-400/50 focus:border-champagne-400/50 transition-all" placeholder="you@example.com">
             </div>
             <div>
               <label for="jax-phone" class="block text-sm font-medium text-slate-300 mb-2">Phone <span class="text-champagne-400">*</span></label>
-              <input type="tel" pattern="[0-9 ()+-.]{10,}" title="Please enter a valid phone number (at least 10 digits)" id="jax-phone" name="phone" required class="w-full px-4 py-3 bg-white/10 border border-white/15 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-champagne-400/50 focus:border-champagne-400/50 transition-all" placeholder="(555) 123-4567">
+              <input type="tel" pattern="[0-9 ()+-.]{10,}" title="Please enter a valid phone number (at least 10 digits)" id="jax-phone" name="phone" required aria-required="true" class="w-full px-4 py-3 bg-white/10 border border-white/15 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-champagne-400/50 focus:border-champagne-400/50 transition-all" placeholder="(555) 123-4567">
             </div>
           </div>
           <div>
@@ -859,5 +860,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     });
   });
   </script>
+  <script src="/js/inline-handlers.js" defer></script>
 </body>
 </html>

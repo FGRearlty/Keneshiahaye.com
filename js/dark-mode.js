@@ -61,7 +61,20 @@ function toggleTheme() {
   var newTheme = getCurrentTheme() === 'dark' ? 'light' : 'dark';
   applyTheme(newTheme);
   setStoredTheme(newTheme);
+  updateToggleButton(newTheme);
   return newTheme;
+}
+
+/**
+ * Update the toggle button's aria-pressed attribute.
+ * @param {'dark' | 'light'} theme
+ */
+function updateToggleButton(theme) {
+  if (typeof document === 'undefined') return;
+  var toggle = document.getElementById('themeToggle');
+  if (toggle) {
+    toggle.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
+  }
 }
 
 /**
@@ -81,6 +94,7 @@ function initDarkMode(toggleId) {
   var toggle = document.getElementById(toggleId || 'themeToggle');
   if (toggle) {
     toggle.addEventListener('click', toggleTheme);
+    updateToggleButton(stored === 'light' ? 'light' : 'dark');
   }
 }
 

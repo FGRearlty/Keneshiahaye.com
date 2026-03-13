@@ -24,6 +24,7 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=Playfair+Display:wght@600;700;800&amp;display=swap" rel="stylesheet">
+  <link rel="preload" href="/css/styles.css" as="style">
   <link rel="stylesheet" href="/css/styles.css">
   <style>
     /* Scroll reveal */
@@ -401,7 +402,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <section class="relative min-h-screen flex items-center pt-20 overflow-hidden">
     <!-- Background Video Placeholder -->
     <div class="absolute inset-0">
-      <img src="/images/stock/neighborhood-ponte-vedra.jpg" alt="Beautiful homes in the Jacksonville FL area — veteran-led real estate by Keneshia Haye" class="w-full h-full object-cover" fetchpriority="high">
+      <img src="/images/stock/neighborhood-ponte-vedra.jpg" alt="Beautiful homes in the Jacksonville FL area — veteran-led real estate by Keneshia Haye" width="800" height="600" class="w-full h-full object-cover" fetchpriority="high">
       <div class="absolute inset-0 hero-overlay"></div>
     </div>
 
@@ -426,7 +427,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
         <!-- Conversational Search Bar -->
         <div class="reveal max-w-xl mb-6">
-          <form id="heroSearchForm" role="search" action="/buy" method="get" class="search-wrap relative flex items-center bg-white/10 border border-white/15 rounded-full pl-5 pr-1.5 py-1.5 transition-all duration-300 backdrop-blur-md">
+          <form id="heroSearchForm" name="hero-search" role="search" action="/buy" method="get" class="search-wrap relative flex items-center bg-white/10 border border-white/15 rounded-full pl-5 pr-1.5 py-1.5 transition-all duration-300 backdrop-blur-md">
             <svg class="w-5 h-5 text-slate-400 mr-3 flex-shrink-0" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
             <input type="text" name="q" id="heroSearchInput" placeholder="Tell me what you're looking for..." aria-label="What are you looking for" class="flex-1 bg-transparent border-none outline-none text-white text-sm sm:text-base placeholder:text-slate-400 py-2.5 min-w-0">
             <button type="submit" aria-label="Search properties" class="flex-shrink-0 flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-champagne-400 to-champagne-300 text-navy-500 text-sm font-bold rounded-full hover:shadow-lg hover:shadow-champagne-400/25 hover:scale-[1.03] active:scale-[0.98] transition-all">
@@ -438,10 +439,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
         <!-- Suggestion Chips -->
         <div class="reveal flex flex-wrap gap-2">
-          <button type="button" onclick="document.getElementById('heroSearchInput').value=this.dataset.q;document.getElementById('heroSearchForm').submit()" data-q="VA homes Jacksonville" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/5 border border-white/10 rounded-full text-xs font-medium text-slate-300 cursor-pointer hover:bg-champagne-400/10 hover:border-champagne-400/20 hover:text-champagne-400 transition-all">&#127894; VA Homes</button>
-          <button type="button" onclick="document.getElementById('heroSearchInput').value=this.dataset.q;document.getElementById('heroSearchForm').submit()" data-q="homes under $350k Jacksonville" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/5 border border-white/10 rounded-full text-xs font-medium text-slate-300 cursor-pointer hover:bg-champagne-400/10 hover:border-champagne-400/20 hover:text-champagne-400 transition-all">&#127968; Under $350k</button>
-          <button type="button" onclick="document.getElementById('heroSearchInput').value=this.dataset.q;document.getElementById('heroSearchForm').submit()" data-q="waterfront homes Jacksonville" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/5 border border-white/10 rounded-full text-xs font-medium text-slate-300 cursor-pointer hover:bg-champagne-400/10 hover:border-champagne-400/20 hover:text-champagne-400 transition-all">&#127754; Waterfront</button>
-          <button type="button" onclick="document.getElementById('heroSearchInput').value=this.dataset.q;document.getElementById('heroSearchForm').submit()" data-q="new construction homes Jacksonville" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/5 border border-white/10 rounded-full text-xs font-medium text-slate-300 cursor-pointer hover:bg-champagne-400/10 hover:border-champagne-400/20 hover:text-champagne-400 transition-all">&#128296; New Build</button>
+          <button type="button" data-search-chip data-q="VA homes Jacksonville" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/5 border border-white/10 rounded-full text-xs font-medium text-slate-300 cursor-pointer hover:bg-champagne-400/10 hover:border-champagne-400/20 hover:text-champagne-400 transition-all">&#127894; VA Homes</button>
+          <button type="button" data-search-chip data-q="homes under $350k Jacksonville" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/5 border border-white/10 rounded-full text-xs font-medium text-slate-300 cursor-pointer hover:bg-champagne-400/10 hover:border-champagne-400/20 hover:text-champagne-400 transition-all">&#127968; Under $350k</button>
+          <button type="button" data-search-chip data-q="waterfront homes Jacksonville" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/5 border border-white/10 rounded-full text-xs font-medium text-slate-300 cursor-pointer hover:bg-champagne-400/10 hover:border-champagne-400/20 hover:text-champagne-400 transition-all">&#127754; Waterfront</button>
+          <button type="button" data-search-chip data-q="new construction homes Jacksonville" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/5 border border-white/10 rounded-full text-xs font-medium text-slate-300 cursor-pointer hover:bg-champagne-400/10 hover:border-champagne-400/20 hover:text-champagne-400 transition-all">&#128296; New Build</button>
         </div>
       </div>
 
@@ -530,7 +531,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <!-- Property 1 -->
         <div class="reveal reveal-delay-1 prop-card group bg-slate-50 dark:bg-navy-700 border border-slate-200 dark:border-white/6 rounded-2xl overflow-hidden hover:-translate-y-3 hover:shadow-2xl hover:shadow-slate-300/30 dark:hover:shadow-champagne-400/5 hover:border-champagne-400/20 transition-all duration-500 cursor-pointer">
           <div class="relative h-56 overflow-hidden">
-            <img src="/images/stock/neighborhood-ponte-vedra.jpg" alt="Modern home in Ponte Vedra" class="prop-img w-full h-full object-cover transition-transform duration-700" loading="lazy">
+            <img src="/images/stock/neighborhood-ponte-vedra.jpg" alt="Modern home in Ponte Vedra" width="640" height="480" class="prop-img w-full h-full object-cover transition-transform duration-700" loading="lazy">
             <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent"></div>
             <span class="absolute top-3 left-3 px-3 py-1 bg-champagne-400/90 text-navy-500 text-[11px] font-bold tracking-wide uppercase rounded-full backdrop-blur-sm">New Listing</span>
             <button type="button" class="absolute top-3 right-3 w-9 h-9 flex items-center justify-center bg-navy-500/40 backdrop-blur-md border border-white/10 rounded-full text-white/70 hover:text-red-400 hover:bg-red-400/15 hover:border-red-400/30 transition-all text-sm" aria-label="Save">&#9825;</button>
@@ -551,7 +552,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <!-- Property 2 -->
         <div class="reveal reveal-delay-2 prop-card group bg-slate-50 dark:bg-navy-700 border border-slate-200 dark:border-white/6 rounded-2xl overflow-hidden hover:-translate-y-3 hover:shadow-2xl hover:shadow-slate-300/30 dark:hover:shadow-champagne-400/5 hover:border-champagne-400/20 transition-all duration-500 cursor-pointer">
           <div class="relative h-56 overflow-hidden">
-            <img src="/images/stock/neighborhood-riverside.jpg" alt="Beautiful home in Orange Park" class="prop-img w-full h-full object-cover transition-transform duration-700" loading="lazy">
+            <img src="/images/stock/neighborhood-riverside.jpg" alt="Beautiful home in Orange Park" width="640" height="480" class="prop-img w-full h-full object-cover transition-transform duration-700" loading="lazy">
             <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent"></div>
             <span class="absolute top-3 left-3 px-3 py-1 bg-emerald-500/90 text-white text-[11px] font-bold tracking-wide uppercase rounded-full backdrop-blur-sm">VA Eligible</span>
             <button type="button" class="absolute top-3 right-3 w-9 h-9 flex items-center justify-center bg-navy-500/40 backdrop-blur-md border border-white/10 rounded-full text-white/70 hover:text-red-400 hover:bg-red-400/15 hover:border-red-400/30 transition-all text-sm" aria-label="Save">&#9825;</button>
@@ -572,7 +573,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <!-- Property 3 -->
         <div class="reveal reveal-delay-3 prop-card group bg-slate-50 dark:bg-navy-700 border border-slate-200 dark:border-white/6 rounded-2xl overflow-hidden hover:-translate-y-3 hover:shadow-2xl hover:shadow-slate-300/30 dark:hover:shadow-champagne-400/5 hover:border-champagne-400/20 transition-all duration-500 cursor-pointer">
           <div class="relative h-56 overflow-hidden">
-            <img src="/images/stock/neighborhood-orange-park.jpg" alt="Luxury home in Jacksonville" class="prop-img w-full h-full object-cover transition-transform duration-700" loading="lazy">
+            <img src="/images/stock/neighborhood-orange-park.jpg" alt="Luxury home in Jacksonville" width="640" height="480" class="prop-img w-full h-full object-cover transition-transform duration-700" loading="lazy">
             <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent"></div>
             <span class="absolute top-3 left-3 px-3 py-1 bg-rose-500/90 text-white text-[11px] font-bold tracking-wide uppercase rounded-full backdrop-blur-sm">Price Reduced</span>
             <button type="button" class="absolute top-3 right-3 w-9 h-9 flex items-center justify-center bg-navy-500/40 backdrop-blur-md border border-white/10 rounded-full text-white/70 hover:text-red-400 hover:bg-red-400/15 hover:border-red-400/30 transition-all text-sm" aria-label="Save">&#9825;</button>
@@ -763,7 +764,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="reveal reveal-delay-1 group bg-slate-50 dark:bg-navy-700 border border-slate-200 dark:border-white/6 rounded-2xl overflow-hidden hover:border-champagne-400/20 transition-all duration-500">
           <!-- Video Thumbnail -->
           <div class="relative h-52 sm:h-64 overflow-hidden bg-slate-200 dark:bg-navy-600">
-            <img src="/images/stock/neighborhood-mandarin.jpg" alt="Jacksonville Hidden Gems video series" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
+            <img src="/images/stock/neighborhood-mandarin.jpg" alt="Jacksonville Hidden Gems video series" width="800" height="600" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
             <div class="absolute inset-0 bg-navy-500/40 flex items-center justify-center">
               <!-- Play button -->
               <div class="w-16 h-16 flex items-center justify-center bg-white/90 rounded-full shadow-xl group-hover:scale-110 transition-transform duration-300">
@@ -858,61 +859,61 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="space-y-4">
 
         <div class="reveal glass rounded-2xl overflow-hidden">
-          <button type="button" aria-expanded="false" onclick="this.parentElement.classList.toggle('faq-open'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true')" class="w-full flex items-center justify-between p-6 text-left">
+          <button type="button" aria-expanded="false" data-faq-toggle aria-controls="faq-answer-1" class="w-full flex items-center justify-between p-6 text-left">
             <span class="font-semibold text-slate-900 dark:text-white pr-4">Why should I choose a veteran real estate agent in Jacksonville?</span>
             <span class="faq-toggle text-champagne-400 text-2xl font-light transition-transform duration-300 flex-shrink-0">+</span>
           </button>
-          <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300">
+          <div id="faq-answer-1" class="faq-answer max-h-0 overflow-hidden transition-all duration-300">
             <p class="px-6 pb-6 text-slate-600 dark:text-slate-300 leading-relaxed">A veteran agent like Keneshia Haye brings military discipline, integrity, and attention to detail to every transaction. With firsthand experience navigating VA loans and military relocations, she understands the unique needs of service members, veterans, and their families in the Jacksonville, FL market.</p>
           </div>
         </div>
 
         <div class="reveal glass rounded-2xl overflow-hidden">
-          <button type="button" aria-expanded="false" onclick="this.parentElement.classList.toggle('faq-open'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true')" class="w-full flex items-center justify-between p-6 text-left">
+          <button type="button" aria-expanded="false" data-faq-toggle aria-controls="faq-answer-2" class="w-full flex items-center justify-between p-6 text-left">
             <span class="font-semibold text-slate-900 dark:text-white pr-4">What areas does Keneshia Haye serve in Jacksonville, FL?</span>
             <span class="faq-toggle text-champagne-400 text-2xl font-light transition-transform duration-300 flex-shrink-0">+</span>
           </button>
-          <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300">
+          <div id="faq-answer-2" class="faq-answer max-h-0 overflow-hidden transition-all duration-300">
             <p class="px-6 pb-6 text-slate-600 dark:text-slate-300 leading-relaxed">Keneshia serves the greater Jacksonville metropolitan area, including Orange Park, Ponte Vedra Beach, St. Augustine, Fleming Island, Riverside, Avondale, Mandarin, and surrounding Clay and St. Johns County communities. Whether you're near NAS Jacksonville or NS Mayport, she has you covered.</p>
           </div>
         </div>
 
         <div class="reveal glass rounded-2xl overflow-hidden">
-          <button type="button" aria-expanded="false" onclick="this.parentElement.classList.toggle('faq-open'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true')" class="w-full flex items-center justify-between p-6 text-left">
+          <button type="button" aria-expanded="false" data-faq-toggle aria-controls="faq-answer-3" class="w-full flex items-center justify-between p-6 text-left">
             <span class="font-semibold text-slate-900 dark:text-white pr-4">How do I get started buying or selling a home in Jacksonville?</span>
             <span class="faq-toggle text-champagne-400 text-2xl font-light transition-transform duration-300 flex-shrink-0">+</span>
           </button>
-          <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300">
+          <div id="faq-answer-3" class="faq-answer max-h-0 overflow-hidden transition-all duration-300">
             <p class="px-6 pb-6 text-slate-600 dark:text-slate-300 leading-relaxed">Simply reach out for a free, no-obligation consultation. Keneshia will assess your goals, explain the process, and create a personalized plan. For buyers, that means getting pre-approved and identifying your ideal neighborhoods. For sellers, it starts with a free Comparative Market Analysis to determine your home's value.</p>
           </div>
         </div>
 
         <div class="reveal glass rounded-2xl overflow-hidden">
-          <button type="button" aria-expanded="false" onclick="this.parentElement.classList.toggle('faq-open'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true')" class="w-full flex items-center justify-between p-6 text-left">
+          <button type="button" aria-expanded="false" data-faq-toggle aria-controls="faq-answer-4" class="w-full flex items-center justify-between p-6 text-left">
             <span class="font-semibold text-slate-900 dark:text-white pr-4">Does Keneshia Haye help with VA home loans?</span>
             <span class="faq-toggle text-champagne-400 text-2xl font-light transition-transform duration-300 flex-shrink-0">+</span>
           </button>
-          <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300">
+          <div id="faq-answer-4" class="faq-answer max-h-0 overflow-hidden transition-all duration-300">
             <p class="px-6 pb-6 text-slate-600 dark:text-slate-300 leading-relaxed">Absolutely. As a veteran herself, Keneshia specializes in VA loan transactions and understands every step — from obtaining your Certificate of Eligibility to closing. She works with VA-approved lenders to ensure you maximize your benefits, including zero down payment and no PMI.</p>
           </div>
         </div>
 
         <div class="reveal glass rounded-2xl overflow-hidden">
-          <button type="button" aria-expanded="false" onclick="this.parentElement.classList.toggle('faq-open'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true')" class="w-full flex items-center justify-between p-6 text-left">
+          <button type="button" aria-expanded="false" data-faq-toggle aria-controls="faq-answer-5" class="w-full flex items-center justify-between p-6 text-left">
             <span class="font-semibold text-slate-900 dark:text-white pr-4">How much does it cost to hire a real estate agent in Jacksonville?</span>
             <span class="faq-toggle text-champagne-400 text-2xl font-light transition-transform duration-300 flex-shrink-0">+</span>
           </button>
-          <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300">
+          <div id="faq-answer-5" class="faq-answer max-h-0 overflow-hidden transition-all duration-300">
             <p class="px-6 pb-6 text-slate-600 dark:text-slate-300 leading-relaxed">For buyers, Keneshia's services are typically free — the seller usually covers the buyer's agent commission. For sellers, commission rates are discussed during your listing consultation and are always negotiable. Every client receives a transparent breakdown of costs before signing any agreement.</p>
           </div>
         </div>
 
         <div class="reveal glass rounded-2xl overflow-hidden">
-          <button type="button" aria-expanded="false" onclick="this.parentElement.classList.toggle('faq-open'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true')" class="w-full flex items-center justify-between p-6 text-left">
+          <button type="button" aria-expanded="false" data-faq-toggle aria-controls="faq-answer-6" class="w-full flex items-center justify-between p-6 text-left">
             <span class="font-semibold text-slate-900 dark:text-white pr-4">What makes Keneshia Haye different from other Jacksonville agents?</span>
             <span class="faq-toggle text-champagne-400 text-2xl font-light transition-transform duration-300 flex-shrink-0">+</span>
           </button>
-          <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300">
+          <div id="faq-answer-6" class="faq-answer max-h-0 overflow-hidden transition-all duration-300">
             <p class="px-6 pb-6 text-slate-600 dark:text-slate-300 leading-relaxed">Keneshia combines military values — integrity, discipline, and service — with deep local market expertise. She offers personalized attention, transparent communication, and a proven marketing strategy that delivers results. Her veteran status means she truly understands military families' unique needs during PCS moves and transitions.</p>
           </div>
         </div>
@@ -1019,8 +1020,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <!-- Newsletter -->
           <p class="text-xs font-semibold text-slate-700 dark:text-slate-300 mb-2">Join Our Newsletter</p>
           <form class="flex gap-2" onsubmit="event.preventDefault(); var btn=this.querySelector('button'); var email=this.querySelector('input[type=email]').value; fetch(window.GHL_FORM_ENDPOINT || 'https://keneshia-haye-form-handler.jutsuxx.workers.dev',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,formSource:'footer-newsletter'})}).then(function(){btn.textContent='Subscribed!';btn.classList.remove('from-champagne-400','to-champagne-300');btn.classList.add('bg-emerald-500');}).catch(function(){btn.textContent='Subscribed!';btn.classList.remove('from-champagne-400','to-champagne-300');btn.classList.add('bg-emerald-500');});">
-            <label for="newsletter-email" class="sr-only">Email address for newsletter</label>
-            <input type="email" id="newsletter-email" placeholder="Enter your email" required class="flex-1 px-3 py-2 bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-lg text-sm text-slate-800 dark:text-white placeholder:text-slate-400 outline-none focus:border-champagne-400 transition-all min-w-0">
+            <label for="newsletter-email-home" class="sr-only">Email address for newsletter</label>
+            <input type="email" id="newsletter-email-home" placeholder="Enter your email" required class="flex-1 px-3 py-2 bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-lg text-sm text-slate-800 dark:text-white placeholder:text-slate-400 outline-none focus:border-champagne-400 transition-all min-w-0">
             <button type="submit" class="px-4 py-2 bg-gradient-to-r from-champagne-400 to-champagne-300 text-navy-500 text-sm font-bold rounded-lg hover:shadow-md transition-all whitespace-nowrap">Join Newsletter</button>
           </form>
         </div>
@@ -1042,7 +1043,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <!-- ===================== MOBILE BOTTOM NAV ===================== -->
   <nav id="mobileBottomNav" class="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/90 dark:bg-navy-500/90 backdrop-blur-xl border-t border-slate-200 dark:border-white/10 py-2 px-2 safe-area-bottom" aria-label="Mobile bottom navigation">
     <div class="flex items-center justify-around">
-      <a href="/" class="flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-xl text-champagne-400 transition-all">
+      <a href="/" aria-current="page" class="flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-xl text-champagne-400 transition-all">
         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
         <span class="text-[10px] font-semibold">Home</span>
       </a>
@@ -1225,7 +1226,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
      ===================================================== -->
 
 <!-- Popup Overlay -->
-<div id="kh-popup-overlay" class="fixed inset-0 z-[9999] flex items-center justify-center p-4" style="display:none; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);">
+<div id="kh-popup-overlay" role="dialog" aria-modal="true" aria-labelledby="popup-title" class="fixed inset-0 z-[9999] flex items-center justify-center p-4" style="display:none; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);">
 
   <!-- Popup Card -->
   <div id="kh-popup-card" class="relative w-full max-w-lg rounded-2xl overflow-hidden" style="background: linear-gradient(145deg, rgba(10,22,40,0.97) 0%, rgba(15,30,50,0.98) 100%); border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 25px 80px rgba(0,0,0,0.5), 0 0 60px rgba(201,169,110,0.08);">
@@ -1251,7 +1252,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
 
         <!-- Headline -->
-        <h2 class="font-serif text-2xl sm:text-3xl font-bold text-white leading-tight mb-3">
+        <h2 id="popup-title" class="font-serif text-2xl sm:text-3xl font-bold text-white leading-tight mb-3">
           Get Your <span style="color: #c9a96e;">FREE</span> First-Time Homebuyer Guide
         </h2>
 
@@ -1274,17 +1275,25 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <!-- Form -->
         <form id="kh-popup-form" class="space-y-3" novalidate>
           <div class="grid grid-cols-2 gap-3">
-            <input type="text" name="firstName" placeholder="First Name" aria-label="First Name" required autocomplete="given-name"
-              class="w-full px-4 py-3 rounded-xl text-sm text-white placeholder-white/30 bg-white/[0.04] border border-white/10 focus:outline-none transition-all">
-            <input type="text" name="lastName" placeholder="Last Name" aria-label="Last Name" required autocomplete="family-name"
+            <div>
+              <label for="popup-firstName" class="sr-only">First Name</label>
+              <input type="text" id="popup-firstName" name="firstName" placeholder="First Name" required autocomplete="given-name"
+                class="w-full px-4 py-3 rounded-xl text-sm text-white placeholder-white/30 bg-white/[0.04] border border-white/10 focus:outline-none transition-all">
+            </div>
+            <div>
+              <label for="popup-lastName" class="sr-only">Last Name</label>
+              <input type="text" id="popup-lastName" name="lastName" placeholder="Last Name" required autocomplete="family-name"
+                class="w-full px-4 py-3 rounded-xl text-sm text-white placeholder-white/30 bg-white/[0.04] border border-white/10 focus:outline-none transition-all">
+            </div>
+          </div>
+          <div>
+            <label for="popup-email" class="sr-only">Email</label>
+            <input type="email" id="popup-email" name="email" placeholder="Your email address" required autocomplete="email"
               class="w-full px-4 py-3 rounded-xl text-sm text-white placeholder-white/30 bg-white/[0.04] border border-white/10 focus:outline-none transition-all">
           </div>
           <div>
-            <input type="email" name="email" placeholder="Your email address" aria-label="Email address" required autocomplete="email"
-              class="w-full px-4 py-3 rounded-xl text-sm text-white placeholder-white/30 bg-white/[0.04] border border-white/10 focus:outline-none transition-all">
-          </div>
-          <div>
-            <input type="tel" pattern="[0-9 ()+-.]{10,}" title="Please enter a valid phone number (at least 10 digits)" name="phone" required placeholder="Phone *" aria-label="Phone" autocomplete="tel"
+            <label for="popup-phone" class="sr-only">Phone</label>
+            <input type="tel" id="popup-phone" pattern="[0-9 ()+-.]{10,}" title="Please enter a valid phone number (at least 10 digits)" name="phone" required placeholder="Phone *" autocomplete="tel"
               class="w-full px-4 py-3 rounded-xl text-sm text-white placeholder-white/30 bg-white/[0.04] border border-white/10 focus:outline-none transition-all">
           </div>
           <!-- SMS Consent Checkboxes -->
@@ -1423,5 +1432,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })();
 </script>
 
+<script src="/js/inline-handlers.js" defer></script>
 </body>
 </html>

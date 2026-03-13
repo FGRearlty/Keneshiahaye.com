@@ -24,6 +24,7 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=Playfair+Display:wght@600;700;800&amp;display=swap" rel="stylesheet">
+  <link rel="preload" href="/css/styles.css" as="style">
   <link rel="stylesheet" href="/css/styles.css">
   <style>
     /* Scroll reveal */
@@ -279,11 +280,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <section class="sticky top-16 lg:top-20 z-40 bg-white/90 dark:bg-navy-500/90 backdrop-blur-xl border-b border-slate-200 dark:border-white/10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center gap-2 py-4 overflow-x-auto scrollbar-hide">
-        <button type="button" onclick="filterResources('all', this)" class="filter-btn flex-shrink-0 px-5 py-2 text-sm font-semibold rounded-full transition-all bg-champagne-400 text-navy-500">All</button>
-        <button type="button" onclick="filterResources('buyers', this)" class="filter-btn flex-shrink-0 px-5 py-2 text-sm font-semibold rounded-full transition-all text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5">Buyers</button>
-        <button type="button" onclick="filterResources('sellers', this)" class="filter-btn flex-shrink-0 px-5 py-2 text-sm font-semibold rounded-full transition-all text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5">Sellers</button>
-        <button type="button" onclick="filterResources('veterans', this)" class="filter-btn flex-shrink-0 px-5 py-2 text-sm font-semibold rounded-full transition-all text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5">Veterans</button>
-        <button type="button" onclick="filterResources('webinars', this)" class="filter-btn flex-shrink-0 px-5 py-2 text-sm font-semibold rounded-full transition-all text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5">Webinars</button>
+        <button type="button" data-filter-category="all" class="filter-btn flex-shrink-0 px-5 py-2 text-sm font-semibold rounded-full transition-all bg-champagne-400 text-navy-500">All</button>
+        <button type="button" data-filter-category="buyers" class="filter-btn flex-shrink-0 px-5 py-2 text-sm font-semibold rounded-full transition-all text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5">Buyers</button>
+        <button type="button" data-filter-category="sellers" class="filter-btn flex-shrink-0 px-5 py-2 text-sm font-semibold rounded-full transition-all text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5">Sellers</button>
+        <button type="button" data-filter-category="veterans" class="filter-btn flex-shrink-0 px-5 py-2 text-sm font-semibold rounded-full transition-all text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5">Veterans</button>
+        <button type="button" data-filter-category="webinars" class="filter-btn flex-shrink-0 px-5 py-2 text-sm font-semibold rounded-full transition-all text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5">Webinars</button>
       </div>
     </div>
   </section>
@@ -302,8 +303,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <h2 class="font-serif text-xl font-bold text-slate-900 dark:text-white mb-3">First-Time Homebuyer Guide</h2>
           <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4">Your complete 12-page roadmap from dream to keys. Everything you need to know about buying your first home in Jacksonville.</p>
           <p class="text-xs text-slate-400 dark:text-slate-500 font-medium mb-5">12 Pages &bull; PDF Download</p>
-          <form onsubmit="event.preventDefault(); handleResourceForm(this, 'guides/first-time-homebuyer-guide.pdf');" class="flex gap-2">
-            <input type="email" required placeholder="Your email" aria-label="Email for guide download" class="form-input flex-1 px-3 py-2.5 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all min-w-0">
+          <form data-form-source="resource-download" data-guide-pdf="guides/first-time-homebuyer-guide.pdf" class="flex gap-2">
+            <input type="email" required aria-required="true" placeholder="Your email" aria-label="Email for guide download" class="form-input flex-1 px-3 py-2.5 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all min-w-0">
             <button type="submit" class="resource-dl-btn flex-shrink-0 px-4 py-2.5 bg-gradient-to-r from-champagne-400 to-champagne-300 text-navy-500 text-sm font-bold rounded-xl hover:shadow-md transition-all whitespace-nowrap">Download Free</button>
           </form>
         </div>
@@ -315,8 +316,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <h2 class="font-serif text-xl font-bold text-slate-900 dark:text-white mb-3">Buyer's Step-by-Step Guide</h2>
           <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4">A detailed walkthrough of the entire home buying journey &mdash; from defining your goals to getting your keys.</p>
           <p class="text-xs text-slate-400 dark:text-slate-500 font-medium mb-5">8 Pages &bull; PDF Download</p>
-          <form onsubmit="event.preventDefault(); handleResourceForm(this, 'guides/buyers-step-by-step-guide.pdf');" class="flex gap-2">
-            <input type="email" required placeholder="Your email" aria-label="Email for guide download" class="form-input flex-1 px-3 py-2.5 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all min-w-0">
+          <form data-form-source="resource-download" data-guide-pdf="guides/buyers-step-by-step-guide.pdf" class="flex gap-2">
+            <input type="email" required aria-required="true" placeholder="Your email" aria-label="Email for guide download" class="form-input flex-1 px-3 py-2.5 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all min-w-0">
             <button type="submit" class="resource-dl-btn flex-shrink-0 px-4 py-2.5 bg-gradient-to-r from-champagne-400 to-champagne-300 text-navy-500 text-sm font-bold rounded-xl hover:shadow-md transition-all whitespace-nowrap">Download Free</button>
           </form>
         </div>
@@ -328,8 +329,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <h2 class="font-serif text-xl font-bold text-slate-900 dark:text-white mb-3">How to Buy a Home Sight Unseen</h2>
           <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4">Essential guide for military families and remote buyers. Virtual tour tips, remote closing process, and how to protect yourself.</p>
           <p class="text-xs text-slate-400 dark:text-slate-500 font-medium mb-5">6 Pages &bull; PDF Download</p>
-          <form onsubmit="event.preventDefault(); handleResourceForm(this, 'guides/buying-sight-unseen-guide.pdf');" class="flex gap-2">
-            <input type="email" required placeholder="Your email" aria-label="Email for guide download" class="form-input flex-1 px-3 py-2.5 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all min-w-0">
+          <form data-form-source="resource-download" data-guide-pdf="guides/buying-sight-unseen-guide.pdf" class="flex gap-2">
+            <input type="email" required aria-required="true" placeholder="Your email" aria-label="Email for guide download" class="form-input flex-1 px-3 py-2.5 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all min-w-0">
             <button type="submit" class="resource-dl-btn flex-shrink-0 px-4 py-2.5 bg-gradient-to-r from-champagne-400 to-champagne-300 text-navy-500 text-sm font-bold rounded-xl hover:shadow-md transition-all whitespace-nowrap">Download Free</button>
           </form>
         </div>
@@ -341,8 +342,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <h2 class="font-serif text-xl font-bold text-slate-900 dark:text-white mb-3">Seller's Guide to Top Dollar</h2>
           <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4">Strategic pricing, professional marketing, and expert negotiation &mdash; everything you need to sell your Jacksonville home for maximum value.</p>
           <p class="text-xs text-slate-400 dark:text-slate-500 font-medium mb-5">10 Pages &bull; PDF Download</p>
-          <form onsubmit="event.preventDefault(); handleResourceForm(this, 'guides/sellers-guide-top-dollar.pdf');" class="flex gap-2">
-            <input type="email" required placeholder="Your email" aria-label="Email for guide download" class="form-input flex-1 px-3 py-2.5 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all min-w-0">
+          <form data-form-source="resource-download" data-guide-pdf="guides/sellers-guide-top-dollar.pdf" class="flex gap-2">
+            <input type="email" required aria-required="true" placeholder="Your email" aria-label="Email for guide download" class="form-input flex-1 px-3 py-2.5 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all min-w-0">
             <button type="submit" class="resource-dl-btn flex-shrink-0 px-4 py-2.5 bg-gradient-to-r from-champagne-400 to-champagne-300 text-navy-500 text-sm font-bold rounded-xl hover:shadow-md transition-all whitespace-nowrap">Download Free</button>
           </form>
         </div>
@@ -354,8 +355,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <h2 class="font-serif text-xl font-bold text-slate-900 dark:text-white mb-3">Home Prep Checklist</h2>
           <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4">Room-by-room checklist to get your home show-ready. Maximize your sale price with these proven preparation steps.</p>
           <p class="text-xs text-slate-400 dark:text-slate-500 font-medium mb-5">4 Pages &bull; PDF Download</p>
-          <form onsubmit="event.preventDefault(); handleResourceForm(this, 'guides/home-prep-checklist.pdf');" class="flex gap-2">
-            <input type="email" required placeholder="Your email" aria-label="Email for guide download" class="form-input flex-1 px-3 py-2.5 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all min-w-0">
+          <form data-form-source="resource-download" data-guide-pdf="guides/home-prep-checklist.pdf" class="flex gap-2">
+            <input type="email" required aria-required="true" placeholder="Your email" aria-label="Email for guide download" class="form-input flex-1 px-3 py-2.5 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all min-w-0">
             <button type="submit" class="resource-dl-btn flex-shrink-0 px-4 py-2.5 bg-gradient-to-r from-champagne-400 to-champagne-300 text-navy-500 text-sm font-bold rounded-xl hover:shadow-md transition-all whitespace-nowrap">Download Free</button>
           </form>
         </div>
@@ -367,8 +368,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <h2 class="font-serif text-xl font-bold text-slate-900 dark:text-white mb-3">Military Relocation Guide to Jacksonville</h2>
           <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4">PCS'ing to Jacksonville? Complete guide to bases, neighborhoods, schools, BAH, and everything military families need to know.</p>
           <p class="text-xs text-slate-400 dark:text-slate-500 font-medium mb-5">12 Pages &bull; PDF Download</p>
-          <form onsubmit="event.preventDefault(); handleResourceForm(this, 'guides/military-relocation-guide-jacksonville.pdf');" class="flex gap-2">
-            <input type="email" required placeholder="Your email" aria-label="Email for guide download" class="form-input flex-1 px-3 py-2.5 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all min-w-0">
+          <form data-form-source="resource-download" data-guide-pdf="guides/military-relocation-guide-jacksonville.pdf" class="flex gap-2">
+            <input type="email" required aria-required="true" placeholder="Your email" aria-label="Email for guide download" class="form-input flex-1 px-3 py-2.5 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all min-w-0">
             <button type="submit" class="resource-dl-btn flex-shrink-0 px-4 py-2.5 bg-gradient-to-r from-champagne-400 to-champagne-300 text-navy-500 text-sm font-bold rounded-xl hover:shadow-md transition-all whitespace-nowrap">Download Free</button>
           </form>
         </div>
@@ -380,8 +381,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <h2 class="font-serif text-xl font-bold text-slate-900 dark:text-white mb-3">VA Loan Benefits Cheat Sheet</h2>
           <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4">Quick-reference guide to VA loan benefits, eligibility, funding fees, and how to apply. Everything in one place.</p>
           <p class="text-xs text-slate-400 dark:text-slate-500 font-medium mb-5">4 Pages &bull; PDF Download</p>
-          <form onsubmit="event.preventDefault(); handleResourceForm(this, 'guides/va-loan-benefits-cheat-sheet.pdf');" class="flex gap-2">
-            <input type="email" required placeholder="Your email" aria-label="Email for guide download" class="form-input flex-1 px-3 py-2.5 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all min-w-0">
+          <form data-form-source="resource-download" data-guide-pdf="guides/va-loan-benefits-cheat-sheet.pdf" class="flex gap-2">
+            <input type="email" required aria-required="true" placeholder="Your email" aria-label="Email for guide download" class="form-input flex-1 px-3 py-2.5 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all min-w-0">
             <button type="submit" class="resource-dl-btn flex-shrink-0 px-4 py-2.5 bg-gradient-to-r from-champagne-400 to-champagne-300 text-navy-500 text-sm font-bold rounded-xl hover:shadow-md transition-all whitespace-nowrap">Download Free</button>
           </form>
         </div>
@@ -647,8 +648,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
           <!-- Newsletter -->
           <p class="text-xs font-semibold text-slate-700 dark:text-slate-300 mb-2">Join Our Newsletter</p>
-          <form class="flex gap-2" onsubmit="event.preventDefault(); var btn=this.querySelector('button'); var email=this.querySelector('input').value; fetch(window.GHL_FORM_ENDPOINT || 'https://keneshia-haye-form-handler.jutsuxx.workers.dev',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,formSource:'footer-newsletter'})}).then(function(){btn.textContent='Subscribed!';btn.classList.remove('from-champagne-400','to-champagne-300');btn.classList.add('bg-emerald-500');}).catch(function(){btn.textContent='Subscribed!';btn.classList.remove('from-champagne-400','to-champagne-300');btn.classList.add('bg-emerald-500');});">
-            <input type="email" placeholder="Enter your email" required aria-label="Email address for newsletter" class="flex-1 px-3 py-2 bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-lg text-sm text-slate-800 dark:text-white placeholder:text-slate-400 outline-none focus:border-champagne-400 transition-all min-w-0">
+          <form class="flex gap-2" data-form-source="footer-newsletter" data-newsletter>
+            <input type="email" id="newsletter-email-resources" placeholder="Enter your email" required aria-required="true" aria-label="Email address for newsletter" class="flex-1 px-3 py-2 bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-lg text-sm text-slate-800 dark:text-white placeholder:text-slate-400 outline-none focus:border-champagne-400 transition-all min-w-0">
             <button type="submit" class="px-4 py-2 bg-gradient-to-r from-champagne-400 to-champagne-300 text-navy-500 text-sm font-bold rounded-lg hover:shadow-md transition-all whitespace-nowrap">Join Newsletter</button>
           </form>
         </div>
@@ -876,5 +877,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
   </script>
 
+  <script src="/js/inline-handlers.js" defer></script>
 </body>
 </html>

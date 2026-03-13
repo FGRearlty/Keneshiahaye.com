@@ -24,6 +24,7 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=Playfair+Display:wght@600;700;800&amp;display=swap" rel="stylesheet">
+  <link rel="preload" href="/css/styles.css" as="style">
   <link rel="stylesheet" href="/css/styles.css">
   <style>
     /* Scroll reveal */
@@ -343,24 +344,25 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               <div class="grid grid-cols-2 gap-3">
                 <div>
                   <label for="firstName" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">First Name <span class="text-red-400">*</span></label>
-                  <input type="text" id="firstName" name="firstName" required placeholder="First Name" class="form-input w-full px-4 py-3 bg-white dark:bg-[#0f1f38] border border-slate-200 dark:border-white/10 rounded-xl text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all text-sm">
+                  <input type="text" id="firstName" name="firstName" required aria-required="true" placeholder="First Name" class="form-input w-full px-4 py-3 bg-white dark:bg-[#0f1f38] border border-slate-200 dark:border-white/10 rounded-xl text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all text-sm">
                 </div>
                 <div>
                   <label for="lastName" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Last Name <span class="text-red-400">*</span></label>
-                  <input type="text" id="lastName" name="lastName" required placeholder="Last Name" class="form-input w-full px-4 py-3 bg-white dark:bg-[#0f1f38] border border-slate-200 dark:border-white/10 rounded-xl text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all text-sm">
+                  <input type="text" id="lastName" name="lastName" required aria-required="true" placeholder="Last Name" class="form-input w-full px-4 py-3 bg-white dark:bg-[#0f1f38] border border-slate-200 dark:border-white/10 rounded-xl text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all text-sm">
                 </div>
               </div>
 
               <!-- Email -->
               <div>
                 <label for="email" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Email <span class="text-red-400">*</span></label>
-                <input type="email" id="email" name="email" required placeholder="you@example.com" class="form-input w-full px-4 py-3 bg-white dark:bg-[#0f1f38] border border-slate-200 dark:border-white/10 rounded-xl text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all text-sm">
+                <input type="email" id="email" name="email" required aria-required="true" placeholder="you@example.com" class="form-input w-full px-4 py-3 bg-white dark:bg-[#0f1f38] border border-slate-200 dark:border-white/10 rounded-xl text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all text-sm">
               </div>
 
               <!-- Phone -->
               <div>
                 <label for="phone" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Phone <span class="text-red-400">*</span></label>
-                <input type="tel" pattern="[0-9 ()+-.]{10,}" title="Please enter a valid phone number (at least 10 digits)" id="phone" name="phone" required placeholder="(xxx) xxx-xxxx" class="form-input w-full px-4 py-3 bg-white dark:bg-[#0f1f38] border border-slate-200 dark:border-white/10 rounded-xl text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all text-sm">
+                <input type="tel" pattern="[0-9 ()+-.]{10,}" title="Please enter a valid phone number (at least 10 digits)" id="phone" name="phone" required aria-required="true" aria-describedby="phone-hint" placeholder="(xxx) xxx-xxxx" class="form-input w-full px-4 py-3 bg-white dark:bg-[#0f1f38] border border-slate-200 dark:border-white/10 rounded-xl text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all text-sm">
+                <span id="phone-hint" class="sr-only">Enter at least 10 digits</span>
               </div>
 
               <!-- What can I help with? -->
@@ -870,5 +872,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
   </script>
 
+<script src="/js/inline-handlers.js" defer></script>
 </body>
 </html>

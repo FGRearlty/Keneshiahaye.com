@@ -26,6 +26,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=Playfair+Display:wght@600;700;800&amp;display=swap" rel="stylesheet">
+  <link rel="preload" href="/css/styles.css" as="style">
   <link rel="stylesheet" href="/css/styles.css">
   <style>
     /* Scroll reveal */
@@ -562,19 +563,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="grid sm:grid-cols-2 gap-4">
               <div>
                 <label for="gift-buyer-first" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">First Name</label>
-                <input type="text" id="gift-buyer-first" name="buyerFirstName" required class="w-full px-4 py-3 bg-slate-50 dark:bg-[#0f1f38] border border-slate-200 dark:border-white/10 rounded-xl text-slate-800 dark:text-white placeholder:text-slate-400 outline-none focus:border-champagne-400 focus:ring-1 focus:ring-champagne-400/30 transition-all">
+                <input type="text" id="gift-buyer-first" name="buyerFirstName" required aria-required="true" class="w-full px-4 py-3 bg-slate-50 dark:bg-[#0f1f38] border border-slate-200 dark:border-white/10 rounded-xl text-slate-800 dark:text-white placeholder:text-slate-400 outline-none focus:border-champagne-400 focus:ring-1 focus:ring-champagne-400/30 transition-all">
               </div>
               <div>
                 <label for="gift-buyer-last" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Last Name</label>
-                <input type="text" id="gift-buyer-last" name="buyerLastName" required class="w-full px-4 py-3 bg-slate-50 dark:bg-[#0f1f38] border border-slate-200 dark:border-white/10 rounded-xl text-slate-800 dark:text-white placeholder:text-slate-400 outline-none focus:border-champagne-400 focus:ring-1 focus:ring-champagne-400/30 transition-all">
+                <input type="text" id="gift-buyer-last" name="buyerLastName" required aria-required="true" class="w-full px-4 py-3 bg-slate-50 dark:bg-[#0f1f38] border border-slate-200 dark:border-white/10 rounded-xl text-slate-800 dark:text-white placeholder:text-slate-400 outline-none focus:border-champagne-400 focus:ring-1 focus:ring-champagne-400/30 transition-all">
               </div>
               <div>
                 <label for="gift-buyer-email" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Email</label>
-                <input type="email" id="gift-buyer-email" name="buyerEmail" required class="w-full px-4 py-3 bg-slate-50 dark:bg-[#0f1f38] border border-slate-200 dark:border-white/10 rounded-xl text-slate-800 dark:text-white placeholder:text-slate-400 outline-none focus:border-champagne-400 focus:ring-1 focus:ring-champagne-400/30 transition-all">
+                <input type="email" id="gift-buyer-email" name="buyerEmail" required aria-required="true" class="w-full px-4 py-3 bg-slate-50 dark:bg-[#0f1f38] border border-slate-200 dark:border-white/10 rounded-xl text-slate-800 dark:text-white placeholder:text-slate-400 outline-none focus:border-champagne-400 focus:ring-1 focus:ring-champagne-400/30 transition-all">
               </div>
               <div>
                 <label for="gift-buyer-phone" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Phone *</label>
-                <input type="tel" pattern="[0-9 ()+-.]{10,}" title="Please enter a valid phone number (at least 10 digits)" id="gift-buyer-phone" name="buyerPhone" required class="w-full px-4 py-3 bg-slate-50 dark:bg-[#0f1f38] border border-slate-200 dark:border-white/10 rounded-xl text-slate-800 dark:text-white placeholder:text-slate-400 outline-none focus:border-champagne-400 focus:ring-1 focus:ring-champagne-400/30 transition-all">
+                <input type="tel" pattern="[0-9 ()+-.]{10,}" title="Please enter a valid phone number (at least 10 digits)" id="gift-buyer-phone" name="buyerPhone" required aria-required="true" class="w-full px-4 py-3 bg-slate-50 dark:bg-[#0f1f38] border border-slate-200 dark:border-white/10 rounded-xl text-slate-800 dark:text-white placeholder:text-slate-400 outline-none focus:border-champagne-400 focus:ring-1 focus:ring-champagne-400/30 transition-all">
               </div>
             </div>
           </div>
@@ -588,15 +589,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="grid sm:grid-cols-2 gap-4">
               <div>
                 <label for="gift-recipient-first" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Recipient First Name</label>
-                <input type="text" id="gift-recipient-first" name="recipientFirstName" required class="w-full px-4 py-3 bg-slate-50 dark:bg-[#0f1f38] border border-slate-200 dark:border-white/10 rounded-xl text-slate-800 dark:text-white placeholder:text-slate-400 outline-none focus:border-champagne-400 focus:ring-1 focus:ring-champagne-400/30 transition-all">
+                <input type="text" id="gift-recipient-first" name="recipientFirstName" required aria-required="true" class="w-full px-4 py-3 bg-slate-50 dark:bg-[#0f1f38] border border-slate-200 dark:border-white/10 rounded-xl text-slate-800 dark:text-white placeholder:text-slate-400 outline-none focus:border-champagne-400 focus:ring-1 focus:ring-champagne-400/30 transition-all">
               </div>
               <div>
                 <label for="gift-recipient-last" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Recipient Last Name</label>
-                <input type="text" id="gift-recipient-last" name="recipientLastName" required class="w-full px-4 py-3 bg-slate-50 dark:bg-[#0f1f38] border border-slate-200 dark:border-white/10 rounded-xl text-slate-800 dark:text-white placeholder:text-slate-400 outline-none focus:border-champagne-400 focus:ring-1 focus:ring-champagne-400/30 transition-all">
+                <input type="text" id="gift-recipient-last" name="recipientLastName" required aria-required="true" class="w-full px-4 py-3 bg-slate-50 dark:bg-[#0f1f38] border border-slate-200 dark:border-white/10 rounded-xl text-slate-800 dark:text-white placeholder:text-slate-400 outline-none focus:border-champagne-400 focus:ring-1 focus:ring-champagne-400/30 transition-all">
               </div>
               <div class="sm:col-span-2">
                 <label for="gift-recipient-email" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Recipient Email</label>
-                <input type="email" id="gift-recipient-email" name="recipientEmail" required class="w-full px-4 py-3 bg-slate-50 dark:bg-[#0f1f38] border border-slate-200 dark:border-white/10 rounded-xl text-slate-800 dark:text-white placeholder:text-slate-400 outline-none focus:border-champagne-400 focus:ring-1 focus:ring-champagne-400/30 transition-all" placeholder="Where we'll send their course access">
+                <input type="email" id="gift-recipient-email" name="recipientEmail" required aria-required="true" class="w-full px-4 py-3 bg-slate-50 dark:bg-[#0f1f38] border border-slate-200 dark:border-white/10 rounded-xl text-slate-800 dark:text-white placeholder:text-slate-400 outline-none focus:border-champagne-400 focus:ring-1 focus:ring-champagne-400/30 transition-all" placeholder="Where we'll send their course access">
               </div>
             </div>
           </div>
@@ -663,51 +664,51 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
       <div class="space-y-4">
         <div class="reveal glass rounded-2xl overflow-hidden">
-          <button type="button" onclick="this.parentElement.classList.toggle('open'); this.querySelector('.faq-icon').classList.toggle('rotate-45'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true')" aria-expanded="false" class="w-full flex items-center justify-between p-6 text-left">
+          <button type="button" data-faq-toggle aria-expanded="false" aria-controls="faq-answer-1" class="w-full flex items-center justify-between p-6 text-left">
             <h3 class="font-semibold text-slate-900 dark:text-white pr-4">What is the Standing on Our Shoulders course about?</h3>
             <span class="faq-icon text-champagne-400 text-2xl font-light transition-transform duration-300 flex-shrink-0">+</span>
           </button>
-          <div class="max-h-0 overflow-hidden transition-all duration-500" style="max-height:0">
+          <div id="faq-answer-1" class="max-h-0 overflow-hidden transition-all duration-500" style="max-height:0">
             <p class="px-6 pb-6 text-sm text-slate-500 dark:text-slate-400 leading-relaxed">Standing on Our Shoulders is a comprehensive wealth-building course covering real estate investing, credit building, and personal finance. It is designed to help you build generational wealth through proven strategies taught by Keneshia Haye, a veteran-led real estate professional.</p>
           </div>
         </div>
 
         <div class="reveal glass rounded-2xl overflow-hidden">
-          <button type="button" onclick="this.parentElement.classList.toggle('open'); this.querySelector('.faq-icon').classList.toggle('rotate-45'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true')" aria-expanded="false" class="w-full flex items-center justify-between p-6 text-left">
+          <button type="button" data-faq-toggle aria-expanded="false" aria-controls="faq-answer-2" class="w-full flex items-center justify-between p-6 text-left">
             <h3 class="font-semibold text-slate-900 dark:text-white pr-4">How much does the course cost?</h3>
             <span class="faq-icon text-champagne-400 text-2xl font-light transition-transform duration-300 flex-shrink-0">+</span>
           </button>
-          <div class="max-h-0 overflow-hidden transition-all duration-500" style="max-height:0">
+          <div id="faq-answer-2" class="max-h-0 overflow-hidden transition-all duration-500" style="max-height:0">
             <p class="px-6 pb-6 text-sm text-slate-500 dark:text-slate-400 leading-relaxed">The course is available for just $20 — a one-time payment with lifetime access. There are no subscriptions or hidden fees. You can also gift the course to a friend or family member for the same price.</p>
           </div>
         </div>
 
         <div class="reveal glass rounded-2xl overflow-hidden">
-          <button type="button" onclick="this.parentElement.classList.toggle('open'); this.querySelector('.faq-icon').classList.toggle('rotate-45'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true')" aria-expanded="false" class="w-full flex items-center justify-between p-6 text-left">
+          <button type="button" data-faq-toggle aria-expanded="false" aria-controls="faq-answer-3" class="w-full flex items-center justify-between p-6 text-left">
             <h3 class="font-semibold text-slate-900 dark:text-white pr-4">Who is this course for?</h3>
             <span class="faq-icon text-champagne-400 text-2xl font-light transition-transform duration-300 flex-shrink-0">+</span>
           </button>
-          <div class="max-h-0 overflow-hidden transition-all duration-500" style="max-height:0">
+          <div id="faq-answer-3" class="max-h-0 overflow-hidden transition-all duration-500" style="max-height:0">
             <p class="px-6 pb-6 text-sm text-slate-500 dark:text-slate-400 leading-relaxed">This course is for anyone looking to build wealth, whether you are a first-time home buyer, a veteran exploring VA loan benefits, or someone wanting to improve their credit score and financial literacy. No prior real estate experience is needed.</p>
           </div>
         </div>
 
         <div class="reveal glass rounded-2xl overflow-hidden">
-          <button type="button" onclick="this.parentElement.classList.toggle('open'); this.querySelector('.faq-icon').classList.toggle('rotate-45'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true')" aria-expanded="false" class="w-full flex items-center justify-between p-6 text-left">
+          <button type="button" data-faq-toggle aria-expanded="false" aria-controls="faq-answer-4" class="w-full flex items-center justify-between p-6 text-left">
             <h3 class="font-semibold text-slate-900 dark:text-white pr-4">Can I gift the course to someone else?</h3>
             <span class="faq-icon text-champagne-400 text-2xl font-light transition-transform duration-300 flex-shrink-0">+</span>
           </button>
-          <div class="max-h-0 overflow-hidden transition-all duration-500" style="max-height:0">
+          <div id="faq-answer-4" class="max-h-0 overflow-hidden transition-all duration-500" style="max-height:0">
             <p class="px-6 pb-6 text-sm text-slate-500 dark:text-slate-400 leading-relaxed">Yes! You can purchase the course as a gift. Simply fill out the gift purchase form with the recipient's name and email, and they will receive their login credentials directly. You can also include a personal message.</p>
           </div>
         </div>
 
         <div class="reveal glass rounded-2xl overflow-hidden">
-          <button type="button" onclick="this.parentElement.classList.toggle('open'); this.querySelector('.faq-icon').classList.toggle('rotate-45'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true')" aria-expanded="false" class="w-full flex items-center justify-between p-6 text-left">
+          <button type="button" data-faq-toggle aria-expanded="false" aria-controls="faq-answer-5" class="w-full flex items-center justify-between p-6 text-left">
             <h3 class="font-semibold text-slate-900 dark:text-white pr-4">How do I access the course after purchasing?</h3>
             <span class="faq-icon text-champagne-400 text-2xl font-light transition-transform duration-300 flex-shrink-0">+</span>
           </button>
-          <div class="max-h-0 overflow-hidden transition-all duration-500" style="max-height:0">
+          <div id="faq-answer-5" class="max-h-0 overflow-hidden transition-all duration-500" style="max-height:0">
             <p class="px-6 pb-6 text-sm text-slate-500 dark:text-slate-400 leading-relaxed">After completing your $20 payment, you will receive login credentials via email to access the course through the Client Club portal. You get lifetime access to all course materials, including any future updates.</p>
           </div>
         </div>
@@ -774,9 +775,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           </div>
         </div>
         <p class="text-xs font-semibold text-slate-700 dark:text-slate-300 mb-2">Join Our Newsletter</p>
-        <form class="flex gap-2" onsubmit="event.preventDefault(); var btn=this.querySelector('button'); var email=this.querySelector('input[type=email]').value; fetch(window.GHL_FORM_ENDPOINT || 'https://keneshia-haye-form-handler.jutsuxx.workers.dev',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,formSource:'footer-newsletter'})}).then(function(){btn.textContent='Subscribed!';btn.classList.remove('from-champagne-400','to-champagne-300');btn.classList.add('bg-emerald-500');}).catch(function(){btn.textContent='Subscribed!';btn.classList.remove('from-champagne-400','to-champagne-300');btn.classList.add('bg-emerald-500');});">
-          <label for="newsletter-email" class="sr-only">Email address for newsletter</label>
-          <input type="email" id="newsletter-email" placeholder="Enter your email" required class="flex-1 px-3 py-2 bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-lg text-sm text-slate-800 dark:text-white placeholder:text-slate-400 outline-none focus:border-champagne-400 transition-all min-w-0">
+        <form class="flex gap-2" data-form-source="footer-newsletter" data-newsletter>
+          <label for="newsletter-email-course" class="sr-only">Email address for newsletter</label>
+          <input type="email" id="newsletter-email-course" placeholder="Enter your email" required aria-required="true" class="flex-1 px-3 py-2 bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-lg text-sm text-slate-800 dark:text-white placeholder:text-slate-400 outline-none focus:border-champagne-400 transition-all min-w-0">
           <button type="submit" class="px-4 py-2 bg-gradient-to-r from-champagne-400 to-champagne-300 text-navy-500 text-sm font-bold rounded-lg hover:shadow-md transition-all whitespace-nowrap">Join Newsletter</button>
         </form>
       </div>
@@ -975,5 +976,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
+  <script src="/js/inline-handlers.js" defer></script>
 </body>
 </html>
