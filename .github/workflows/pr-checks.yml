@@ -1,0 +1,140 @@
+name: PR Checks
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  # ── Unit Tests ──────────────────────────────────────────────
+  unit-tests:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci
+      - run: npm test
+
+  # ── Linting ─────────────────────────────────────────────────
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run test:lint
+
+  # ── HTML Validation ─────────────────────────────────────────
+  html-validate:
+    name: HTML Validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run test:html
+
+  # ── Cloudflare Config Validation ────────────────────────────
+  cloudflare-config:
+    name: Cloudflare Config (_redirects, _headers)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: node scripts/validate-redirects.js
+      - run: node scripts/validate-headers.js
+
+  # ── Internal Link Check ─────────────────────────────────────
+  link-check:
+    name: Link Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: node scripts/check-links.js
+
+  # ── CSS Build ───────────────────────────────────────────────
+  css-build:
+    name: CSS Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci
+      - run: npx @tailwindcss/cli -i src/input.css -o css/styles.css --minify
+
+  # ── Preview Deploy ──────────────────────────────────────────
+  preview-deploy:
+    name: Preview Deploy
+    runs-on: ubuntu-latest
+    needs: [unit-tests, lint, html-validate, cloudflare-config, link-check, css-build]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci
+
+      - name: Build Tailwind CSS
+        run: npx @tailwindcss/cli -i src/input.css -o css/styles.css --minify
+
+      - name: Remove non-site files
+        run: |
+          rm -rf va-resources/extracted-zip1 va-resources/extracted-zip2 _deploy ghl-integration email-templates .github .claude node_modules src scripts tests
+
+      - name: Deploy preview to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy . --project-name=keneshiahaye-com --branch=${{ github.head_ref }} --commit-hash=${{ github.sha }}
+
+      - name: Comment preview URL on PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const branch = context.payload.pull_request.head.ref;
+            const slug = branch.replace(/[^a-z0-9-]/g, '-').substring(0, 28);
+            const previewUrl = `https://${slug}.keneshiahaye-com.pages.dev`;
+            const body = `## Preview Deployment\n\nYour changes have been deployed to a preview URL:\n\n**${previewUrl}**\n\nAll checks passed. Review the preview before merging to production.`;
+
+            // Check if we already commented
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+            const existing = comments.find(c => c.body.includes('Preview Deployment'));
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body,
+              });
+            }
