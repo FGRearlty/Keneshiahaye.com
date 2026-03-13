@@ -5,10 +5,9 @@
   Permissions-Policy: geolocation=(), microphone=(), camera=()
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
 
-  # A basic Content Security Policy (CSP). This is a starting point and
-  # should be tested and expanded based on your site's specific needs.
-  # It allows self, Google Fonts, and Google Tag Manager.
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://www.googletagmanager.com https://keneshia-haye-form-handler.jutsuxx.workers.dev; frame-src 'self' https://www.googletagmanager.com;
+  # Content Security Policy — allows self, Google Fonts, Google Tag Manager.
+  # unsafe-inline kept for GTM inline snippet and Tailwind inline styles.
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self'; connect-src 'self' https://www.googletagmanager.com https://keneshia-haye-form-handler.jutsuxx.workers.dev; frame-src 'self' https://www.googletagmanager.com; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;
 
 # Long cache for images — they rarely change and are fingerprinted by filename
 /images/*

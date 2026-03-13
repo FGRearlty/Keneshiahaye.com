@@ -61,16 +61,13 @@ const ALLOWED_ORIGINS = ['https://keneshiahaye.com'];
  */
 export function getCORSHeaders(request) {
   const origin = request ? request.headers.get('Origin') : null;
-  if (origin && ALLOWED_ORIGINS.includes(origin)) {
-    return {
-      'Access-Control-Allow-Origin': origin,
-      'Access-Control-Allow-Methods': 'POST, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type',
-      'Access-Control-Max-Age': '86400',
-    };
+  if (origin && !ALLOWED_ORIGINS.includes(origin)) {
+    // Explicitly disallowed origin — return no CORS headers
+    return {};
   }
+  // Allowed origin or no origin (e.g. preflight without Origin header)
   return {
-    'Access-Control-Allow-Origin': 'https://keneshiahaye.com',
+    'Access-Control-Allow-Origin': origin || 'https://keneshiahaye.com',
     'Access-Control-Allow-Methods': 'POST, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type',
     'Access-Control-Max-Age': '86400',
@@ -175,6 +172,26 @@ export default {
   },
 };
 
+/**
+ * Validate email address format.
+ */
+function isValidEmail(email) {
+  if (!email || typeof email !== 'string') return false;
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+/**
+ * Normalize phone to digits only, formatted as (XXX) XXX-XXXX.
+ */
+function normalizePhone(phone) {
+  if (!phone) return '';
+  var digits = phone.replace(/\D/g, '');
+  if (digits.length >= 10) {
+    return '(' + digits.slice(0, 3) + ') ' + digits.slice(3, 6) + '-' + digits.slice(6, 10);
+  }
+  return digits;
+}
+
 async function handleFormSubmission(data, env) {
   const {
     firstName,
@@ -184,6 +201,11 @@ async function handleFormSubmission(data, env) {
     phone,
     formSource,
   } = data;
+
+  // Validate email
+  if (email && !isValidEmail(email)) {
+    return { success: false, error: 'Invalid email address' };
+  }
 
   // Parse name if firstName/lastName not provided separately
   let fName = firstName || '';
@@ -202,7 +224,7 @@ async function handleFormSubmission(data, env) {
     firstName: fName,
     lastName: lName,
     email: email,
-    phone: phone || '',
+    phone: normalizePhone(phone),
     locationId: env.GHL_LOCATION_ID,
     source: 'keneshiahaye.com',
   };
@@ -332,12 +354,12 @@ async function ghlRequest(path, method, body, apiKey) {
   return response.json();
 }
 
-export function jsonResponse(data, status = 200) {
+export function jsonResponse(data, status = 200, corsHeaders = CORS_HEADERS) {
   return new Response(JSON.stringify(data), {
     status,
     headers: {
       'Content-Type': 'application/json',
-      ...CORS_HEADERS,
+      ...corsHeaders,
     },
   });
 }
