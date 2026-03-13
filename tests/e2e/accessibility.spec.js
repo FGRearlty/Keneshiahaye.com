@@ -18,6 +18,9 @@ const pages = [
   { name: 'Resources', path: '/resources' },
   { name: 'About', path: '/about' },
   { name: 'Course', path: '/course' },
+  { name: 'VA Benefits', path: '/va-benefits' },
+  { name: 'Review', path: '/review' },
+  { name: 'Free Guide', path: '/free-guide' },
 ];
 
 for (const { name, path } of pages) {

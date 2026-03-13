@@ -310,4 +310,72 @@ describe('submitForm', () => {
     await submitForm(form, { formSource: 'test' });
     expect(fetch.mock.calls[0][0]).toBe(DEFAULT_ENDPOINT);
   });
+
+  it('rejects submission when phone number is invalid', async () => {
+    document.body.innerHTML = `
+      <form id="testForm">
+        <input name="email" value="jane@test.com">
+        <input name="phone" value="555">
+      </form>
+    `;
+    const form = document.getElementById('testForm');
+
+    global.fetch = vi.fn();
+
+    await expect(
+      submitForm(form, {
+        formSource: 'contact-page',
+        endpoint: 'https://test.worker.dev',
+      }),
+    ).rejects.toThrow('Invalid phone number');
+
+    // fetch should NOT have been called
+    expect(fetch).not.toHaveBeenCalled();
+    // Error should be displayed
+    expect(form.querySelector('#formError')).toBeTruthy();
+    expect(form.querySelector('#formError').innerHTML).toContain('valid phone number');
+  });
+
+  it('allows submission when phone number is valid', async () => {
+    document.body.innerHTML = `
+      <form id="testForm">
+        <input name="email" value="jane@test.com">
+        <input name="phone" value="(904) 555-1234">
+      </form>
+    `;
+    const form = document.getElementById('testForm');
+
+    global.fetch = vi.fn().mockResolvedValue({
+      ok: true,
+      json: () => Promise.resolve({ success: true }),
+    });
+
+    await submitForm(form, {
+      formSource: 'contact-page',
+      endpoint: 'https://test.worker.dev',
+    });
+
+    expect(fetch).toHaveBeenCalled();
+  });
+
+  it('allows submission when no phone field exists', async () => {
+    document.body.innerHTML = `
+      <form id="testForm">
+        <input name="email" value="jane@test.com">
+      </form>
+    `;
+    const form = document.getElementById('testForm');
+
+    global.fetch = vi.fn().mockResolvedValue({
+      ok: true,
+      json: () => Promise.resolve({ success: true }),
+    });
+
+    await submitForm(form, {
+      formSource: 'contact-page',
+      endpoint: 'https://test.worker.dev',
+    });
+
+    expect(fetch).toHaveBeenCalled();
+  });
 });

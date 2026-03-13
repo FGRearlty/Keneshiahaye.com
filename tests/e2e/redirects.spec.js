@@ -30,3 +30,24 @@ test.describe('Redirect rules', () => {
     await expect(h1).toContainText(/terms/i);
   });
 });
+
+test.describe('Redirect config validation', () => {
+  test('_redirects file contains /privacy -> /privacy-policy redirect', async () => {
+    const fs = await import('fs');
+    const path = await import('path');
+    const redirectsPath = path.resolve(import.meta.dirname, '..', '..', '_redirects');
+    const content = fs.readFileSync(redirectsPath, 'utf-8');
+    expect(content).toContain('/privacy');
+    expect(content).toContain('/privacy-policy');
+    expect(content).toContain('301');
+  });
+
+  test('/privacy-policy and /terms both return valid HTML', async ({ page }) => {
+    for (const p of ['/privacy-policy', '/terms']) {
+      const res = await page.goto(p);
+      expect(res.status()).toBe(200);
+      const html = await page.content();
+      expect(html).toContain('<!DOCTYPE html');
+    }
+  });
+});

@@ -22,7 +22,7 @@ const MIME = {
   '.pdf': 'application/pdf',
 };
 
-http.createServer((req, res) => {
+function handleRequest(req, res) {
   const urlPath = req.url.split('?')[0];
   let filePath = path.join(ROOT, urlPath === '/' ? 'index.html' : urlPath);
   const ext = path.extname(filePath);
@@ -51,4 +51,11 @@ http.createServer((req, res) => {
     res.writeHead(200, { 'Content-Type': mime });
     res.end(data);
   });
-}).listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+}
+
+// Start server only when run directly (not when required by tests)
+if (require.main === module) {
+  http.createServer(handleRequest).listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+}
+
+module.exports = { handleRequest, MIME };
