@@ -20,6 +20,13 @@ const pages = [
   { name: 'veterans', path: '/veterans' },
   { name: 'course', path: '/course' },
   { name: 'blog-index', path: '/blog/' },
+  { name: 'about', path: '/about' },
+  { name: 'resources', path: '/resources' },
+  { name: 'va-benefits', path: '/va-benefits' },
+  { name: 'review', path: '/review' },
+  { name: 'free-guide', path: '/free-guide' },
+  { name: 'area-jacksonville', path: '/areas/jacksonville' },
+  { name: 'blog-post', path: '/blog/va-loan-guide-jacksonville' },
 ];
 
 test.describe('Visual regression — dark mode (default)', () => {
@@ -78,6 +85,11 @@ test.describe('Visual regression — mobile viewport', () => {
   const mobilePages = [
     { name: 'homepage', path: '/' },
     { name: 'contact', path: '/contact' },
+    { name: 'buy', path: '/buy' },
+    { name: 'sell', path: '/sell' },
+    { name: 'veterans', path: '/veterans' },
+    { name: 'about', path: '/about' },
+    { name: 'va-benefits', path: '/va-benefits' },
   ];
 
   for (const { name, path } of mobilePages) {

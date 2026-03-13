@@ -1,7 +1,7 @@
 /**
  * Unit tests for server.js
  *
- * Tests the development server's routing logic, MIME type mapping,
+ * Tests the actual server module's routing logic, MIME type mapping,
  * clean URL handling, and 404 behavior.
  */
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
@@ -13,55 +13,8 @@ const PORT = 5111; // Use a different port to avoid conflicts
 const ROOT = path.resolve(import.meta.dirname, '..', '..');
 let server;
 
-// Minimal re-implementation of server logic for testing
-const MIME = {
-  '.html': 'text/html',
-  '.css': 'text/css',
-  '.js': 'application/javascript',
-  '.json': 'application/json',
-  '.png': 'image/png',
-  '.jpg': 'image/jpeg',
-  '.jpeg': 'image/jpeg',
-  '.gif': 'image/gif',
-  '.svg': 'image/svg+xml',
-  '.ico': 'image/x-icon',
-  '.webp': 'image/webp',
-  '.woff': 'font/woff',
-  '.woff2': 'font/woff2',
-  '.pdf': 'application/pdf',
-};
-
-function createTestServer() {
-  return http.createServer((req, res) => {
-    const urlPath = req.url.split('?')[0];
-    let filePath = path.join(ROOT, urlPath === '/' ? 'index.html' : urlPath);
-    const ext = path.extname(filePath);
-    if (!ext && filePath.endsWith(path.sep)) {
-      filePath = path.join(filePath, 'index.html');
-    } else if (!ext) {
-      filePath += '.html';
-    }
-
-    fs.readFile(filePath, (err, data) => {
-      if (err) {
-        const notFoundPage = path.join(ROOT, '404.html');
-        fs.readFile(notFoundPage, (err404, data404) => {
-          if (err404) {
-            res.writeHead(404, { 'Content-Type': 'text/plain' });
-            res.end('Not Found');
-          } else {
-            res.writeHead(404, { 'Content-Type': 'text/html' });
-            res.end(data404);
-          }
-        });
-        return;
-      }
-      const mime = MIME[path.extname(filePath)] || 'application/octet-stream';
-      res.writeHead(200, { 'Content-Type': mime });
-      res.end(data);
-    });
-  });
-}
+// Import actual server module
+const { handleRequest, MIME } = await import('../../server.js');
 
 function fetch(urlPath) {
   return new Promise((resolve, reject) => {
@@ -75,7 +28,7 @@ function fetch(urlPath) {
 
 beforeAll(() => {
   return new Promise((resolve) => {
-    server = createTestServer();
+    server = http.createServer(handleRequest);
     server.listen(PORT, resolve);
   });
 });
@@ -86,7 +39,7 @@ afterAll(() => {
   });
 });
 
-describe('Server routing', () => {
+describe('Server routing (actual module)', () => {
   it('serves index.html for /', async () => {
     const res = await fetch('/');
     expect(res.status).toBe(200);
@@ -118,9 +71,8 @@ describe('Server routing', () => {
   });
 });
 
-describe('MIME types', () => {
+describe('MIME types (from actual module)', () => {
   it('serves CSS with correct MIME type', async () => {
-    // Check if css/styles.css exists
     const cssExists = fs.existsSync(path.join(ROOT, 'css', 'styles.css'));
     if (cssExists) {
       const res = await fetch('/css/styles.css');

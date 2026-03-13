@@ -91,6 +91,15 @@ function submitForm(form, options) {
   var formData = collectFormData(form);
   formData.formSource = options.formSource;
 
+  // Enforce phone validation if a phone field exists and has a value
+  if (formData.phone && !validatePhone(formData.phone)) {
+    showFormError(
+      form,
+      'Please enter a valid phone number with at least 10 digits.',
+    );
+    return Promise.reject(new Error('Invalid phone number'));
+  }
+
   if (options.extraData) {
     Object.keys(options.extraData).forEach(function (key) {
       formData[key] = options.extraData[key];

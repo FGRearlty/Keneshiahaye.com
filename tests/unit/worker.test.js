@@ -14,6 +14,7 @@ import {
   RATE_LIMIT_MAX,
   RATE_LIMIT_WINDOW,
   jsonResponse,
+  addContactNote,
 } from '../../ghl-integration/worker.js';
 
 // parseName is inlined in handleFormSubmission, so we re-implement for unit testing
@@ -864,5 +865,122 @@ describe('Worker fetch handler', () => {
       const body = await res.json();
       expect(body.error).toBe('Internal server error');
     });
+  });
+});
+
+// ============================================================
+// addContactNote() — directly exported from worker.js
+// ============================================================
+describe('addContactNote()', () => {
+  beforeEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it('creates a note with formSource and date', async () => {
+    const calls = [];
+    global.fetch = vi.fn().mockImplementation((url, opts) => {
+      calls.push({ url, opts });
+      return Promise.resolve({ json: () => Promise.resolve({ success: true }) });
+    });
+
+    await addContactNote('contact-123', 'buyer-intake', {
+      firstName: 'Jane',
+      lastName: 'Doe',
+      email: 'jane@test.com',
+      phone: '9045551234',
+      formSource: 'buyer-intake',
+      timeline: '3-6 months',
+      message: 'Looking for a home',
+    }, 'test-key');
+
+    expect(calls.length).toBe(1);
+    const noteBody = JSON.parse(calls[0].opts.body);
+    expect(noteBody.body).toContain('buyer-intake');
+    expect(noteBody.body).toContain('Date:');
+    // Extra fields should be included
+    expect(noteBody.body).toContain('3-6 months');
+    expect(noteBody.body).toContain('Looking for a home');
+  });
+
+  it('skips standard contact fields in note body', async () => {
+    global.fetch = vi.fn().mockResolvedValue({
+      json: () => Promise.resolve({ success: true }),
+    });
+
+    await addContactNote('c1', 'contact-page', {
+      firstName: 'John',
+      lastName: 'Smith',
+      name: 'John Smith',
+      email: 'john@test.com',
+      phone: '5551234567',
+      formSource: 'contact-page',
+      message: 'Hello',
+    }, 'test-key');
+
+    const noteBody = JSON.parse(global.fetch.mock.calls[0][1].body);
+    // These should be skipped
+    expect(noteBody.body).not.toMatch(/^firstName:/m);
+    expect(noteBody.body).not.toMatch(/^lastName:/m);
+    expect(noteBody.body).not.toMatch(/^email:/m);
+    expect(noteBody.body).not.toMatch(/^phone:/m);
+    expect(noteBody.body).not.toMatch(/^formSource:/m);
+    // This should be included
+    expect(noteBody.body).toContain('Hello');
+  });
+
+  it('handles empty extra data gracefully', async () => {
+    global.fetch = vi.fn().mockResolvedValue({
+      json: () => Promise.resolve({ success: true }),
+    });
+
+    await addContactNote('c1', 'contact-page', {
+      email: 'a@b.com',
+      formSource: 'contact-page',
+    }, 'test-key');
+
+    expect(global.fetch).toHaveBeenCalled();
+    const noteBody = JSON.parse(global.fetch.mock.calls[0][1].body);
+    expect(noteBody.body).toContain('contact-page');
+  });
+
+  it('handles array values in form data', async () => {
+    global.fetch = vi.fn().mockResolvedValue({
+      json: () => Promise.resolve({ success: true }),
+    });
+
+    await addContactNote('c1', 'buyer-intake', {
+      email: 'a@b.com',
+      formSource: 'buyer-intake',
+      areas: ['Jacksonville', 'Orange Park'],
+    }, 'test-key');
+
+    const noteBody = JSON.parse(global.fetch.mock.calls[0][1].body);
+    expect(noteBody.body).toContain('Jacksonville, Orange Park');
+  });
+
+  it('does not throw when GHL API errors', async () => {
+    global.fetch = vi.fn().mockRejectedValue(new Error('API error'));
+
+    // Should not throw — errors are caught internally
+    await expect(
+      addContactNote('c1', 'contact-page', { formSource: 'contact-page' }, 'key')
+    ).resolves.toBeUndefined();
+  });
+
+  it('formats camelCase keys as readable labels', async () => {
+    global.fetch = vi.fn().mockResolvedValue({
+      json: () => Promise.resolve({ success: true }),
+    });
+
+    await addContactNote('c1', 'buyer-intake', {
+      email: 'a@b.com',
+      formSource: 'buyer-intake',
+      preferredArea: 'Jacksonville',
+      priceRange: '300k-400k',
+    }, 'test-key');
+
+    const noteBody = JSON.parse(global.fetch.mock.calls[0][1].body);
+    expect(noteBody.body).toContain('Preferred Area: Jacksonville');
+    expect(noteBody.body).toContain('Price Range: 300k-400k');
   });
 });
