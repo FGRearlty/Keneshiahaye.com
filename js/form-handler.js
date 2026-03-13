@@ -150,14 +150,11 @@ function submitForm(form, options) {
     });
 }
 
-// Export for both module and test environments
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = {
-    collectFormData,
-    validatePhone,
-    showFormError,
-    submitForm,
-    DEFAULT_ENDPOINT,
-    DEFAULT_ERROR_HTML,
-  };
-}
+export {
+  collectFormData,
+  validatePhone,
+  showFormError,
+  submitForm,
+  DEFAULT_ENDPOINT,
+  DEFAULT_ERROR_HTML,
+};

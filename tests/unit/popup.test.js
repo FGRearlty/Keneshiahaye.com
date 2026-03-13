@@ -8,7 +8,7 @@
  */
 import { describe, it, expect, beforeEach, vi, afterEach } from 'vitest';
 
-const {
+import {
   SEVEN_DAYS,
   shouldShowPopup,
   markPopupShown,
@@ -16,7 +16,7 @@ const {
   showOverlay,
   hideOverlay,
   initPopup,
-} = require('../../js/popup.js');
+} from '../../js/popup.js';
 
 describe('SEVEN_DAYS constant', () => {
   it('equals 604800000 ms (7 days)', () => {

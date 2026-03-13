@@ -1,6 +1,10 @@
-const http = require('http');
-const fs = require('fs');
-const path = require('path');
+import http from 'http';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const PORT = process.env.PORT || 5000;
 const ROOT = __dirname;
@@ -53,9 +57,10 @@ function handleRequest(req, res) {
   });
 }
 
-// Start server only when run directly (not when required by tests)
-if (require.main === module) {
+// Start server only when run directly
+const isMain = process.argv[1] && path.resolve(process.argv[1]) === path.resolve(__filename);
+if (isMain) {
   http.createServer(handleRequest).listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
 }
 
-module.exports = { handleRequest, MIME };
+export { handleRequest, MIME };

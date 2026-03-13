@@ -7,7 +7,7 @@
  */
 import { describe, it, expect, beforeEach } from 'vitest';
 
-const {
+import {
   STORAGE_KEY,
   getStoredTheme,
   setStoredTheme,
@@ -15,7 +15,7 @@ const {
   getCurrentTheme,
   toggleTheme,
   initDarkMode,
-} = require('../../js/dark-mode.js');
+} from '../../js/dark-mode.js';
 
 describe('STORAGE_KEY', () => {
   it('is "kh-theme"', () => {

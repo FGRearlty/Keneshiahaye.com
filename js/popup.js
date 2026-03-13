@@ -135,15 +135,12 @@ function initPopup(options) {
   });
 }
 
-// Export for both module and test environments
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = {
-    SEVEN_DAYS,
-    shouldShowPopup,
-    markPopupShown,
-    getScrollPercent,
-    showOverlay,
-    hideOverlay,
-    initPopup,
-  };
-}
+export {
+  SEVEN_DAYS,
+  shouldShowPopup,
+  markPopupShown,
+  getScrollPercent,
+  showOverlay,
+  hideOverlay,
+  initPopup,
+};

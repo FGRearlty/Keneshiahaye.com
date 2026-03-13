@@ -8,15 +8,14 @@
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 
-// Use require since the module uses CommonJS exports
-const {
+import {
   collectFormData,
   validatePhone,
   showFormError,
   submitForm,
   DEFAULT_ENDPOINT,
   DEFAULT_ERROR_HTML,
-} = require('../../js/form-handler.js');
+} from '../../js/form-handler.js';
 
 describe('collectFormData', () => {
   beforeEach(() => {

@@ -64,13 +64,7 @@ export default [
   {
     files: ['server.js'],
     languageOptions: {
-      sourceType: 'commonjs',
       globals: {
-        require: 'readonly',
-        module: 'readonly',
-        exports: 'readonly',
-        __dirname: 'readonly',
-        __filename: 'readonly',
         console: 'readonly',
         process: 'readonly',
       },

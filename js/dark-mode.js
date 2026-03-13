@@ -84,15 +84,12 @@ function initDarkMode(toggleId) {
   }
 }
 
-// Export for both module and test environments
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = {
-    STORAGE_KEY,
-    getStoredTheme,
-    setStoredTheme,
-    applyTheme,
-    getCurrentTheme,
-    toggleTheme,
-    initDarkMode,
-  };
-}
+export {
+  STORAGE_KEY,
+  getStoredTheme,
+  setStoredTheme,
+  applyTheme,
+  getCurrentTheme,
+  toggleTheme,
+  initDarkMode,
+};

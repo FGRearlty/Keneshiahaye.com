@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "scripts": {
     "build:css": "tailwindcss -i src/input.css -o css/styles.css --minify",
     "dev:css": "tailwindcss -i src/input.css -o css/styles.css --watch",
