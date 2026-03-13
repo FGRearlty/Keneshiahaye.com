@@ -343,33 +343,45 @@ export async function onRequest(_context) {
       var params = new URLSearchParams(window.location.search);
       var emailInput = document.querySelector('input[name="email"]');
       var nameInput = document.querySelector('input[name="name"]');
+      var emailPattern = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
+      var namePattern = /^[a-zA-Z\\s'\\-\\.]{1,100}$/;
 
-      /* Pre-fill from URL params (passed from gift form or enroll button) */
-      if (params.get('email') && emailInput) emailInput.value = params.get('email');
-      if (params.get('name') && nameInput) nameInput.value = params.get('name');
+      /* Pre-fill from URL params with validation */
+      var paramEmail = params.get('email') || '';
+      var paramName = params.get('name') || '';
+      if (paramEmail && emailPattern.test(paramEmail) && emailInput) emailInput.value = paramEmail;
+      if (paramName && namePattern.test(paramName) && nameInput) nameInput.value = paramName;
 
-      /* Show gift badge if this is a gift purchase */
+      /* Show gift badge if this is a gift purchase (sanitize recipient) */
       if (params.get('gift') === '1' && params.get('recipient')) {
-        var badge = document.querySelector('.badge');
-        if (badge) badge.textContent = '🎁 Gift for ' + params.get('recipient');
+        var recipient = params.get('recipient');
+        if (namePattern.test(recipient)) {
+          var badge = document.querySelector('.badge');
+          if (badge) badge.textContent = '\\uD83C\\uDF81 Gift for ' + recipient;
+        }
       }
 
-      /* On form submit, build GHL URL with the entered info and redirect */
+      /* On form submit, validate then build GHL URL and redirect */
       document.getElementById('checkoutForm').addEventListener('submit', function(e) {
         e.preventDefault();
         var email = emailInput ? emailInput.value : '';
         var name = nameInput ? nameInput.value : '';
+        if (!emailPattern.test(email)) { emailInput.focus(); return; }
+        if (!namePattern.test(name)) { nameInput.focus(); return; }
         var ghlParams = new URLSearchParams();
-        if (email) ghlParams.set('email', email);
-        if (name) {
-          ghlParams.set('name', name);
-          var parts = name.trim().split(/\\s+/);
-          if (parts.length >= 2) {
-            ghlParams.set('first_name', parts[0]);
-            ghlParams.set('last_name', parts.slice(1).join(' '));
-          }
+        ghlParams.set('email', email);
+        ghlParams.set('name', name);
+        var parts = name.trim().split(/\\s+/);
+        if (parts.length >= 2) {
+          ghlParams.set('first_name', parts[0]);
+          ghlParams.set('last_name', parts.slice(1).join(' '));
         }
-        var ghlUrl = '${GHL_CHECKOUT_URL}' + (ghlParams.toString() ? '?' + ghlParams.toString() : '');
+        var ghlUrl = '${GHL_CHECKOUT_URL}' + '?' + ghlParams.toString();
+        /* Validate redirect target matches expected GHL host */
+        try {
+          var parsed = new URL(ghlUrl);
+          if (parsed.hostname !== 'bl54fprv9t5btudmrsdb.app.clientclub.net') return;
+        } catch (_) { return; }
         window.location.href = ghlUrl;
       });
     })();

@@ -15,7 +15,6 @@ const {
   showFormError,
   submitForm,
   DEFAULT_ENDPOINT,
-  DEFAULT_ERROR_HTML,
 } = require('../../js/form-handler.js');
 
 describe('collectFormData', () => {
@@ -295,7 +294,11 @@ describe('submitForm', () => {
       }),
     ).rejects.toThrow('Network error');
 
-    expect(form.querySelector('#formError').innerHTML).toBe(DEFAULT_ERROR_HTML);
+    const errDiv = form.querySelector('#formError');
+    expect(errDiv.textContent).toContain('Something went wrong');
+    expect(errDiv.textContent).toContain('(254) 449-5299');
+    const phoneLink = errDiv.querySelector('a[href="tel:+12544495299"]');
+    expect(phoneLink).not.toBeNull();
   });
 
   it('uses DEFAULT_ENDPOINT when no endpoint specified', async () => {

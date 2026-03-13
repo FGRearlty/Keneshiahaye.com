@@ -2,3 +2,4 @@
 # Only rules for actual path redirects go here
 
 /privacy    /privacy-policy  301
+/blog/va-loan-changes-2026    /blog/va-loan-changes-2026.html    200
