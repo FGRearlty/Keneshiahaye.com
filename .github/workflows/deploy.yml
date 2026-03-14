@@ -53,7 +53,7 @@ jobs:
 
       - name: Remove non-site files
         run: |
-          rm -rf va-resources/extracted-zip1 va-resources/extracted-zip2 _deploy ghl-integration email-templates .github .claude node_modules src scripts tests
+          rm -rf va-resources/extracted-zip1 va-resources/extracted-zip2 _deploy ghl-integration email-templates automation .github .claude node_modules src scripts tests
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3

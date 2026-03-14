@@ -1,0 +1,34 @@
+{
+  "name": "KH - Daily Content Approval Check",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [{ "field": "cronExpression", "expression": "0 9 * * *" }]
+        }
+      },
+      "name": "Daily 9AM Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "operation": "list",
+        "application": "appTFBJkeI2RrA14P",
+        "table": "Content Calendar",
+        "additionalOptions": {
+          "filterByFormula": "OR({Status} = 'Ready for Review', AND({Status} = 'Approved', IS_BEFORE({Scheduled Date}, TODAY())))"
+        }
+      },
+      "name": "Get Review Items",
+      "type": "n8n-nodes-base.airtable",
+      "position": [470, 300],
+      "credentials": { "airtableTokenApi": { "id": "CONFIGURE_ME" } }
+    }
+  ],
+  "connections": {
+    "Daily 9AM Trigger": { "main": [[{ "node": "Get Review Items", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "timezone": "America/New_York" },
+  "_comment": "Import this workflow into n8n, then configure Airtable credentials and add notification nodes (email/Slack/etc)"
+}

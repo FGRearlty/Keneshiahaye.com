@@ -1,0 +1,5 @@
+# Credentials - never commit
+.env
+
+# n8n data volume
+n8n_data/

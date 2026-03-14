@@ -1,0 +1,55 @@
+{
+  "name": "KH - Post Approved Content",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [{ "field": "cronExpression", "expression": "0 10 * * *" }]
+        }
+      },
+      "name": "Daily 10AM Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "operation": "list",
+        "application": "appTFBJkeI2RrA14P",
+        "table": "Content Calendar",
+        "additionalOptions": {
+          "filterByFormula": "AND({Status} = 'Approved', IS_SAME({Scheduled Date}, TODAY(), 'day'))"
+        }
+      },
+      "name": "Get Today Approved",
+      "type": "n8n-nodes-base.airtable",
+      "position": [470, 300],
+      "credentials": { "airtableTokenApi": { "id": "CONFIGURE_ME" } }
+    },
+    {
+      "parameters": {
+        "operation": "list",
+        "application": "appTFBJkeI2RrA14P",
+        "table": "Social Media Content",
+        "additionalOptions": {
+          "filterByFormula": "{Platform Status} = 'Not Posted'"
+        }
+      },
+      "name": "Get Social Content",
+      "type": "n8n-nodes-base.airtable",
+      "position": [470, 500],
+      "credentials": { "airtableTokenApi": { "id": "CONFIGURE_ME" } }
+    }
+  ],
+  "connections": {
+    "Daily 10AM Trigger": {
+      "main": [
+        [
+          { "node": "Get Today Approved", "type": "main", "index": 0 },
+          { "node": "Get Social Content", "type": "main", "index": 0 }
+        ]
+      ]
+    }
+  },
+  "settings": { "timezone": "America/New_York" },
+  "_comment": "Import into n8n. Add GHL HTTP nodes to post content, then update Airtable status to Published."
+}
