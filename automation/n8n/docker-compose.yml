@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  n8n:
+    image: n8nio/n8n:latest
+    container_name: kh-n8n
+    restart: unless-stopped
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=${N8N_USER:-admin}
+      - N8N_BASIC_AUTH_PASSWORD=${N8N_PASSWORD:-changeme}
+      - N8N_HOST=localhost
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=http
+      - WEBHOOK_URL=http://localhost:5678/
+      - GENERIC_TIMEZONE=America/New_York
+      - TZ=America/New_York
+      # Airtable credentials (set in .env)
+      - AIRTABLE_API_KEY=${AIRTABLE_API_KEY:-}
+      # GHL credentials (set in .env)
+      - GHL_API_KEY=${GHL_API_KEY:-}
+      - GHL_LOCATION_ID=${GHL_LOCATION_ID:-}
+    volumes:
+      - n8n_data:/home/node/.n8n
+      - ./workflows:/home/node/workflows
+    networks:
+      - kh-automation
+
+volumes:
+  n8n_data:
+    driver: local
+
+networks:
+  kh-automation:
+    driver: bridge
