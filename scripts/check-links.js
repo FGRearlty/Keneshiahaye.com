@@ -118,9 +118,10 @@ function checkFile(filePath) {
   const srcRegex = /src="([^"]*?)"/g;
   while ((match = srcRegex.exec(content)) !== null) {
     const src = match[1];
-    // Skip external, data URIs, and script sources
+    // Skip external, data URIs, script sources, and JS template literals
     if (!src || src.startsWith('http') || src.startsWith('data:') || src.startsWith('//')) continue;
     if (src.endsWith('.js')) continue; // JS files handled differently
+    if (src.includes('${')) continue; // JS template literal — not a static asset path
 
     const resolved = resolveHref(src, filePath);
     if (!resolved) continue;
