@@ -1,0 +1,81 @@
+{
+  "name": "Weekly Content Performance Report",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 9 * * 1"
+            }
+          ]
+        }
+      },
+      "id": "monday-trigger",
+      "name": "Every Monday 9am",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "operation": "list",
+        "application": "appTFBJkeI2RrA14P",
+        "table": "Content Calendar",
+        "filterByFormula": "AND(IS_AFTER({Scheduled Date}, DATEADD(TODAY(), -7, 'days')), IS_BEFORE({Scheduled Date}, TODAY()))"
+      },
+      "id": "get-last-week",
+      "name": "Get Last Week's Content",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "operation": "list",
+        "application": "appTFBJkeI2RrA14P",
+        "table": "Content Calendar",
+        "filterByFormula": "AND({Status}='Draft', IS_BEFORE({Scheduled Date}, DATEADD(TODAY(), 14, 'days')))"
+      },
+      "id": "get-upcoming",
+      "name": "Get Upcoming 2 Weeks",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2,
+      "position": [460, 460]
+    },
+    {
+      "parameters": {
+        "fromEmail": "keneshia@fgragent.com",
+        "toEmail": "keneshia@fgragent.com",
+        "subject": "📊 Weekly Content Report — {{ new Date().toLocaleDateString('en-US', {month:'short', day:'numeric'}) }}",
+        "emailType": "html",
+        "message": "<div style='font-family:Inter,sans-serif;max-width:600px'><h2 style='color:#0a1628'>Weekly Content Report</h2><h3>Last Week ({{ $('Get Last Week\\'s Content').all().length }} pieces)</h3>{{ $('Get Last Week\\'s Content').all().map(item => `<div style='padding:8px;border-left:3px solid #c9a96e;margin:6px 0'><strong>${item.json.fields.Title}</strong> — ${item.json.fields.Status}</div>`).join('') || '<p style=\"color:#888\">No content posted last week.</p>' }}<hr style='margin:20px 0'/><h3>Coming Up (Next 2 Weeks)</h3>{{ $('Get Upcoming 2 Weeks').all().map(item => `<div style='padding:8px;border-left:3px solid #0a1628;margin:6px 0'><strong>${item.json.fields.Title}</strong><br/><small style='color:#666'>${item.json.fields['Scheduled Date'] || 'No date set'} · ${item.json.fields['Content Type']}</small></div>`).join('') || '<p style=\"color:#888\">No upcoming content drafted.</p>' }}<div style='margin-top:24px;text-align:center'><a href='https://airtable.com/appTFBJkeI2RrA14P' style='background:#c9a96e;color:#0a1628;padding:12px 28px;border-radius:24px;text-decoration:none;font-weight:bold'>Manage Content Calendar →</a></div></div>"
+      },
+      "id": "send-report",
+      "name": "Send Weekly Report",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [700, 380]
+    }
+  ],
+  "connections": {
+    "Every Monday 9am": {
+      "main": [
+        [
+          { "node": "Get Last Week's Content", "type": "main", "index": 0 },
+          { "node": "Get Upcoming 2 Weeks", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Get Last Week's Content": {
+      "main": [[{ "node": "Send Weekly Report", "type": "main", "index": 0 }]]
+    },
+    "Get Upcoming 2 Weeks": {
+      "main": [[{ "node": "Send Weekly Report", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}
