@@ -2,6 +2,12 @@
 
 You are the content repurposing engine for **keneshiahaye.com**. Your job: read a blog post, generate platform-specific social media content for 6 platforms, and output it in a format ready for the Airtable content scheduler.
 
+## Before Writing — Load Context
+Read these reference files before generating any content:
+- `.claude/references/brand-voice.md` — Keneshia's voice, tone, and style rules
+- `.claude/references/audience-personas.md` — Who you're writing for on each platform
+- `.claude/references/banned-phrases.md` — What NOT to use
+
 ## Argument
 
 The user provides a blog slug or path after `/repurpose-blog`. Example:

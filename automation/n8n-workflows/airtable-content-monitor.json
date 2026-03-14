@@ -1,0 +1,105 @@
+{
+  "name": "Airtable Content Monitor — Daily Approved Check",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 8 * * *"
+            }
+          ]
+        }
+      },
+      "id": "daily-trigger",
+      "name": "Daily 8am Check",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "operation": "list",
+        "application": "appTFBJkeI2RrA14P",
+        "table": "Content Calendar",
+        "filterByFormula": "AND({Status}='Approved', IS_AFTER({Scheduled Date}, TODAY()-1), IS_BEFORE({Scheduled Date}, TODAY()+1))"
+      },
+      "id": "get-todays-content",
+      "name": "Get Today's Approved Content",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $items().length }}",
+              "operation": "largerEqual",
+              "value2": 1
+            }
+          ]
+        }
+      },
+      "id": "has-content",
+      "name": "Any Content Today?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "fromEmail": "keneshia@fgragent.com",
+        "toEmail": "keneshia@fgragent.com",
+        "subject": "📅 {{ $items().length }} piece(s) scheduled to post today",
+        "emailType": "html",
+        "message": "<h2>Content Ready to Post Today</h2><p>The following content is approved and scheduled for today:</p>{{ $items().map(item => `<div style='border:1px solid #eee;padding:12px;margin:8px 0;border-radius:8px'><strong>${item.json.fields.Title}</strong><br/><span style='color:#666'>${item.json.fields['Content Type']} · ${item.json.fields.Platform || 'All platforms'}</span></div>`).join('') }}<p style='margin-top:16px'><a href='https://airtable.com/appTFBJkeI2RrA14P' style='background:#c9a96e;color:#0a1628;padding:12px 24px;border-radius:24px;text-decoration:none;font-weight:bold;display:inline-block'>View in Airtable →</a></p>"
+      },
+      "id": "email-daily-brief",
+      "name": "Email Daily Content Brief",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [900, 220]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "application": "appTFBJkeI2RrA14P",
+        "table": "Content Calendar",
+        "id": "={{ $json.id }}",
+        "additionalFields": {
+          "fields": {
+            "Status": "Scheduled"
+          }
+        }
+      },
+      "id": "mark-scheduled",
+      "name": "Mark as Scheduled",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2,
+      "position": [900, 380]
+    }
+  ],
+  "connections": {
+    "Daily 8am Check": {
+      "main": [[{ "node": "Get Today's Approved Content", "type": "main", "index": 0 }]]
+    },
+    "Get Today's Approved Content": {
+      "main": [[{ "node": "Any Content Today?", "type": "main", "index": 0 }]]
+    },
+    "Any Content Today?": {
+      "main": [
+        [
+          { "node": "Email Daily Content Brief", "type": "main", "index": 0 },
+          { "node": "Mark as Scheduled", "type": "main", "index": 0 }
+        ],
+        []
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

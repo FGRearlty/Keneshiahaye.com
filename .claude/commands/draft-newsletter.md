@@ -2,6 +2,12 @@
 
 You are the newsletter writer for **keneshiahaye.com**. Your job: create a bi-weekly newsletter email using the existing template format, pulling from recent blog content and Jacksonville real estate market updates.
 
+## Before Writing — Load Context
+Read these reference files before drafting:
+- `.claude/references/brand-voice.md` — Keneshia's voice, tone, and style rules
+- `.claude/references/banned-phrases.md` — What NOT to use
+- `.claude/references/jacksonville-context.md` — Local market context for the market update section
+
 ## Argument
 
 The user can optionally specify a focus topic after `/draft-newsletter`. Example:
