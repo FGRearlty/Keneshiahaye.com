@@ -1,0 +1,210 @@
+{
+  "description": "Binary assertion eval suite for blog-writer skill. Each assertion must be true or false — no partial credit. Run each test prompt 3 times and report pass rate. If pass rate < 100%, make one change to skill.md and retest.",
+  "pass_threshold": 1.0,
+  "test_prompts": [
+    {
+      "id": "test_1",
+      "prompt": "Write a blog post about VA loan myths Jacksonville FL",
+      "expected": "A complete HTML blog post targeting VA loan buyers in Jacksonville"
+    },
+    {
+      "id": "test_2",
+      "prompt": "Write a blog post about best neighborhoods for families in Jacksonville",
+      "expected": "A complete HTML blog post covering family-friendly Jacksonville neighborhoods"
+    },
+    {
+      "id": "test_3",
+      "prompt": "Write a blog post about how to sell your home fast in Orange Park FL",
+      "expected": "A complete HTML blog post targeting home sellers in Orange Park"
+    },
+    {
+      "id": "test_4",
+      "prompt": "Write a blog post about first-time homebuyer programs in Florida 2026",
+      "expected": "A complete HTML blog post about FL homebuyer programs with local Jacksonville context"
+    },
+    {
+      "id": "test_5",
+      "prompt": "Write a blog post about moving to Jacksonville from out of state",
+      "expected": "A complete HTML blog post about relocating to Jacksonville"
+    }
+  ],
+  "assertions": [
+    {
+      "id": "phone_number",
+      "description": "Output contains the correct phone number",
+      "check": "HTML output contains exactly '(254) 449-5299'",
+      "type": "contains",
+      "value": "(254) 449-5299"
+    },
+    {
+      "id": "email_address",
+      "description": "Output contains the correct email",
+      "check": "HTML output contains 'keneshia@fgragent.com'",
+      "type": "contains",
+      "value": "keneshia@fgragent.com"
+    },
+    {
+      "id": "gtm_tag",
+      "description": "Google Tag Manager container is present",
+      "check": "HTML output contains 'GTM-NSFSZWX4'",
+      "type": "contains",
+      "value": "GTM-NSFSZWX4"
+    },
+    {
+      "id": "canonical_url",
+      "description": "Canonical URL points to keneshiahaye.com",
+      "check": "HTML output contains 'rel=\"canonical\"' with 'https://keneshiahaye.com'",
+      "type": "contains",
+      "value": "https://keneshiahaye.com"
+    },
+    {
+      "id": "title_tag_present",
+      "description": "HTML has a <title> tag",
+      "check": "HTML output contains '<title>' and '</title>'",
+      "type": "contains",
+      "value": "<title>"
+    },
+    {
+      "id": "title_includes_keneshia",
+      "description": "Title tag includes Keneshia Haye brand name",
+      "check": "The <title> tag contains 'Keneshia Haye'",
+      "type": "contains",
+      "value": "Keneshia Haye"
+    },
+    {
+      "id": "meta_description_present",
+      "description": "HTML has a meta description tag",
+      "check": "HTML output contains 'name=\"description\"'",
+      "type": "contains",
+      "value": "name=\"description\""
+    },
+    {
+      "id": "faq_schema",
+      "description": "FAQPage JSON-LD schema is present",
+      "check": "HTML output contains '\"@type\": \"FAQPage\"'",
+      "type": "contains",
+      "value": "\"@type\": \"FAQPage\""
+    },
+    {
+      "id": "article_schema",
+      "description": "Article JSON-LD schema is present",
+      "check": "HTML output contains '\"@type\": \"Article\"'",
+      "type": "contains",
+      "value": "\"@type\": \"Article\""
+    },
+    {
+      "id": "breadcrumb_schema",
+      "description": "BreadcrumbList JSON-LD schema is present",
+      "check": "HTML output contains '\"@type\": \"BreadcrumbList\"'",
+      "type": "contains",
+      "value": "\"@type\": \"BreadcrumbList\""
+    },
+    {
+      "id": "contact_internal_link",
+      "description": "Post links to contact.html or /contact",
+      "check": "HTML output contains 'contact.html' or 'href=\"../contact\"' or '/contact'",
+      "type": "contains_any",
+      "values": ["contact.html", "../contact", "/contact"]
+    },
+    {
+      "id": "three_internal_links",
+      "description": "Post has at least 3 internal links to site pages",
+      "check": "HTML output contains at least 3 href attributes pointing to .html pages or internal paths",
+      "type": "count_min",
+      "pattern": "href=\"\\.\\./",
+      "minimum": 3
+    },
+    {
+      "id": "faq_section_present",
+      "description": "Post contains a visible FAQ section",
+      "check": "HTML output contains a section or div with FAQ-related heading (FAQ, Frequently Asked)",
+      "type": "contains_any",
+      "values": ["FAQ", "Frequently Asked", "frequently asked"]
+    },
+    {
+      "id": "mid_article_cta",
+      "description": "Post has a mid-article call to action",
+      "check": "HTML output contains a CTA element before the FAQ section and after the first H2",
+      "type": "structural",
+      "note": "Verify CTA box appears in the middle of article content, not just at the end"
+    },
+    {
+      "id": "end_article_cta",
+      "description": "Post has an end-of-article call to action",
+      "check": "HTML output contains a CTA or consultation link near the end of <main>",
+      "type": "structural",
+      "note": "Verify CTA exists after the FAQ section"
+    },
+    {
+      "id": "dark_mode_body_class",
+      "description": "Body tag has dark mode classes",
+      "check": "HTML output contains 'dark:bg-navy-500' in body tag or class attribute",
+      "type": "contains",
+      "value": "dark:bg-navy-500"
+    },
+    {
+      "id": "relative_nav_paths",
+      "description": "All nav links use ../ relative paths (blog subdirectory requirement)",
+      "check": "HTML nav links use '../' not absolute paths to site pages",
+      "type": "contains",
+      "value": "href=\"../"
+    },
+    {
+      "id": "no_unsplash_links",
+      "description": "No Unsplash CDN links in the output",
+      "check": "HTML output does NOT contain 'unsplash.com' or 'images.unsplash'",
+      "type": "not_contains",
+      "value": "unsplash.com"
+    },
+    {
+      "id": "no_banned_phrase_in_today",
+      "description": "Output does not use 'In today's market' opener",
+      "check": "HTML content does NOT contain 'In today\\'s market'",
+      "type": "not_contains",
+      "value": "In today's market"
+    },
+    {
+      "id": "no_banned_phrase_first_time",
+      "description": "Output does not use the generic first-time buyer boilerplate opener",
+      "check": "HTML content does NOT contain 'Whether you\\'re a first-time buyer'",
+      "type": "not_contains",
+      "value": "Whether you're a first-time buyer"
+    },
+    {
+      "id": "jacksonville_in_content",
+      "description": "Post mentions Jacksonville (local geo-relevance)",
+      "check": "HTML content body contains 'Jacksonville' at least once",
+      "type": "contains",
+      "value": "Jacksonville"
+    },
+    {
+      "id": "h2_present",
+      "description": "Post has at least one H2 heading",
+      "check": "HTML output contains '<h2'",
+      "type": "contains",
+      "value": "<h2"
+    },
+    {
+      "id": "author_bio_present",
+      "description": "Post includes an author bio section for Keneshia",
+      "check": "HTML output contains 'Keneshia' in an author bio context near the end of <main>",
+      "type": "contains",
+      "value": "Keneshia"
+    },
+    {
+      "id": "office_address",
+      "description": "Post includes the correct office address",
+      "check": "HTML output contains '1700 Wells Road'",
+      "type": "contains",
+      "value": "1700 Wells Road"
+    },
+    {
+      "id": "css_stylesheet",
+      "description": "Post loads the site stylesheet",
+      "check": "HTML output contains '/css/styles.css'",
+      "type": "contains",
+      "value": "/css/styles.css"
+    }
+  ],
+  "improvement_instructions": "If any assertion fails: (1) identify which step in skill.md could produce this failure, (2) make ONE targeted change to skill.md — either tightening a rule, adding an explicit requirement, or reordering a checklist item, (3) rerun the full eval, (4) if score improved, git commit the change with message 'eval: improve skill.md - [assertion fixed]', (5) if score dropped, git reset and try a different change. Never stop until all 25 assertions pass across all 5 test prompts."
+}
