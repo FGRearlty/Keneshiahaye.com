@@ -591,7 +591,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
 
         <!-- Form -->
-        <form id="vaIntakeForm" class="space-y-5" data-form-source="va-intake">
+        <form id="vaIntakeForm" class="space-y-5" data-form-source="va-intake" onsubmit="event.preventDefault(); handleVAFormSubmit(this);">
 
           <!-- Row: First Name + Last Name -->
           <div class="grid sm:grid-cols-2 gap-5">
