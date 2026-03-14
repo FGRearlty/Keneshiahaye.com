@@ -303,9 +303,27 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <h2 class="font-serif text-xl font-bold text-slate-900 dark:text-white mb-3">First-Time Homebuyer Guide</h2>
           <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4">Your complete 12-page roadmap from dream to keys. Everything you need to know about buying your first home in Jacksonville.</p>
           <p class="text-xs text-slate-400 dark:text-slate-500 font-medium mb-5">12 Pages &bull; PDF Download</p>
-          <form data-form-source="resource-download" data-guide-pdf="guides/first-time-homebuyer-guide.pdf" class="flex gap-2">
-            <input type="email" required aria-required="true" placeholder="Your email" aria-label="Email for guide download" class="form-input flex-1 px-3 py-2.5 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all min-w-0">
-            <button type="submit" class="resource-dl-btn flex-shrink-0 px-4 py-2.5 bg-gradient-to-r from-champagne-400 to-champagne-300 text-navy-500 text-sm font-bold rounded-xl hover:shadow-md transition-all whitespace-nowrap">Download Free</button>
+          <form data-form-source="resource-download" data-guide-pdf="guides/first-time-homebuyer-guide.pdf" class="space-y-2.5">
+            <div class="grid grid-cols-2 gap-2">
+              <input type="text" name="firstName" required aria-required="true" placeholder="First name" aria-label="First name" autocomplete="given-name" class="form-input w-full px-3 py-2.5 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all">
+              <input type="text" name="lastName" required aria-required="true" placeholder="Last name" aria-label="Last name" autocomplete="family-name" class="form-input w-full px-3 py-2.5 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all">
+            </div>
+            <input type="email" name="email" required aria-required="true" placeholder="Email address" aria-label="Email address" autocomplete="email" class="form-input w-full px-3 py-2.5 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all">
+            <input type="tel" name="phone" required aria-required="true" pattern="[0-9 ()+\-.]{10,}" title="Please enter a valid phone number (at least 10 digits)" placeholder="Phone number *" aria-label="Phone number" autocomplete="tel" class="form-input w-full px-3 py-2.5 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all">
+            <div class="space-y-2">
+              <label class="flex items-start gap-2 cursor-pointer">
+                <input type="checkbox" name="smsConsentTransactional" class="mt-0.5 w-4 h-4 rounded border-slate-300 dark:border-white/20 text-champagne-400 focus:ring-champagne-400/30 bg-white dark:bg-white/5 cursor-pointer flex-shrink-0">
+                <span class="text-[10px] text-slate-500 dark:text-slate-400 leading-relaxed">I consent to receive transactional messages (appointment reminders, consultation follow-ups) from <strong class="text-slate-700 dark:text-slate-300">Keneshia Haye, Florida Gateway Realty</strong>. Msg &amp; data rates may apply. Reply STOP to opt out.</span>
+              </label>
+              <label class="flex items-start gap-2 cursor-pointer">
+                <input type="checkbox" name="smsConsentMarketing" class="mt-0.5 w-4 h-4 rounded border-slate-300 dark:border-white/20 text-champagne-400 focus:ring-champagne-400/30 bg-white dark:bg-white/5 cursor-pointer flex-shrink-0">
+                <span class="text-[10px] text-slate-500 dark:text-slate-400 leading-relaxed">I consent to receive marketing messages (new listings, market updates, tips) from <strong class="text-slate-700 dark:text-slate-300">Keneshia Haye, Florida Gateway Realty</strong>. Msg &amp; data rates may apply. Reply STOP to opt out.</span>
+              </label>
+              <p class="text-[10px] text-slate-400 dark:text-slate-500">
+                <a href="/privacy-policy" class="text-champagne-400 hover:underline">Privacy Policy</a> · <a href="/terms" class="text-champagne-400 hover:underline">Terms</a>
+              </p>
+            </div>
+            <button type="submit" class="resource-dl-btn w-full px-4 py-2.5 bg-gradient-to-r from-champagne-400 to-champagne-300 text-navy-500 text-sm font-bold rounded-xl hover:shadow-md transition-all">Download Free</button>
           </form>
         </div>
 
@@ -316,9 +334,27 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <h2 class="font-serif text-xl font-bold text-slate-900 dark:text-white mb-3">Buyer's Step-by-Step Guide</h2>
           <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4">A detailed walkthrough of the entire home buying journey &mdash; from defining your goals to getting your keys.</p>
           <p class="text-xs text-slate-400 dark:text-slate-500 font-medium mb-5">8 Pages &bull; PDF Download</p>
-          <form data-form-source="resource-download" data-guide-pdf="guides/buyers-step-by-step-guide.pdf" class="flex gap-2">
-            <input type="email" required aria-required="true" placeholder="Your email" aria-label="Email for guide download" class="form-input flex-1 px-3 py-2.5 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all min-w-0">
-            <button type="submit" class="resource-dl-btn flex-shrink-0 px-4 py-2.5 bg-gradient-to-r from-champagne-400 to-champagne-300 text-navy-500 text-sm font-bold rounded-xl hover:shadow-md transition-all whitespace-nowrap">Download Free</button>
+          <form data-form-source="resource-download" data-guide-pdf="guides/buyers-step-by-step-guide.pdf" class="space-y-2.5">
+            <div class="grid grid-cols-2 gap-2">
+              <input type="text" name="firstName" required aria-required="true" placeholder="First name" aria-label="First name" autocomplete="given-name" class="form-input w-full px-3 py-2.5 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all">
+              <input type="text" name="lastName" required aria-required="true" placeholder="Last name" aria-label="Last name" autocomplete="family-name" class="form-input w-full px-3 py-2.5 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all">
+            </div>
+            <input type="email" name="email" required aria-required="true" placeholder="Email address" aria-label="Email address" autocomplete="email" class="form-input w-full px-3 py-2.5 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all">
+            <input type="tel" name="phone" required aria-required="true" pattern="[0-9 ()+\-.]{10,}" title="Please enter a valid phone number (at least 10 digits)" placeholder="Phone number *" aria-label="Phone number" autocomplete="tel" class="form-input w-full px-3 py-2.5 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all">
+            <div class="space-y-2">
+              <label class="flex items-start gap-2 cursor-pointer">
+                <input type="checkbox" name="smsConsentTransactional" class="mt-0.5 w-4 h-4 rounded border-slate-300 dark:border-white/20 text-champagne-400 focus:ring-champagne-400/30 bg-white dark:bg-white/5 cursor-pointer flex-shrink-0">
+                <span class="text-[10px] text-slate-500 dark:text-slate-400 leading-relaxed">I consent to receive transactional messages (appointment reminders, consultation follow-ups) from <strong class="text-slate-700 dark:text-slate-300">Keneshia Haye, Florida Gateway Realty</strong>. Msg &amp; data rates may apply. Reply STOP to opt out.</span>
+              </label>
+              <label class="flex items-start gap-2 cursor-pointer">
+                <input type="checkbox" name="smsConsentMarketing" class="mt-0.5 w-4 h-4 rounded border-slate-300 dark:border-white/20 text-champagne-400 focus:ring-champagne-400/30 bg-white dark:bg-white/5 cursor-pointer flex-shrink-0">
+                <span class="text-[10px] text-slate-500 dark:text-slate-400 leading-relaxed">I consent to receive marketing messages (new listings, market updates, tips) from <strong class="text-slate-700 dark:text-slate-300">Keneshia Haye, Florida Gateway Realty</strong>. Msg &amp; data rates may apply. Reply STOP to opt out.</span>
+              </label>
+              <p class="text-[10px] text-slate-400 dark:text-slate-500">
+                <a href="/privacy-policy" class="text-champagne-400 hover:underline">Privacy Policy</a> · <a href="/terms" class="text-champagne-400 hover:underline">Terms</a>
+              </p>
+            </div>
+            <button type="submit" class="resource-dl-btn w-full px-4 py-2.5 bg-gradient-to-r from-champagne-400 to-champagne-300 text-navy-500 text-sm font-bold rounded-xl hover:shadow-md transition-all">Download Free</button>
           </form>
         </div>
 
@@ -329,9 +365,27 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <h2 class="font-serif text-xl font-bold text-slate-900 dark:text-white mb-3">How to Buy a Home Sight Unseen</h2>
           <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4">Essential guide for military families and remote buyers. Virtual tour tips, remote closing process, and how to protect yourself.</p>
           <p class="text-xs text-slate-400 dark:text-slate-500 font-medium mb-5">6 Pages &bull; PDF Download</p>
-          <form data-form-source="resource-download" data-guide-pdf="guides/buying-sight-unseen-guide.pdf" class="flex gap-2">
-            <input type="email" required aria-required="true" placeholder="Your email" aria-label="Email for guide download" class="form-input flex-1 px-3 py-2.5 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all min-w-0">
-            <button type="submit" class="resource-dl-btn flex-shrink-0 px-4 py-2.5 bg-gradient-to-r from-champagne-400 to-champagne-300 text-navy-500 text-sm font-bold rounded-xl hover:shadow-md transition-all whitespace-nowrap">Download Free</button>
+          <form data-form-source="resource-download" data-guide-pdf="guides/buying-sight-unseen-guide.pdf" class="space-y-2.5">
+            <div class="grid grid-cols-2 gap-2">
+              <input type="text" name="firstName" required aria-required="true" placeholder="First name" aria-label="First name" autocomplete="given-name" class="form-input w-full px-3 py-2.5 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all">
+              <input type="text" name="lastName" required aria-required="true" placeholder="Last name" aria-label="Last name" autocomplete="family-name" class="form-input w-full px-3 py-2.5 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all">
+            </div>
+            <input type="email" name="email" required aria-required="true" placeholder="Email address" aria-label="Email address" autocomplete="email" class="form-input w-full px-3 py-2.5 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all">
+            <input type="tel" name="phone" required aria-required="true" pattern="[0-9 ()+\-.]{10,}" title="Please enter a valid phone number (at least 10 digits)" placeholder="Phone number *" aria-label="Phone number" autocomplete="tel" class="form-input w-full px-3 py-2.5 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all">
+            <div class="space-y-2">
+              <label class="flex items-start gap-2 cursor-pointer">
+                <input type="checkbox" name="smsConsentTransactional" class="mt-0.5 w-4 h-4 rounded border-slate-300 dark:border-white/20 text-champagne-400 focus:ring-champagne-400/30 bg-white dark:bg-white/5 cursor-pointer flex-shrink-0">
+                <span class="text-[10px] text-slate-500 dark:text-slate-400 leading-relaxed">I consent to receive transactional messages (appointment reminders, consultation follow-ups) from <strong class="text-slate-700 dark:text-slate-300">Keneshia Haye, Florida Gateway Realty</strong>. Msg &amp; data rates may apply. Reply STOP to opt out.</span>
+              </label>
+              <label class="flex items-start gap-2 cursor-pointer">
+                <input type="checkbox" name="smsConsentMarketing" class="mt-0.5 w-4 h-4 rounded border-slate-300 dark:border-white/20 text-champagne-400 focus:ring-champagne-400/30 bg-white dark:bg-white/5 cursor-pointer flex-shrink-0">
+                <span class="text-[10px] text-slate-500 dark:text-slate-400 leading-relaxed">I consent to receive marketing messages (new listings, market updates, tips) from <strong class="text-slate-700 dark:text-slate-300">Keneshia Haye, Florida Gateway Realty</strong>. Msg &amp; data rates may apply. Reply STOP to opt out.</span>
+              </label>
+              <p class="text-[10px] text-slate-400 dark:text-slate-500">
+                <a href="/privacy-policy" class="text-champagne-400 hover:underline">Privacy Policy</a> · <a href="/terms" class="text-champagne-400 hover:underline">Terms</a>
+              </p>
+            </div>
+            <button type="submit" class="resource-dl-btn w-full px-4 py-2.5 bg-gradient-to-r from-champagne-400 to-champagne-300 text-navy-500 text-sm font-bold rounded-xl hover:shadow-md transition-all">Download Free</button>
           </form>
         </div>
 
@@ -342,9 +396,27 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <h2 class="font-serif text-xl font-bold text-slate-900 dark:text-white mb-3">Seller's Guide to Top Dollar</h2>
           <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4">Strategic pricing, professional marketing, and expert negotiation &mdash; everything you need to sell your Jacksonville home for maximum value.</p>
           <p class="text-xs text-slate-400 dark:text-slate-500 font-medium mb-5">10 Pages &bull; PDF Download</p>
-          <form data-form-source="resource-download" data-guide-pdf="guides/sellers-guide-top-dollar.pdf" class="flex gap-2">
-            <input type="email" required aria-required="true" placeholder="Your email" aria-label="Email for guide download" class="form-input flex-1 px-3 py-2.5 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all min-w-0">
-            <button type="submit" class="resource-dl-btn flex-shrink-0 px-4 py-2.5 bg-gradient-to-r from-champagne-400 to-champagne-300 text-navy-500 text-sm font-bold rounded-xl hover:shadow-md transition-all whitespace-nowrap">Download Free</button>
+          <form data-form-source="resource-download" data-guide-pdf="guides/sellers-guide-top-dollar.pdf" class="space-y-2.5">
+            <div class="grid grid-cols-2 gap-2">
+              <input type="text" name="firstName" required aria-required="true" placeholder="First name" aria-label="First name" autocomplete="given-name" class="form-input w-full px-3 py-2.5 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all">
+              <input type="text" name="lastName" required aria-required="true" placeholder="Last name" aria-label="Last name" autocomplete="family-name" class="form-input w-full px-3 py-2.5 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all">
+            </div>
+            <input type="email" name="email" required aria-required="true" placeholder="Email address" aria-label="Email address" autocomplete="email" class="form-input w-full px-3 py-2.5 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all">
+            <input type="tel" name="phone" required aria-required="true" pattern="[0-9 ()+\-.]{10,}" title="Please enter a valid phone number (at least 10 digits)" placeholder="Phone number *" aria-label="Phone number" autocomplete="tel" class="form-input w-full px-3 py-2.5 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all">
+            <div class="space-y-2">
+              <label class="flex items-start gap-2 cursor-pointer">
+                <input type="checkbox" name="smsConsentTransactional" class="mt-0.5 w-4 h-4 rounded border-slate-300 dark:border-white/20 text-champagne-400 focus:ring-champagne-400/30 bg-white dark:bg-white/5 cursor-pointer flex-shrink-0">
+                <span class="text-[10px] text-slate-500 dark:text-slate-400 leading-relaxed">I consent to receive transactional messages (appointment reminders, consultation follow-ups) from <strong class="text-slate-700 dark:text-slate-300">Keneshia Haye, Florida Gateway Realty</strong>. Msg &amp; data rates may apply. Reply STOP to opt out.</span>
+              </label>
+              <label class="flex items-start gap-2 cursor-pointer">
+                <input type="checkbox" name="smsConsentMarketing" class="mt-0.5 w-4 h-4 rounded border-slate-300 dark:border-white/20 text-champagne-400 focus:ring-champagne-400/30 bg-white dark:bg-white/5 cursor-pointer flex-shrink-0">
+                <span class="text-[10px] text-slate-500 dark:text-slate-400 leading-relaxed">I consent to receive marketing messages (new listings, market updates, tips) from <strong class="text-slate-700 dark:text-slate-300">Keneshia Haye, Florida Gateway Realty</strong>. Msg &amp; data rates may apply. Reply STOP to opt out.</span>
+              </label>
+              <p class="text-[10px] text-slate-400 dark:text-slate-500">
+                <a href="/privacy-policy" class="text-champagne-400 hover:underline">Privacy Policy</a> · <a href="/terms" class="text-champagne-400 hover:underline">Terms</a>
+              </p>
+            </div>
+            <button type="submit" class="resource-dl-btn w-full px-4 py-2.5 bg-gradient-to-r from-champagne-400 to-champagne-300 text-navy-500 text-sm font-bold rounded-xl hover:shadow-md transition-all">Download Free</button>
           </form>
         </div>
 
@@ -355,9 +427,27 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <h2 class="font-serif text-xl font-bold text-slate-900 dark:text-white mb-3">Home Prep Checklist</h2>
           <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4">Room-by-room checklist to get your home show-ready. Maximize your sale price with these proven preparation steps.</p>
           <p class="text-xs text-slate-400 dark:text-slate-500 font-medium mb-5">4 Pages &bull; PDF Download</p>
-          <form data-form-source="resource-download" data-guide-pdf="guides/home-prep-checklist.pdf" class="flex gap-2">
-            <input type="email" required aria-required="true" placeholder="Your email" aria-label="Email for guide download" class="form-input flex-1 px-3 py-2.5 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all min-w-0">
-            <button type="submit" class="resource-dl-btn flex-shrink-0 px-4 py-2.5 bg-gradient-to-r from-champagne-400 to-champagne-300 text-navy-500 text-sm font-bold rounded-xl hover:shadow-md transition-all whitespace-nowrap">Download Free</button>
+          <form data-form-source="resource-download" data-guide-pdf="guides/home-prep-checklist.pdf" class="space-y-2.5">
+            <div class="grid grid-cols-2 gap-2">
+              <input type="text" name="firstName" required aria-required="true" placeholder="First name" aria-label="First name" autocomplete="given-name" class="form-input w-full px-3 py-2.5 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all">
+              <input type="text" name="lastName" required aria-required="true" placeholder="Last name" aria-label="Last name" autocomplete="family-name" class="form-input w-full px-3 py-2.5 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all">
+            </div>
+            <input type="email" name="email" required aria-required="true" placeholder="Email address" aria-label="Email address" autocomplete="email" class="form-input w-full px-3 py-2.5 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all">
+            <input type="tel" name="phone" required aria-required="true" pattern="[0-9 ()+\-.]{10,}" title="Please enter a valid phone number (at least 10 digits)" placeholder="Phone number *" aria-label="Phone number" autocomplete="tel" class="form-input w-full px-3 py-2.5 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all">
+            <div class="space-y-2">
+              <label class="flex items-start gap-2 cursor-pointer">
+                <input type="checkbox" name="smsConsentTransactional" class="mt-0.5 w-4 h-4 rounded border-slate-300 dark:border-white/20 text-champagne-400 focus:ring-champagne-400/30 bg-white dark:bg-white/5 cursor-pointer flex-shrink-0">
+                <span class="text-[10px] text-slate-500 dark:text-slate-400 leading-relaxed">I consent to receive transactional messages (appointment reminders, consultation follow-ups) from <strong class="text-slate-700 dark:text-slate-300">Keneshia Haye, Florida Gateway Realty</strong>. Msg &amp; data rates may apply. Reply STOP to opt out.</span>
+              </label>
+              <label class="flex items-start gap-2 cursor-pointer">
+                <input type="checkbox" name="smsConsentMarketing" class="mt-0.5 w-4 h-4 rounded border-slate-300 dark:border-white/20 text-champagne-400 focus:ring-champagne-400/30 bg-white dark:bg-white/5 cursor-pointer flex-shrink-0">
+                <span class="text-[10px] text-slate-500 dark:text-slate-400 leading-relaxed">I consent to receive marketing messages (new listings, market updates, tips) from <strong class="text-slate-700 dark:text-slate-300">Keneshia Haye, Florida Gateway Realty</strong>. Msg &amp; data rates may apply. Reply STOP to opt out.</span>
+              </label>
+              <p class="text-[10px] text-slate-400 dark:text-slate-500">
+                <a href="/privacy-policy" class="text-champagne-400 hover:underline">Privacy Policy</a> · <a href="/terms" class="text-champagne-400 hover:underline">Terms</a>
+              </p>
+            </div>
+            <button type="submit" class="resource-dl-btn w-full px-4 py-2.5 bg-gradient-to-r from-champagne-400 to-champagne-300 text-navy-500 text-sm font-bold rounded-xl hover:shadow-md transition-all">Download Free</button>
           </form>
         </div>
 
@@ -368,9 +458,27 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <h2 class="font-serif text-xl font-bold text-slate-900 dark:text-white mb-3">Military Relocation Guide to Jacksonville</h2>
           <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4">PCS'ing to Jacksonville? Complete guide to bases, neighborhoods, schools, BAH, and everything military families need to know.</p>
           <p class="text-xs text-slate-400 dark:text-slate-500 font-medium mb-5">12 Pages &bull; PDF Download</p>
-          <form data-form-source="resource-download" data-guide-pdf="guides/military-relocation-guide-jacksonville.pdf" class="flex gap-2">
-            <input type="email" required aria-required="true" placeholder="Your email" aria-label="Email for guide download" class="form-input flex-1 px-3 py-2.5 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all min-w-0">
-            <button type="submit" class="resource-dl-btn flex-shrink-0 px-4 py-2.5 bg-gradient-to-r from-champagne-400 to-champagne-300 text-navy-500 text-sm font-bold rounded-xl hover:shadow-md transition-all whitespace-nowrap">Download Free</button>
+          <form data-form-source="resource-download" data-guide-pdf="guides/military-relocation-guide-jacksonville.pdf" class="space-y-2.5">
+            <div class="grid grid-cols-2 gap-2">
+              <input type="text" name="firstName" required aria-required="true" placeholder="First name" aria-label="First name" autocomplete="given-name" class="form-input w-full px-3 py-2.5 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all">
+              <input type="text" name="lastName" required aria-required="true" placeholder="Last name" aria-label="Last name" autocomplete="family-name" class="form-input w-full px-3 py-2.5 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all">
+            </div>
+            <input type="email" name="email" required aria-required="true" placeholder="Email address" aria-label="Email address" autocomplete="email" class="form-input w-full px-3 py-2.5 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all">
+            <input type="tel" name="phone" required aria-required="true" pattern="[0-9 ()+\-.]{10,}" title="Please enter a valid phone number (at least 10 digits)" placeholder="Phone number *" aria-label="Phone number" autocomplete="tel" class="form-input w-full px-3 py-2.5 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all">
+            <div class="space-y-2">
+              <label class="flex items-start gap-2 cursor-pointer">
+                <input type="checkbox" name="smsConsentTransactional" class="mt-0.5 w-4 h-4 rounded border-slate-300 dark:border-white/20 text-champagne-400 focus:ring-champagne-400/30 bg-white dark:bg-white/5 cursor-pointer flex-shrink-0">
+                <span class="text-[10px] text-slate-500 dark:text-slate-400 leading-relaxed">I consent to receive transactional messages (appointment reminders, consultation follow-ups) from <strong class="text-slate-700 dark:text-slate-300">Keneshia Haye, Florida Gateway Realty</strong>. Msg &amp; data rates may apply. Reply STOP to opt out.</span>
+              </label>
+              <label class="flex items-start gap-2 cursor-pointer">
+                <input type="checkbox" name="smsConsentMarketing" class="mt-0.5 w-4 h-4 rounded border-slate-300 dark:border-white/20 text-champagne-400 focus:ring-champagne-400/30 bg-white dark:bg-white/5 cursor-pointer flex-shrink-0">
+                <span class="text-[10px] text-slate-500 dark:text-slate-400 leading-relaxed">I consent to receive marketing messages (new listings, market updates, tips) from <strong class="text-slate-700 dark:text-slate-300">Keneshia Haye, Florida Gateway Realty</strong>. Msg &amp; data rates may apply. Reply STOP to opt out.</span>
+              </label>
+              <p class="text-[10px] text-slate-400 dark:text-slate-500">
+                <a href="/privacy-policy" class="text-champagne-400 hover:underline">Privacy Policy</a> · <a href="/terms" class="text-champagne-400 hover:underline">Terms</a>
+              </p>
+            </div>
+            <button type="submit" class="resource-dl-btn w-full px-4 py-2.5 bg-gradient-to-r from-champagne-400 to-champagne-300 text-navy-500 text-sm font-bold rounded-xl hover:shadow-md transition-all">Download Free</button>
           </form>
         </div>
 
@@ -381,9 +489,27 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <h2 class="font-serif text-xl font-bold text-slate-900 dark:text-white mb-3">VA Loan Benefits Cheat Sheet</h2>
           <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4">Quick-reference guide to VA loan benefits, eligibility, funding fees, and how to apply. Everything in one place.</p>
           <p class="text-xs text-slate-400 dark:text-slate-500 font-medium mb-5">4 Pages &bull; PDF Download</p>
-          <form data-form-source="resource-download" data-guide-pdf="guides/va-loan-benefits-cheat-sheet.pdf" class="flex gap-2">
-            <input type="email" required aria-required="true" placeholder="Your email" aria-label="Email for guide download" class="form-input flex-1 px-3 py-2.5 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all min-w-0">
-            <button type="submit" class="resource-dl-btn flex-shrink-0 px-4 py-2.5 bg-gradient-to-r from-champagne-400 to-champagne-300 text-navy-500 text-sm font-bold rounded-xl hover:shadow-md transition-all whitespace-nowrap">Download Free</button>
+          <form data-form-source="resource-download" data-guide-pdf="guides/va-loan-benefits-cheat-sheet.pdf" class="space-y-2.5">
+            <div class="grid grid-cols-2 gap-2">
+              <input type="text" name="firstName" required aria-required="true" placeholder="First name" aria-label="First name" autocomplete="given-name" class="form-input w-full px-3 py-2.5 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all">
+              <input type="text" name="lastName" required aria-required="true" placeholder="Last name" aria-label="Last name" autocomplete="family-name" class="form-input w-full px-3 py-2.5 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all">
+            </div>
+            <input type="email" name="email" required aria-required="true" placeholder="Email address" aria-label="Email address" autocomplete="email" class="form-input w-full px-3 py-2.5 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all">
+            <input type="tel" name="phone" required aria-required="true" pattern="[0-9 ()+\-.]{10,}" title="Please enter a valid phone number (at least 10 digits)" placeholder="Phone number *" aria-label="Phone number" autocomplete="tel" class="form-input w-full px-3 py-2.5 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all">
+            <div class="space-y-2">
+              <label class="flex items-start gap-2 cursor-pointer">
+                <input type="checkbox" name="smsConsentTransactional" class="mt-0.5 w-4 h-4 rounded border-slate-300 dark:border-white/20 text-champagne-400 focus:ring-champagne-400/30 bg-white dark:bg-white/5 cursor-pointer flex-shrink-0">
+                <span class="text-[10px] text-slate-500 dark:text-slate-400 leading-relaxed">I consent to receive transactional messages (appointment reminders, consultation follow-ups) from <strong class="text-slate-700 dark:text-slate-300">Keneshia Haye, Florida Gateway Realty</strong>. Msg &amp; data rates may apply. Reply STOP to opt out.</span>
+              </label>
+              <label class="flex items-start gap-2 cursor-pointer">
+                <input type="checkbox" name="smsConsentMarketing" class="mt-0.5 w-4 h-4 rounded border-slate-300 dark:border-white/20 text-champagne-400 focus:ring-champagne-400/30 bg-white dark:bg-white/5 cursor-pointer flex-shrink-0">
+                <span class="text-[10px] text-slate-500 dark:text-slate-400 leading-relaxed">I consent to receive marketing messages (new listings, market updates, tips) from <strong class="text-slate-700 dark:text-slate-300">Keneshia Haye, Florida Gateway Realty</strong>. Msg &amp; data rates may apply. Reply STOP to opt out.</span>
+              </label>
+              <p class="text-[10px] text-slate-400 dark:text-slate-500">
+                <a href="/privacy-policy" class="text-champagne-400 hover:underline">Privacy Policy</a> · <a href="/terms" class="text-champagne-400 hover:underline">Terms</a>
+              </p>
+            </div>
+            <button type="submit" class="resource-dl-btn w-full px-4 py-2.5 bg-gradient-to-r from-champagne-400 to-champagne-300 text-navy-500 text-sm font-bold rounded-xl hover:shadow-md transition-all">Download Free</button>
           </form>
         </div>
 
@@ -840,10 +966,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     btn.disabled = true;
     btn.textContent = 'Sending...';
 
-    // Collect form data
-    var email = form.querySelector('input[type="email"]').value;
+    // Collect form data including new fields
+    var firstNameEl = form.querySelector('input[name="firstName"]');
+    var lastNameEl = form.querySelector('input[name="lastName"]');
+    var phoneEl = form.querySelector('input[name="phone"]');
+    var smsTransEl = form.querySelector('input[name="smsConsentTransactional"]');
+    var smsMktEl = form.querySelector('input[name="smsConsentMarketing"]');
+
     var formData = {
-      email: email,
+      firstName: firstNameEl ? firstNameEl.value.trim() : '',
+      lastName: lastNameEl ? lastNameEl.value.trim() : '',
+      email: form.querySelector('input[type="email"]').value.trim(),
+      phone: phoneEl ? phoneEl.value.trim() : '',
+      smsConsentTransactional: smsTransEl ? smsTransEl.checked : false,
+      smsConsentMarketing: smsMktEl ? smsMktEl.checked : false,
       resource: pdfUrl,
       formSource: 'resource-download'
     };
@@ -877,6 +1013,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
   </script>
 
+  <script src="/js/form-handler.js" defer></script>
   <script src="/js/inline-handlers.js" defer></script>
 </body>
 </html>

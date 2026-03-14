@@ -24,7 +24,12 @@ function collectFormData(form) {
   var formData = {};
   var inputs = form.querySelectorAll('input, select, textarea');
   inputs.forEach(function (input) {
-    if (input.name) formData[input.name] = input.value;
+    if (!input.name) return;
+    if (input.type === 'checkbox') {
+      formData[input.name] = input.checked;
+    } else {
+      formData[input.name] = input.value;
+    }
   });
   return formData;
 }
