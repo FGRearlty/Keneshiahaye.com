@@ -62,6 +62,7 @@ Go to **Contacts > Tags** and create these tags if they don't exist:
 - [ ] `va-nurture-complete`
 - [ ] `buyer-nurture-complete`
 - [ ] `seller-nurture-complete`
+- [ ] `newsletter-welcome-complete`
 - [ ] `consultation-booked`
 
 **Lifecycle Tags:**
@@ -296,23 +297,63 @@ For each email step:
 
 ---
 
-## PHASE 10: Google Business Profile Fixes
+## PHASE 10: Newsletter Welcome Sequence
 
-### 10.1 Critical Fixes
+> **Trigger:** Tag `website-newsletter` added
+> **Template files:** `/email-templates/newsletter-sequence/01-newsletter-welcome.html` through `03-newsletter-toolkit.html`
+
+### 10.1 Create the Workflow
+- [ ] Go to **Automation > Workflows**
+- [ ] Click **Create Workflow > Start from Scratch**
+- [ ] Name: `Newsletter Welcome Sequence`
+- [ ] **Trigger:** Contact Tag > Tag Added > `website-newsletter`
+
+### 10.2 Add Email Steps
+| Step | Wait | Subject | Template File |
+|------|------|---------|---------------|
+| Email 1 | Immediate | Welcome to Keneshia's Jacksonville Real Estate Insider! | `newsletter-sequence/01-newsletter-welcome.html` |
+| Wait | 3 days | — | — |
+| Email 2 | — | What's Happening in Jacksonville Real Estate | `newsletter-sequence/02-newsletter-market-snapshot.html` |
+| Wait | 4 days | — | — |
+| Email 3 | — | Your Jacksonville Real Estate Toolkit | `newsletter-sequence/03-newsletter-toolkit.html` |
+| Action | — | Add tag: `newsletter-welcome-complete` | — |
+
+### 10.3 Configure, Test & Activate
+- [ ] Same email settings as Phase 2 (From: Keneshia Haye, keneshia@fgragent.com)
+- [ ] Paste HTML from each template file into Code View
+- [ ] Add stop conditions (consultation-booked, reply, unsubscribe)
+- [ ] Test with 1-minute waits, then change to production timing
+- [ ] **Publish/Activate**
+
+### 10.4 Bi-Weekly Newsletter Manual Send Process
+After the welcome sequence completes:
+1. Pull approved content from **KH Content Scheduler & Approval** Google Sheet ("Newsletter Content" tab)
+2. Use bi-weekly template: `/email-templates/newsletter-template/biweekly-newsletter.html`
+3. Replace merge fields: `{{newsletter_date}}`, `{{preview_text}}`, `{{market_update_intro}}`, `{{tip_title}}`, `{{tip_content}}`, `{{blog_title}}`, `{{blog_summary}}`, `{{blog_link}}`, `{{featured_listing_title}}`, `{{featured_listing_description}}`, `{{featured_listing_link}}`, `{{community_highlight}}`
+4. Send to contacts tagged `newsletter-welcome-complete` (via GHL email broadcast)
+5. Update Google Sheet status to "Sent"
+
+**Schedule:** Every other week (bi-weekly)
+
+---
+
+## PHASE 11: Google Business Profile Fixes
+
+### 11.1 Critical Fixes
 - [ ] Log into Google Business Profile: https://business.google.com
 - [ ] **Change primary website** from calendly.com → `https://keneshiahaye.com`
 - [ ] **Set appointment URL** to your Calendly or GHL booking link
 - [ ] **Update phone** if needed (decide: (254) 449-5299 or local 904 number)
 - [ ] **Post a new update** (Google favors active profiles)
 
-### 10.2 Profile Optimization
+### 11.2 Profile Optimization
 - [ ] Add services: Buyer Representation, VA Loans, Seller Representation, Military Relocation, New Construction, First-Time Buyer, Free Consultation
 - [ ] Add products: Free Homebuyer Guide, Free VA Consultation, Free Home Valuation
 - [ ] Add Q&A: Pre-seed 4 common questions and answers
 - [ ] Upload 10+ photos: agent photos, property photos, neighborhood shots
 - [ ] Update business description with Jacksonville + veteran keywords
 
-### 10.3 Ongoing GBP Maintenance
+### 11.3 Ongoing GBP Maintenance
 - [ ] Post weekly (What's New, Offer, or Event/Update)
 - [ ] Respond to all reviews within 48 hours
 - [ ] Add new photos monthly
@@ -330,7 +371,7 @@ For each email step:
 | `va-intake` | `website-veteran`, `veterans campaign` | VA Nurture Sequence |
 | `va-benefits-resource-kit` | `website-va-benefits`, `veterans campaign` | VA Nurture Sequence |
 | `resource-download` | `website-guide-download` | Homebuyer Guide Nurture |
-| `footer-newsletter` | `website-newsletter` | (newsletter list only) |
+| `footer-newsletter` | `website-newsletter` | Newsletter Welcome Sequence |
 | `homepage-guide` | `website-guide-download`, `buyers guide` | Homebuyer Guide Nurture |
 | `course-enrollment` | `website-course`, `soms-course`, `enrolled` | Course Enrollment Confirmation |
 | `course-gift` | `website-course`, `soms-course`, `course-gift` | Course Gift Notification |
@@ -345,10 +386,12 @@ For each email step:
 | Website forms → Worker | ✅ Live | Deployed to `keneshia-haye-form-handler.jutsuxx.workers.dev` |
 | Worker → GHL API | ✅ Live | Creates contacts, adds tags, creates opportunities |
 | Pipeline | ✅ Exists | ID: `9o7rqOk04PRzfZA44mfv` |
-| Email templates | ✅ Created | 5 homebuyer + 5 VA + 4 buyer + 4 seller = 18 templates |
-| GHL workflows | ⏳ Pending | Follow Phases 2-9 above to create in GHL |
-| GBP fixes | ⏳ Pending | Follow Phase 10 above |
+| Email templates | ✅ Created | 5 homebuyer + 5 VA + 4 buyer + 4 seller + 3 newsletter + 1 bi-weekly = 22 templates |
+| GHL workflows | ⏳ Pending | Follow Phases 2-10 above to create in GHL |
+| Newsletter sequence | ✅ Templates | 3 welcome emails + bi-weekly template (Phase 10) |
+| Content scheduler | ✅ Created | Google Sheet with 3 tabs, dropdowns, conditional formatting |
+| GBP fixes | ⏳ Pending | Follow Phase 11 above |
 
 ---
 
-*Last updated: March 10, 2026*
+*Last updated: March 13, 2026*
