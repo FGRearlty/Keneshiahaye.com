@@ -117,43 +117,62 @@ async function airtable(path, method = 'GET', body = null) {
 }
 
 // ── Main ─────────────────────────────────────────────────
-const PLATFORMS = ['Facebook', 'Instagram', 'TikTok', 'YouTube', 'LinkedIn', 'Twitter/X'];
-const PLATFORM_MAP = { Facebook: 'facebook', Instagram: 'instagram', TikTok: 'tiktok', YouTube: 'youtube', LinkedIn: 'linkedin', 'Twitter/X': 'twitter' };
-
+// Actual Airtable field names (one row per blog, all platforms as columns)
 async function run() {
-  console.log(`Pushing ${posts.length * PLATFORMS.length} records to Airtable...`);
+  // Fetch existing records to match by title
+  console.log('Fetching existing Airtable records...');
+  const existing = await airtable('?pageSize=100');
+  const existingByTitle = {};
+  for (const rec of existing.records) {
+    const title = rec.fields['Source Blog Title'];
+    if (title) existingByTitle[title.toLowerCase()] = rec.id;
+  }
+
+  console.log(`Updating ${posts.length} blog content records in Airtable...`);
+  let updated = 0;
   let created = 0;
 
   for (const post of posts) {
-    const records = PLATFORMS.map(platform => ({
-      fields: {
-        'Topic / Title': `${post.blog_title} — ${platform}`,
-        'Content Type': 'Social Post',
-        'Platform': platform,
-        'Source Blog': post.blog_slug,
-        'Blog URL': `https://keneshiahaye.com/blog/${post.blog_slug}`,
-        'Image URL': post.image_url,
-        [`${platform} Copy`]: post[PLATFORM_MAP[platform]] || '',
-        'Content': post[PLATFORM_MAP[platform]] || '',
-        'Status': 'Ready for Review',
-        'Scheduled Date': null,
-      },
-    }));
+    // Extract Instagram hashtags from the instagram field if present
+    const igText = post.instagram || '';
+    const hashtagMatch = igText.match(/(#\w+(\s+#\w+)*)\s*$/);
+    const igHashtags = hashtagMatch ? hashtagMatch[0].trim() : '';
+    const igCaption = hashtagMatch ? igText.slice(0, hashtagMatch.index).trim() : igText;
 
-    // Airtable batch create: max 10 per request
-    for (let i = 0; i < records.length; i += 10) {
-      const batch = records.slice(i, i + 10);
-      try {
-        const result = await airtable('', 'POST', { records: batch });
-        created += result.records.length;
-        console.log(`  ✓ ${post.blog_slug} — ${batch.map(r => r.fields['Platform']).join(', ')}`);
-      } catch (e) {
-        console.error(`  ✗ ${post.blog_slug}: ${e.message}`);
+    const fields = {
+      'Source Blog Title': post.blog_title,
+      'Facebook Post': post.facebook || '',
+      'Instagram Caption': igCaption,
+      'Instagram Hashtags': igHashtags,
+      'TikTok Caption': post.tiktok || '',
+      'YouTube Description': post.youtube || '',
+      'LinkedIn Post': post.linkedin || '',
+      'Twitter/X Post': post.twitter || '',
+    };
+
+    // Match by title (case-insensitive substring)
+    const titleKey = Object.keys(existingByTitle).find(k =>
+      k.includes(post.blog_slug.replace(/-/g, ' ')) ||
+      k.includes(post.blog_title.toLowerCase().slice(0, 20))
+    );
+    const recordId = titleKey ? existingByTitle[titleKey] : null;
+
+    try {
+      if (recordId) {
+        await airtable(`/${recordId}`, 'PATCH', { fields });
+        console.log(`  ✓ updated: ${post.blog_title}`);
+        updated++;
+      } else {
+        await airtable('', 'POST', { records: [{ fields }] });
+        console.log(`  ✓ created: ${post.blog_title}`);
+        created++;
       }
+    } catch (e) {
+      console.error(`  ✗ ${post.blog_slug}: ${e.message}`);
     }
   }
 
-  console.log(`\nDone. ${created} records created in Airtable.`);
+  console.log(`\nDone. ${updated} updated, ${created} created in Airtable.`);
 }
 
 run().catch(console.error);
