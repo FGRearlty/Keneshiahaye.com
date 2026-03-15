@@ -591,7 +591,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
 
         <!-- Form -->
-        <form id="vaIntakeForm" class="space-y-5" data-form-source="va-intake" onsubmit="event.preventDefault(); handleVAFormSubmit(this);">
+        <form id="vaIntakeForm" class="space-y-5" data-form-source="va-intake">
 
           <!-- Row: First Name + Last Name -->
           <div class="grid sm:grid-cols-2 gap-5">
@@ -750,7 +750,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           </div>
 
           <!-- Success Message (hidden by default) -->
-          <div role="alert" aria-live="polite" id="vaFormSuccess" class="hidden pt-2">
+          <div role="alert" aria-live="polite" id="vaFormSuccess" class="hidden pt-2" data-success>
             <div class="flex items-center gap-3 p-5 bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/20 rounded-xl">
               <div class="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-xl">&#10003;</div>
               <div>
@@ -1149,55 +1149,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         }
       });
     });
-
   });
-
-
-  /* ---- VA Form Submit Handler ---- */
-  function handleVAFormSubmit(form) {
-    var btn = document.getElementById('vaSubmitBtn');
-    var successMsg = document.getElementById('vaFormSuccess');
-
-    // Disable button and show loading
-    btn.disabled = true;
-    btn.innerHTML = '<svg class="animate-spin w-5 h-5" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg> Submitting...';
-
-    // Collect form data
-    var formData = {};
-    var inputs = form.querySelectorAll('input, select, textarea');
-    inputs.forEach(function(input) {
-      if (input.name) formData[input.name] = input.value;
-    });
-    formData.formSource = 'va-intake';
-
-    // POST to GHL webhook
-    fetch(window.GHL_FORM_ENDPOINT || 'https://keneshia-haye-form-handler.jutsuxx.workers.dev', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData)
-    }).then(function(response) {
-      if (!response.ok) throw new Error('Server error: ' + response.status);
-      return response.json();
-    }).then(function() {
-      // Show success state only after confirmed OK
-      btn.classList.add('hidden');
-      successMsg.classList.remove('hidden');
-      form.reset();
-      successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }).catch(function() {
-      btn.disabled = false;
-      btn.innerHTML = 'Submit';
-      var errDiv = document.getElementById('formError');
-      if (!errDiv) {
-        errDiv = document.createElement('div');
-        errDiv.id = 'formError';
-        errDiv.className = 'mt-4 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl text-sm text-red-700 dark:text-red-300';
-        form.parentElement.appendChild(errDiv);
-      }
-      errDiv.innerHTML = 'Something went wrong. Please try again or call <a href="tel:+12544495299" class="underline font-semibold">(254) 449-5299</a>.';
-      errDiv.classList.remove('hidden');
-    });
-  }
   </script>
 
   <script src="/js/inline-handlers.js" defer></script>

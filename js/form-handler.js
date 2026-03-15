@@ -166,6 +166,11 @@ function submitForm(form, options) {
             block: 'center',
           });
         }
+      } else if (options.submitBtn) {
+        options.submitBtn.textContent = 'Success!';
+        options.submitBtn.classList.remove('from-champagne-400', 'to-champagne-300', 'bg-gradient-to-r', 'text-navy-500');
+        options.submitBtn.classList.add('bg-emerald-500', 'text-white', 'border-emerald-500');
+        form.reset();
       }
       return data;
     })

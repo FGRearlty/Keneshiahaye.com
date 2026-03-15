@@ -1012,49 +1012,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     });
 
   });
-
-
-  /* ---- Buyer Intake Form Handler ---- */
-  function handleBuyerForm(form) {
-    var formEl = document.getElementById('buyerIntakeForm');
-    var successEl = document.getElementById('formSuccess');
-
-    // Collect form data
-    var formData = {};
-    var inputs = form.querySelectorAll('input, select, textarea');
-    inputs.forEach(function(input) {
-      if (input.name) formData[input.name] = input.value;
-    });
-    formData.formSource = 'buyer-intake';
-
-    // POST to GHL webhook
-    fetch(window.GHL_FORM_ENDPOINT || 'https://keneshia-haye-form-handler.jutsuxx.workers.dev', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData)
-    }).then(function(response) {
-      if (!response.ok) throw new Error('Server error: ' + response.status);
-      return response.json();
-    }).then(function() {
-      // Show success state only after confirmed OK
-      formEl.style.display = 'none';
-      successEl.classList.remove('hidden');
-      successEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }).catch(function() {
-      var errDiv = document.getElementById('formError');
-      if (!errDiv) {
-        errDiv = document.createElement('div');
-        errDiv.id = 'formError';
-        errDiv.setAttribute('role', 'alert');
-        errDiv.setAttribute('aria-live', 'polite');
-        errDiv.className = 'mt-4 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl text-sm text-red-700 dark:text-red-300';
-        formEl.appendChild(errDiv);
-      }
-      errDiv.innerHTML = 'Something went wrong. Please try again or call <a href="tel:+12544495299" class="underline font-semibold">(254) 449-5299</a>.';
-      errDiv.classList.remove('hidden');
-    });
-  }
   </script>
+
   <script src="/js/form-handler.js" defer></script>
   <script src="/js/inline-handlers.js" defer></script>
 

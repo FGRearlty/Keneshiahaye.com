@@ -414,6 +414,8 @@
         if (!res.ok) throw new Error('Network error');
         formState.style.display = 'none';
         successState.style.display = 'block';
+        var dLink = successState.querySelector('a[download]');
+        if (dLink) dLink.click();
       })
       .catch(function() {
         btn.disabled = false;
