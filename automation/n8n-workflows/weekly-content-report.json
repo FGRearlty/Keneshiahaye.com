@@ -63,16 +63,23 @@
     "Every Monday 9am": {
       "main": [
         [
-          { "node": "Get Last Week's Content", "type": "main", "index": 0 },
-          { "node": "Get Upcoming 2 Weeks", "type": "main", "index": 0 }
+          { "node": "Get Last Week's Content", "index": 0 }
         ]
       ]
     },
     "Get Last Week's Content": {
-      "main": [[{ "node": "Send Weekly Report", "type": "main", "index": 0 }]]
+      "main": [
+        [
+          { "node": "Get Upcoming 2 Weeks", "index": 0 }
+        ]
+      ]
     },
     "Get Upcoming 2 Weeks": {
-      "main": [[{ "node": "Send Weekly Report", "type": "main", "index": 0 }]]
+      "main": [
+        [
+          { "node": "Send Weekly Report", "index": 0 }
+        ]
+      ]
     }
   },
   "settings": {
